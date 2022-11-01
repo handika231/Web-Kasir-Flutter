@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:intership_01/common/extension.dart';
 import 'package:intership_01/common/style.dart';
 
+import '../widgets/build_drawer_widget.dart';
+
 class CustomerPage extends StatelessWidget {
   static const nameRoute = '/customer';
   const CustomerPage({super.key});
@@ -9,64 +11,7 @@ class CustomerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        backgroundColor: blackColor,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            DrawerHeader(
-              child: Row(
-                children: [
-                  Image.asset(
-                    'logo'.path,
-                    width: 52,
-                  ),
-                  const SizedBox(
-                    width: 18,
-                  ),
-                  Text(
-                    'GMJ\nTamanan',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: bold,
-                      color: whiteColor,
-                    ),
-                  )
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 16),
-              child: Text(
-                'Menu',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: bold,
-                  color: whiteColor,
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 24,
-            ),
-            ListTile(
-              leading: Image.asset(
-                'docs'.path,
-                width: 15,
-                height: 20,
-              ),
-              title: Text(
-                'Data Nasabah',
-                style: TextStyle(
-                  color: whiteColor,
-                  fontSize: 16,
-                ),
-              ),
-              visualDensity: VisualDensity.comfortable,
-            ),
-          ],
-        ),
-      ),
+      drawer: const BuildDrawerWidget(),
       appBar: AppBar(
         actions: [
           Container(
