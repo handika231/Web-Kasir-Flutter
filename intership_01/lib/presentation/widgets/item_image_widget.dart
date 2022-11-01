@@ -61,6 +61,10 @@ class ItemImageWidget extends StatelessWidget {
               },
               decorator: DotsDecorator(
                 color: blackColor,
+                size: const Size.square(9.0),
+                activeSize: const Size(18.0, 9.0),
+                activeShape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5.0)),
                 activeColor: orangeColor,
               ),
               dotsCount: 3,
