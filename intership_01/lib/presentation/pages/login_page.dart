@@ -40,7 +40,9 @@ class LoginPage extends StatelessWidget {
                         height: 60,
                       ),
                       const ItemTextFieldWidget(
-                          hintText: 'Username', text: 'Username'),
+                        hintText: 'Username',
+                        text: 'Username',
+                      ),
                       const SizedBox(
                         height: 20,
                       ),
@@ -48,6 +50,15 @@ class LoginPage extends StatelessWidget {
                         hintText: 'Password',
                         text: 'Password',
                         isPassword: true,
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      ElevatedButton(
+                        onPressed: () {},
+                        child: const Text(
+                          "Sign In",
+                        ),
                       ),
                     ],
                   ),
