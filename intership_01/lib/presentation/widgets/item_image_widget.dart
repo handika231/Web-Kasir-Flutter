@@ -1,57 +1,8 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:intership_01/common/extension.dart';
-import 'package:intership_01/common/style.dart';
 
-import '../widgets/login_widget.dart';
-
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
-
-  @override
-  State<LoginPage> createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
-  final PageController _pageController = PageController();
-  int _currentPage = 0;
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Row(
-        children: [
-          Expanded(
-            flex: 4,
-            child: PageView(
-              physics: const NeverScrollableScrollPhysics(),
-              controller: _pageController,
-              onPageChanged: (value) {
-                setState(() {
-                  _currentPage = value;
-                });
-              },
-              children: [
-                ItemImageWidget(
-                  pageController: _pageController,
-                  currentIndex: _currentPage,
-                ),
-                ItemImageWidget(
-                  pageController: _pageController,
-                  currentIndex: _currentPage,
-                ),
-                ItemImageWidget(
-                  pageController: _pageController,
-                  currentIndex: _currentPage,
-                ),
-              ],
-            ),
-          ),
-          const LoginWidget(),
-        ],
-      ),
-    );
-  }
-}
+import '../../common/style.dart';
 
 class ItemImageWidget extends StatelessWidget {
   final int currentIndex;
