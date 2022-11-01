@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 Color blackColor = const Color(0xff1E1E1E);
 Color orangeColor = const Color(0xffFFC903);
-
+Color greyColor = Colors.grey;
 Color whiteColor = Colors.white;
 
 FontWeight bold = FontWeight.w700;
