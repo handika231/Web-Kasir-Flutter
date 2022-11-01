@@ -63,7 +63,7 @@ class ItemImageWidget extends StatelessWidget {
                 color: blackColor,
                 activeColor: orangeColor,
               ),
-              dotsCount: 2,
+              dotsCount: 3,
               axis: Axis.horizontal,
               position: currentIndex.toDouble(),
             ),
