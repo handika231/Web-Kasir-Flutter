@@ -4,6 +4,7 @@ import 'package:intership_01/presentation/widgets/carousel_image_widget.dart';
 import '../widgets/login_widget.dart';
 
 class LoginPage extends StatelessWidget {
+  static const nameRoute = '/login';
   LoginPage({super.key});
 
   final PageController _pageController = PageController();

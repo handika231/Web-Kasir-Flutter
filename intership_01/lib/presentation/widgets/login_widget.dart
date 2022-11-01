@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intership_01/common/extension.dart';
+import 'package:intership_01/common/navigation.dart';
 
 import '../../common/style.dart';
 import 'item_text_field_widget.dart';
@@ -106,7 +107,9 @@ class LoginWidget extends StatelessWidget {
                       ),
                       minimumSize: const Size(double.infinity, 60),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigation.pushNamed('/customer');
+                    },
                     child: const Text(
                       "Sign In",
                     ),
