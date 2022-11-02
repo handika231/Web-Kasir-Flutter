@@ -1,18 +1,18 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/animation.dart';
 
-class CustomerModel extends Equatable {
-  String id;
-  String name;
-  String nik;
-  String address;
-  String phone;
-  String job;
-  String email;
-  bool status;
-  VoidCallback onTap;
+class Customer extends Equatable {
+  final String id;
+  final String name;
+  final String nik;
+  final String address;
+  final String phone;
+  final String job;
+  final String email;
+  final bool status;
+  final VoidCallback onTap;
 
-  CustomerModel({
+  const Customer({
     required this.id,
     required this.name,
     required this.nik,
@@ -28,8 +28,8 @@ class CustomerModel extends Equatable {
   List<Object?> get props => [id, name, nik, address, phone, job, email];
 }
 
-List<CustomerModel> dataCustomer = [
-  CustomerModel(
+List<Customer> dataCustomer = [
+  Customer(
     id: '2208000012',
     name: 'Ardianto',
     nik: '3402142008940002',
@@ -40,7 +40,7 @@ List<CustomerModel> dataCustomer = [
     status: true,
     onTap: () {},
   ),
-  CustomerModel(
+  Customer(
     id: '2208000013',
     name: 'Budi',
     nik: '3402142008940032',
@@ -51,7 +51,7 @@ List<CustomerModel> dataCustomer = [
     status: true,
     onTap: () {},
   ),
-  CustomerModel(
+  Customer(
     id: '2208000014',
     name: 'Dani',
     nik: '3402142008940546',
@@ -62,7 +62,7 @@ List<CustomerModel> dataCustomer = [
     status: true,
     onTap: () {},
   ),
-  CustomerModel(
+  Customer(
     id: '2208000015',
     name: 'Rani',
     nik: '3402142008945166',
@@ -73,7 +73,7 @@ List<CustomerModel> dataCustomer = [
     onTap: () {},
     email: 'Rani@gmail.com',
   ),
-  CustomerModel(
+  Customer(
     id: '2208000231',
     name: 'Dwi Nur',
     nik: '3402142008956465',
@@ -84,7 +84,7 @@ List<CustomerModel> dataCustomer = [
     onTap: () {},
     email: 'Dwinur@gmail.com',
   ),
-  CustomerModel(
+  Customer(
     id: '2208000012',
     name: 'Ardianto',
     nik: '3402142008940002',
@@ -95,7 +95,7 @@ List<CustomerModel> dataCustomer = [
     onTap: () {},
     email: 'Ardianto@gmail.com',
   ),
-  CustomerModel(
+  Customer(
     id: '2208000013',
     name: 'Budi',
     nik: '3402142008940032',
@@ -106,7 +106,7 @@ List<CustomerModel> dataCustomer = [
     onTap: () {},
     email: 'Budi@gmail.com',
   ),
-  CustomerModel(
+  Customer(
     id: '2208000014',
     name: 'Dani',
     nik: '3402142008940546',
@@ -117,7 +117,7 @@ List<CustomerModel> dataCustomer = [
     onTap: () {},
     email: 'Dani@gmail.com',
   ),
-  CustomerModel(
+  Customer(
     id: '2208000015',
     name: 'Rani',
     nik: '3402142008945166',
@@ -128,7 +128,7 @@ List<CustomerModel> dataCustomer = [
     onTap: () {},
     email: 'Rani@gmail.com',
   ),
-  CustomerModel(
+  Customer(
     id: '2208000231',
     name: 'Dwi Nur',
     nik: '3402142008956465',

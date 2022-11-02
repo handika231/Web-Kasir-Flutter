@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../common/style.dart';
-import '../../domain/model/customer_model.dart';
+import '../../../common/style.dart';
+import '../../../domain/entities/customer.dart';
 
 class TableCustomerWidget extends StatelessWidget {
   const TableCustomerWidget({

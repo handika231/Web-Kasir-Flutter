@@ -1,8 +1,8 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
-import 'package:intership_01/common/extension.dart';
 
-import '../../common/style.dart';
+import '../../../common/extension.dart';
+import '../../../common/style.dart';
 
 class ItemImageWidget extends StatelessWidget {
   final int currentIndex;

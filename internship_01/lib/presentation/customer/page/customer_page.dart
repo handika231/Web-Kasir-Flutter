@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:intership_01/common/extension.dart';
-import 'package:intership_01/common/style.dart';
 
+import '../../../common/extension.dart';
+import '../../../common/style.dart';
 import '../widgets/build_drawer_widget.dart';
 import '../widgets/heading_customer_widget.dart';
 import '../widgets/table_customer_widget.dart';

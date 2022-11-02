@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:intership_01/common/extension.dart';
-import 'package:intership_01/common/navigation.dart';
-import 'package:intership_01/presentation/pages/customer_page.dart';
-import 'package:intership_01/presentation/pages/login_page.dart';
 import 'package:lottie/lottie.dart';
+
+import 'common/extension.dart';
+import 'common/navigation.dart';
+import 'presentation/customer/page/customer_page.dart';
+import 'presentation/login/page/login_page.dart';
 
 class Application extends StatelessWidget {
   const Application({super.key});

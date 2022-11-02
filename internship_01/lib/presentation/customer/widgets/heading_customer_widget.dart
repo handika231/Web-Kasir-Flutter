@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../common/style.dart';
+import '../../../common/style.dart';
 
 class HeadingCustomerWidget extends StatelessWidget {
   const HeadingCustomerWidget({
