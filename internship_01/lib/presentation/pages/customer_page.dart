@@ -95,6 +95,15 @@ class CustomerPage extends StatelessWidget {
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: DataTable(
+                  headingTextStyle: TextStyle(
+                    fontSize: 15,
+                    color: greyColor,
+                  ),
+                  dataTextStyle: TextStyle(
+                    fontSize: 15,
+                    fontWeight: bold,
+                    color: blackColor,
+                  ),
                   border: TableBorder(
                     horizontalInside: BorderSide(
                       color: greyColor,
@@ -123,22 +132,43 @@ class CustomerPage extends StatelessWidget {
                     DataColumn(
                       label: Text('Email'),
                     ),
+                    DataColumn(
+                      label: Text('Status'),
+                    ),
+                    DataColumn(
+                      label: Text(''),
+                    ),
                   ],
                   rows: dataCustomer
                       .map(
                         (customer) => DataRow(
                           cells: [
                             DataCell(
-                              Text(customer.id),
+                              Text(
+                                customer.id,
+                                style: TextStyle(
+                                  color: greenColor,
+                                ),
+                              ),
                             ),
                             DataCell(
                               Text(customer.name),
                             ),
                             DataCell(
-                              Text(customer.nik),
+                              Text(
+                                customer.nik,
+                                style: TextStyle(
+                                  fontWeight: regular,
+                                ),
+                              ),
                             ),
                             DataCell(
-                              Text(customer.phone),
+                              Text(
+                                customer.phone,
+                                style: TextStyle(
+                                  fontWeight: regular,
+                                ),
+                              ),
                             ),
                             DataCell(
                               Text(customer.address),
@@ -148,6 +178,35 @@ class CustomerPage extends StatelessWidget {
                             ),
                             DataCell(
                               Text(customer.email),
+                            ),
+                            DataCell(
+                              Text(
+                                customer.status ? 'Aktif' : 'Backlist',
+                                style: TextStyle(
+                                  color:
+                                      customer.status ? greenColor : redColor,
+                                ),
+                              ),
+                            ),
+                            DataCell(
+                              Material(
+                                color: orangeColor,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: InkWell(
+                                  borderRadius: BorderRadius.circular(8),
+                                  onTap: customer.onTap,
+                                  child: Container(
+                                    padding: const EdgeInsets.all(8),
+                                    child: Icon(
+                                      Icons.edit,
+                                      size: 16,
+                                      color: whiteColor,
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ),
                           ],
                         ),
