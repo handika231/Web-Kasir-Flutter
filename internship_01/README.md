@@ -5,6 +5,8 @@ Make Application using flutter for an internship.
 
 ### Features
 - Slicing Design
+- Consume API
+
 
 
 ### Package
@@ -12,6 +14,14 @@ Make Application using flutter for an internship.
 - equatable
 - google_fonts
 - lottie
+- get_it
+- dartz
+- json_annotation
+- bloc
+- flutter_bloc
+- http
+- json_serializable
+- build_runner
 
 
 
