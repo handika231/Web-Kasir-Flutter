@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intership_01/common/extension.dart';
 import 'package:intership_01/common/style.dart';
+import 'package:intership_01/domain/model/customer_model.dart';
 
 import '../widgets/build_drawer_widget.dart';
 
@@ -110,35 +111,48 @@ class CustomerPage extends StatelessWidget {
                     DataColumn(
                       label: Text('NIK'),
                     ),
-                  ],
-                  rows: const [
-                    DataRow(
-                      cells: [
-                        DataCell(
-                          Text('2208000012'),
-                        ),
-                        DataCell(
-                          Text('Fulanah'),
-                        ),
-                        DataCell(
-                          Text('3402142008940002'),
-                        ),
-                      ],
+                    DataColumn(
+                      label: Text('Nomor Telepon'),
                     ),
-                    DataRow(
-                      cells: [
-                        DataCell(
-                          Text('2208000012'),
-                        ),
-                        DataCell(
-                          Text('Fulanah'),
-                        ),
-                        DataCell(
-                          Text('3402142008940002'),
-                        ),
-                      ],
+                    DataColumn(
+                      label: Text('Alamat'),
+                    ),
+                    DataColumn(
+                      label: Text('Pekerjaan'),
+                    ),
+                    DataColumn(
+                      label: Text('Email'),
                     ),
                   ],
+                  rows: dataCustomer
+                      .map(
+                        (customer) => DataRow(
+                          cells: [
+                            DataCell(
+                              Text(customer.id),
+                            ),
+                            DataCell(
+                              Text(customer.name),
+                            ),
+                            DataCell(
+                              Text(customer.nik),
+                            ),
+                            DataCell(
+                              Text(customer.phone),
+                            ),
+                            DataCell(
+                              Text(customer.address),
+                            ),
+                            DataCell(
+                              Text(customer.job),
+                            ),
+                            DataCell(
+                              Text(customer.email),
+                            ),
+                          ],
+                        ),
+                      )
+                      .toList(),
                 ),
               ),
             ),
