@@ -1,0 +1,758 @@
+{
+  "response": "200",
+  "message": "Sukses",
+  "data": [
+    {
+      "id": 1,
+      "nama_outlet": "Roti Gedhe Gejayan"
+    },
+    {
+      "id": 2,
+      "nama_outlet": "Roti Gedhe Monjali"
+    },
+    {
+      "id": 3,
+      "nama_outlet": "Roti Gedhe Godean"
+    },
+    {
+      "id": 4,
+      "nama_outlet": "Roti Gedhe Ngesrep"
+    },
+    {
+      "id": 5,
+      "nama_outlet": "Roti Gedhe Pedurungan"
+    },
+    {
+      "id": 6,
+      "nama_outlet": "Roti Gedhe Jati"
+    },
+    {
+      "id": 7,
+      "nama_outlet": "Roti Gedhe Sampangan"
+    },
+    {
+      "id": 8,
+      "nama_outlet": "Roti Gedhe Tentara Pelajar"
+    },
+    {
+      "id": 9,
+      "nama_outlet": "Roti Gedhe Kusumanegara"
+    },
+    {
+      "id": 10,
+      "nama_outlet": "Roti Gedhe Tajem"
+    },
+    {
+      "id": 13,
+      "nama_outlet": "Roti Gedhe Condongcatur"
+    },
+    {
+      "id": 14,
+      "nama_outlet": "Roti Gedhe Sokaraja"
+    },
+    {
+      "id": 15,
+      "nama_outlet": "Roti Gedhe Kadipiro"
+    },
+    {
+      "id": 16,
+      "nama_outlet": "Roti Gedhe Bancar"
+    },
+    {
+      "id": 17,
+      "nama_outlet": "Roti Gedhe Bantul"
+    },
+    {
+      "id": 18,
+      "nama_outlet": "Roti Gedhe Jakal"
+    },
+    {
+      "id": 19,
+      "nama_outlet": "Roti Gedhe Kembaran"
+    },
+    {
+      "id": 20,
+      "nama_outlet": "Roti Gedhe Tamsis"
+    },
+    {
+      "id": 21,
+      "nama_outlet": "Roti Gedhe BancarKembar"
+    },
+    {
+      "id": 22,
+      "nama_outlet": "Roti Gedhe Gedong Kuning"
+    },
+    {
+      "id": 23,
+      "nama_outlet": "Roti Gedhe Parakan"
+    },
+    {
+      "id": 24,
+      "nama_outlet": "Roti Gedhe Temanggung"
+    },
+    {
+      "id": 25,
+      "nama_outlet": "Roti Gedhe Banjarnegara"
+    },
+    {
+      "id": 26,
+      "nama_outlet": "Roti Gedhe Ambarukmo"
+    },
+    {
+      "id": 27,
+      "nama_outlet": "Roti Gedhe Tegal"
+    },
+    {
+      "id": 28,
+      "nama_outlet": "Roti Gedhe Wiyoro"
+    },
+    {
+      "id": 29,
+      "nama_outlet": "Roti Gedhe Slawi"
+    },
+    {
+      "id": 30,
+      "nama_outlet": "Roti Gedhe Cilacap"
+    },
+    {
+      "id": 31,
+      "nama_outlet": "Roti Gedhe Kroya"
+    },
+    {
+      "id": 32,
+      "nama_outlet": "Roti Gedhe Bumiayu"
+    },
+    {
+      "id": 33,
+      "nama_outlet": "Roti Gedhe Jamal"
+    },
+    {
+      "id": 34,
+      "nama_outlet": "Roti Gedhe Purbalingga"
+    },
+    {
+      "id": 35,
+      "nama_outlet": "Roti Gedhe Pemalang"
+    },
+    {
+      "id": 36,
+      "nama_outlet": "Roti Gedhe Patran"
+    },
+    {
+      "id": 37,
+      "nama_outlet": "Roti Gedhe Giwangan"
+    },
+    {
+      "id": 38,
+      "nama_outlet": "Roti Gedhe Wates"
+    },
+    {
+      "id": 39,
+      "nama_outlet": "Roti Gedhe Gombong"
+    },
+    {
+      "id": 40,
+      "nama_outlet": "Roti Gedhe Kebumen"
+    },
+    {
+      "id": 41,
+      "nama_outlet": "Roti Gedhe Magelang"
+    },
+    {
+      "id": 42,
+      "nama_outlet": "Roti Gedhe Potrobangsan"
+    },
+    {
+      "id": 43,
+      "nama_outlet": "Roti Gedhe Pakelan"
+    },
+    {
+      "id": 44,
+      "nama_outlet": "Roti Gedhe Randudongkal"
+    },
+    {
+      "id": 45,
+      "nama_outlet": "Roti Gedhe Purworejo"
+    },
+    {
+      "id": 46,
+      "nama_outlet": "Roti Gedhe Tegal 2 (Randugunting)"
+    },
+    {
+      "id": 47,
+      "nama_outlet": "Roti Gedhe Ajibarang"
+    },
+    {
+      "id": 48,
+      "nama_outlet": "Roti Gedhe Adiwerna"
+    },
+    {
+      "id": 49,
+      "nama_outlet": "Roti Gedhe Brebes"
+    },
+    {
+      "id": 50,
+      "nama_outlet": "Roti Gedhe Comal"
+    },
+    {
+      "id": 51,
+      "nama_outlet": "Roti Gedhe Ungaran"
+    },
+    {
+      "id": 52,
+      "nama_outlet": "Roti Gedhe Ngaliyan"
+    },
+    {
+      "id": 54,
+      "nama_outlet": "Roti Gedhe Tlogosari"
+    },
+    {
+      "id": 55,
+      "nama_outlet": "Roti Gedhe Gajah Raya"
+    },
+    {
+      "id": 56,
+      "nama_outlet": "Roti Gedhe Thamrin"
+    },
+    {
+      "id": 57,
+      "nama_outlet": "Roti Gedhe Tlogosari Wetan"
+    },
+    {
+      "id": 58,
+      "nama_outlet": "Roti Gedhe Ambarawa"
+    },
+    {
+      "id": 59,
+      "nama_outlet": "Roti Gedhe Margoyoso"
+    },
+    {
+      "id": 60,
+      "nama_outlet": "Roti Gedhe Plombokan"
+    },
+    {
+      "id": 61,
+      "nama_outlet": "Roti Gedhe Manyaran"
+    },
+    {
+      "id": 62,
+      "nama_outlet": "Roti Gedhe Karangjati"
+    },
+    {
+      "id": 63,
+      "nama_outlet": "Roti Gedhe Salatiga"
+    },
+    {
+      "id": 64,
+      "nama_outlet": "Roti Gedhe Pringlangu"
+    },
+    {
+      "id": 65,
+      "nama_outlet": "Roti Gedhe Kaliwungu"
+    },
+    {
+      "id": 66,
+      "nama_outlet": "Roti Gedhe Hayam Wuruk"
+    },
+    {
+      "id": 67,
+      "nama_outlet": "Roti Gedhe Purwodadi"
+    },
+    {
+      "id": 68,
+      "nama_outlet": "Roti Gedhe Pati"
+    },
+    {
+      "id": 69,
+      "nama_outlet": "Roti Gedhe Kudus"
+    },
+    {
+      "id": 70,
+      "nama_outlet": "Roti Gedhe Weleri"
+    },
+    {
+      "id": 71,
+      "nama_outlet": "Roti Gedhe Demak"
+    },
+    {
+      "id": 72,
+      "nama_outlet": "Roti Gedhe Kudus Sunan Muria"
+    },
+    {
+      "id": 73,
+      "nama_outlet": "Roti  Gedhe Jepara"
+    },
+    {
+      "id": 74,
+      "nama_outlet": "Roti Gedhe Slamet Riyadi"
+    },
+    {
+      "id": 75,
+      "nama_outlet": "Roti Gedhe Garuda Mas"
+    },
+    {
+      "id": 76,
+      "nama_outlet": "Roti Gedhe Serengan"
+    },
+    {
+      "id": 77,
+      "nama_outlet": "Roti Gedhe Gentan"
+    },
+    {
+      "id": 78,
+      "nama_outlet": "Roti Gedhe Hasanudin"
+    },
+    {
+      "id": 79,
+      "nama_outlet": "Roti Gedhe Prambanan"
+    },
+    {
+      "id": 80,
+      "nama_outlet": "Roti Gedhe Klaten"
+    },
+    {
+      "id": 81,
+      "nama_outlet": "Roti Gedhe Boyolali"
+    },
+    {
+      "id": 82,
+      "nama_outlet": "Roti Gedhe Sukoharjo"
+    },
+    {
+      "id": 83,
+      "nama_outlet": "Roti Gedhe Pedan"
+    },
+    {
+      "id": 84,
+      "nama_outlet": "Roti Gedhe Delanggu"
+    },
+    {
+      "id": 85,
+      "nama_outlet": "Roti Gedhe Karanganyar"
+    },
+    {
+      "id": 86,
+      "nama_outlet": "Roti Gedhe Jatinom"
+    },
+    {
+      "id": 87,
+      "nama_outlet": "Roti Gedhe Ampel"
+    },
+    {
+      "id": 88,
+      "nama_outlet": "Roti Gedhe Solo Baru"
+    },
+    {
+      "id": 89,
+      "nama_outlet": "Roti Gedhe Wedi"
+    },
+    {
+      "id": 90,
+      "nama_outlet": "Roti Gedhe Magero"
+    },
+    {
+      "id": 91,
+      "nama_outlet": "Roti Gedhe Kebayanan"
+    },
+    {
+      "id": 92,
+      "nama_outlet": "Roti Gedhe Nusukan"
+    },
+    {
+      "id": 93,
+      "nama_outlet": "Roti Gedhe Mojosongo"
+    },
+    {
+      "id": 94,
+      "nama_outlet": "Roti Gedhe Kosambi"
+    },
+    {
+      "id": 95,
+      "nama_outlet": "Roti Gedhe Sukamenak"
+    },
+    {
+      "id": 96,
+      "nama_outlet": "Roti Gedhe Ujungberung"
+    },
+    {
+      "id": 97,
+      "nama_outlet": "Roti Gedhe Sarijadi"
+    },
+    {
+      "id": 98,
+      "nama_outlet": "Roti Gedhe Palagan"
+    },
+    {
+      "id": 99,
+      "nama_outlet": "Roti Gedhe Klajuran"
+    },
+    {
+      "id": 100,
+      "nama_outlet": "Roti Gedhe Imogiri"
+    },
+    {
+      "id": 101,
+      "nama_outlet": "Roti Gedhe Wonosari"
+    },
+    {
+      "id": 102,
+      "nama_outlet": "Roti Gedhe Besi"
+    },
+    {
+      "id": 103,
+      "nama_outlet": "Roti Gedhe Ngipik"
+    },
+    {
+      "id": 104,
+      "nama_outlet": "Roti Gedhe Jangkang"
+    },
+    {
+      "id": 105,
+      "nama_outlet": "Roti Gedhe Pundong"
+    },
+    {
+      "id": 106,
+      "nama_outlet": "Roti Gedhe Brosot"
+    },
+    {
+      "id": 107,
+      "nama_outlet": "Roti Gedhe Anjasmoro"
+    },
+    {
+      "id": 108,
+      "nama_outlet": "Roti Gedhe Jaten"
+    },
+    {
+      "id": 109,
+      "nama_outlet": "Roti Gedhe Wonogiri"
+    },
+    {
+      "id": 110,
+      "nama_outlet": "Management"
+    },
+    {
+      "id": 111,
+      "nama_outlet": "Roti Gedhe Muntilan"
+    },
+    {
+      "id": 113,
+      "nama_outlet": "Roti Gedhe Majenang"
+    },
+    {
+      "id": 114,
+      "nama_outlet": "Roti Gedhe Rembang"
+    },
+    {
+      "id": 115,
+      "nama_outlet": "Roti Gedhe Kalinyamat"
+    },
+    {
+      "id": 116,
+      "nama_outlet": "Roti Gedhe Kedungwuni"
+    },
+    {
+      "id": 117,
+      "nama_outlet": "Roti Gedhe Limpung"
+    },
+    {
+      "id": 118,
+      "nama_outlet": "Roti Gedhe Bodja"
+    },
+    {
+      "id": 119,
+      "nama_outlet": "Roti Gedhe Batang"
+    },
+    {
+      "id": 120,
+      "nama_outlet": "Roti Gedhe Siliwangi"
+    },
+    {
+      "id": 121,
+      "nama_outlet": "Roti Gedhe Kranggaksan"
+    },
+    {
+      "id": 122,
+      "nama_outlet": "Roti Gedhe Ciremai"
+    },
+    {
+      "id": 123,
+      "nama_outlet": "Roti Gedhe Ciamis"
+    },
+    {
+      "id": 124,
+      "nama_outlet": "Roti Gedhe Kuningan"
+    },
+    {
+      "id": 125,
+      "nama_outlet": "Roti Gedhe Tasikmalaya"
+    },
+    {
+      "id": 126,
+      "nama_outlet": "Roti Gedhe Indramayu"
+    },
+    {
+      "id": 127,
+      "nama_outlet": "Roti Gedhe Jatibarang"
+    },
+    {
+      "id": 128,
+      "nama_outlet": "Roti Gedhe Juwana"
+    },
+    {
+      "id": 129,
+      "nama_outlet": "Roti Gedhe Cepu"
+    },
+    {
+      "id": 130,
+      "nama_outlet": "Roti Gedhe Blora"
+    },
+    {
+      "id": 131,
+      "nama_outlet": "Roti Gedhe Lebak Siu"
+    },
+    {
+      "id": 132,
+      "nama_outlet": "Roti Gedhe Ketanggungan"
+    },
+    {
+      "id": 133,
+      "nama_outlet": "Roti Gedhe Sukoredjo"
+    },
+    {
+      "id": 134,
+      "nama_outlet": "Roti Gedhe Pegandon"
+    },
+    {
+      "id": 135,
+      "nama_outlet": "Roti Gedhe Banyumas"
+    },
+    {
+      "id": 136,
+      "nama_outlet": "Roti Gedhe Karanganyar Kebumen"
+    },
+    {
+      "id": 137,
+      "nama_outlet": "Roti Gedhe Ciawi"
+    },
+    {
+      "id": 138,
+      "nama_outlet": "Roti Gedhe Karangampel"
+    },
+    {
+      "id": 139,
+      "nama_outlet": "Roti Gedhe Tuban"
+    },
+    {
+      "id": 140,
+      "nama_outlet": "Roti Gedhe Bojonegoro"
+    },
+    {
+      "id": 141,
+      "nama_outlet": "Roti Gedhe Ngawi"
+    },
+    {
+      "id": 142,
+      "nama_outlet": "Roti Gedhe Magetan"
+    },
+    {
+      "id": 143,
+      "nama_outlet": "Roti Gedhe Madiun"
+    },
+    {
+      "id": 144,
+      "nama_outlet": "Roti Gedhe Kadipaten"
+    },
+    {
+      "id": 145,
+      "nama_outlet": "Roti Gedhe Majalengka Kota"
+    },
+    {
+      "id": 146,
+      "nama_outlet": "Roti Gedhe Kertosono"
+    },
+    {
+      "id": 149,
+      "nama_outlet": "Roti Gedhe Nganjuk"
+    },
+    {
+      "id": 150,
+      "nama_outlet": "Roti Gedhe Jombang"
+    },
+    {
+      "id": 151,
+      "nama_outlet": "Roti Gedhe Sukabumi"
+    },
+    {
+      "id": 152,
+      "nama_outlet": "Roti Gedhe Cianjur"
+    },
+    {
+      "id": 153,
+      "nama_outlet": "Roti Gedhe Cikarang"
+    },
+    {
+      "id": 154,
+      "nama_outlet": "Roti Gedhe Mranggen"
+    },
+    {
+      "id": 155,
+      "nama_outlet": "blacklist"
+    },
+    {
+      "id": 156,
+      "nama_outlet": "Roti Gedhe Kediri"
+    },
+    {
+      "id": 157,
+      "nama_outlet": "Roti Gedhe Pegaden"
+    },
+    {
+      "id": 158,
+      "nama_outlet": "Roti Gedhe Banjarsari"
+    },
+    {
+      "id": 159,
+      "nama_outlet": "Roti Gedhe Blitar"
+    },
+    {
+      "id": 160,
+      "nama_outlet": "Roti Gedhe Gresik"
+    },
+    {
+      "id": 161,
+      "nama_outlet": "Roti Gedhe Malang"
+    },
+    {
+      "id": 162,
+      "nama_outlet": "Roti Gedhe Pacitan"
+    },
+    {
+      "id": 163,
+      "nama_outlet": "Roti Gedhe Tulungagung"
+    },
+    {
+      "id": 164,
+      "nama_outlet": "Roti Gedhe Bekasi Timur"
+    },
+    {
+      "id": 165,
+      "nama_outlet": "Roti Gedhe Cibitung"
+    },
+    {
+      "id": 166,
+      "nama_outlet": "Roti Gedhe Purwakarta"
+    },
+    {
+      "id": 167,
+      "nama_outlet": "Roti Gedhe Cikampek"
+    },
+    {
+      "id": 168,
+      "nama_outlet": "Roti Gedhe Karawang"
+    },
+    {
+      "id": 169,
+      "nama_outlet": "Roti Gedhe Depok"
+    },
+    {
+      "id": 170,
+      "nama_outlet": "Roti Gedhe Pamulang"
+    },
+    {
+      "id": 171,
+      "nama_outlet": "Roti Gedhe Jatiasih"
+    },
+    {
+      "id": 172,
+      "nama_outlet": "Roti Gedhe Ciomas"
+    },
+    {
+      "id": 173,
+      "nama_outlet": "Roti Gedhe Kalideres"
+    },
+    {
+      "id": 174,
+      "nama_outlet": "Roti Gedhe Kutabumi"
+    },
+    {
+      "id": 175,
+      "nama_outlet": "Roti Gedhe Bintara"
+    },
+    {
+      "id": 176,
+      "nama_outlet": "Roti Gedhe Kelapa Dua"
+    },
+    {
+      "id": 177,
+      "nama_outlet": "Roti Gedhe Pondok Ungu"
+    },
+    {
+      "id": 178,
+      "nama_outlet": "Roti Gedhe Serang"
+    },
+    {
+      "id": 179,
+      "nama_outlet": "Roti Gedhe Cilegon"
+    },
+    {
+      "id": 180,
+      "nama_outlet": "Roti Gedhe Sawangan"
+    },
+    {
+      "id": 181,
+      "nama_outlet": "Roti Gedhe Sindang Laut"
+    },
+    {
+      "id": 182,
+      "nama_outlet": "Roti Gedhe Pondok Aren"
+    },
+    {
+      "id": 183,
+      "nama_outlet": "Roti Gedhe Cikupa"
+    },
+    {
+      "id": 184,
+      "nama_outlet": "Gudang Subang"
+    },
+    {
+      "id": 186,
+      "nama_outlet": "Gudang Semarang"
+    },
+    {
+      "id": 187,
+      "nama_outlet": "Gudang Jogja"
+    },
+    {
+      "id": 188,
+      "nama_outlet": "Gudang Cilacap"
+    },
+    {
+      "id": 189,
+      "nama_outlet": "Roti Gedhe Garut"
+    },
+    {
+      "id": 190,
+      "nama_outlet": "Roti Gedhe Cicalengka"
+    },
+    {
+      "id": 191,
+      "nama_outlet": "Roti Gedhe Gunung Putri"
+    },
+    {
+      "id": 192,
+      "nama_outlet": "Roti Gedhe Jatiwaringin"
+    },
+    {
+      "id": 193,
+      "nama_outlet": "Roti Gedhe Subang"
+    },
+    {
+      "id": 194,
+      "nama_outlet": "Rotii Gedhe Pamanukan"
+    },
+    {
+      "id": 195,
+      "nama_outlet": "Roti  Gedhe Sumedang"
+    }
+  ]
+}

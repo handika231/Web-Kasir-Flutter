@@ -7,23 +7,23 @@ import '../../domain/entities/outlet.dart';
 
 class OutletModel extends Equatable {
   final int id;
-  final String name;
+  final String nama_outlet;
   const OutletModel({
     required this.id,
-    required this.name,
+    required this.nama_outlet,
   });
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
-      'name': name,
+      'nama_outlet': nama_outlet,
     };
   }
 
   factory OutletModel.fromMap(Map<String, dynamic> map) {
     return OutletModel(
       id: map['id'] as int,
-      name: map['name'] as String,
+      nama_outlet: map['nama_outlet'] as String,
     );
   }
 
@@ -35,10 +35,10 @@ class OutletModel extends Equatable {
   Outlet toEntity() {
     return Outlet(
       id: id,
-      name: name,
+      nama_outlet: nama_outlet,
     );
   }
 
   @override
-  List<Object> get props => [id, name];
+  List<Object> get props => [id, nama_outlet];
 }

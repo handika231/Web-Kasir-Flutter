@@ -1,5 +1,8 @@
-import 'package:dio/dio.dart';
+import 'dart:convert';
 
+import 'package:http/http.dart' as http;
+
+import '../../common/constant.dart';
 import '../../common/server_exception.dart';
 import '../models/outlet_model.dart';
 
@@ -8,17 +11,19 @@ abstract class RemoteDataSource {
 }
 
 class RemoteDataSourceImpl implements RemoteDataSource {
-  Dio dio;
-  RemoteDataSourceImpl(this.dio);
+  http.Client client;
+  RemoteDataSourceImpl(this.client);
 
   @override
   Future<List<OutletModel>> getDataOutlet() async {
-    final response =
-        await dio.get('https://apikasir.gedhemargogandum.com/api/outlet');
+    final response = await client.get(
+      Uri.parse(BASE_URL),
+    );
 
     if (response.statusCode == 200) {
-      List data = response.data['data'] as List;
-      return data.map((e) => OutletModel.fromJson(e)).toList();
+      List data = (json.decode(response.body))['data'];
+
+      return data.map((e) => OutletModel.fromMap(e)).toList();
     } else {
       throw ServerException();
     }

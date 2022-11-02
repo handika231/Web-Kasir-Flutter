@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intership_01/presentation/login/cubit/outlet_cubit.dart';
 
 import '../../../common/extension.dart';
 import '../../../common/navigation.dart';
@@ -12,6 +14,7 @@ class LoginWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final provider = context.read<OutletCubit>();
     return Expanded(
       flex: 3,
       child: Container(
@@ -48,33 +51,38 @@ class LoginWidget extends StatelessWidget {
                           ),
                         ),
                       ),
-                      DropdownButtonFormField<String>(
-                        items: const [
-                          DropdownMenuItem(
-                            value: 'Semarang',
-                            child: Text('Semarang'),
-                          ),
-                          DropdownMenuItem(
-                            value: 'Yogyakarta',
-                            child: Text('Yogyakarta'),
-                          ),
-                          DropdownMenuItem(
-                            value: 'Pilih Cabang',
-                            child: Text('Pilih Cabang'),
-                          ),
-                        ],
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: whiteColor,
-                          border: const OutlineInputBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(8),
-                            ),
-                          ),
-                        ),
-                        onChanged: (val) {},
-                        value: 'Pilih Cabang',
-                        hint: const Text('Pilih Cabang'),
+                      BlocBuilder<OutletCubit, OutletState>(
+                        builder: (context, state) {
+                          if (state is OutletLoading) {
+                            return const Center(
+                                child: CircularProgressIndicator());
+                          } else {
+                            return DropdownButtonFormField<String>(
+                              items: provider.listOfOutlet
+                                  .map(
+                                    (outlet) => DropdownMenuItem<String>(
+                                      value: outlet.nama_outlet,
+                                      child: Text(outlet.nama_outlet),
+                                    ),
+                                  )
+                                  .toList(),
+                              decoration: InputDecoration(
+                                filled: true,
+                                fillColor: whiteColor,
+                                border: const OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(8),
+                                  ),
+                                ),
+                              ),
+                              onChanged: (val) {
+                                provider.valueOutlet = val!;
+                              },
+                              value: provider.valueOutlet,
+                              hint: const Text('Pilih Cabang'),
+                            );
+                          }
+                        },
                       ),
                     ],
                   ),
