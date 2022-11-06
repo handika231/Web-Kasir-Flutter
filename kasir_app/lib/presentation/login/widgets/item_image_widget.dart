@@ -2,20 +2,16 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:kasir_app/common/extension.dart';
 import 'package:kasir_app/common/style.dart';
+import 'package:provider/provider.dart';
+
+import '../provider/login_notifier.dart';
 
 class ItemImageWidget extends StatelessWidget {
-  final int currentIndex;
-  const ItemImageWidget({
-    Key? key,
-    required this.currentIndex,
-    required PageController pageController,
-  })  : _pageController = pageController,
-        super(key: key);
-
-  final PageController _pageController;
+  const ItemImageWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final provider = context.watch<LoginNotifier>();
     return Container(
       color: AppStyle.white,
       child: Center(
@@ -52,7 +48,7 @@ class ItemImageWidget extends StatelessWidget {
             ),
             DotsIndicator(
               onTap: (position) {
-                _pageController.animateToPage(
+                provider.pageController.animateToPage(
                   position.toInt(),
                   duration: const Duration(milliseconds: 300),
                   curve: Curves.easeIn,
@@ -68,7 +64,7 @@ class ItemImageWidget extends StatelessWidget {
               ),
               dotsCount: 3,
               axis: Axis.horizontal,
-              position: currentIndex.toDouble(),
+              position: provider.currentIndex.toDouble(),
             ),
           ],
         ),

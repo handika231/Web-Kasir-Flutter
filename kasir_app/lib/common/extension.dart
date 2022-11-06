@@ -1,3 +1,3 @@
 extension ImagePath on String {
-  String get toPNG => 'assets/svg/$this.svg';
+  String get toPNG => 'assets/$this.png';
 }

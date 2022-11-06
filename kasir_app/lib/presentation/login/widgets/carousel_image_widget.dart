@@ -1,43 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../provider/login_notifier.dart';
 import 'item_image_widget.dart';
 
-class CarouselImageWidget extends StatefulWidget {
-  final PageController pageController;
-  int currentPage;
-  CarouselImageWidget(
-      {super.key, required this.pageController, required this.currentPage});
+class CarouselImageWidget extends StatelessWidget {
+  const CarouselImageWidget({Key? key}) : super(key: key);
 
-  @override
-  State<CarouselImageWidget> createState() => _CarouselImageWidgetState();
-}
-
-class _CarouselImageWidgetState extends State<CarouselImageWidget> {
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<LoginNotifier>(context);
     return Expanded(
       flex: 4,
       child: PageView(
         physics: const NeverScrollableScrollPhysics(),
-        controller: widget.pageController,
+        controller: provider.pageController,
         onPageChanged: (value) {
-          setState(() {
-            widget.currentPage = value;
-          });
+          provider.changeIndex(value);
         },
-        children: [
-          ItemImageWidget(
-            pageController: widget.pageController,
-            currentIndex: widget.currentPage,
-          ),
-          ItemImageWidget(
-            pageController: widget.pageController,
-            currentIndex: widget.currentPage,
-          ),
-          ItemImageWidget(
-            pageController: widget.pageController,
-            currentIndex: widget.currentPage,
-          ),
+        children: const [
+          ItemImageWidget(),
+          ItemImageWidget(),
+          ItemImageWidget(),
         ],
       ),
     );

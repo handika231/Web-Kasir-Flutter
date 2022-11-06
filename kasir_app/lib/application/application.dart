@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:kasir_app/presentation/login/provider/login_notifier.dart';
 import 'package:kasir_app/presentation/login/view/login_view.dart';
+import 'package:provider/provider.dart';
 
 class Application extends StatelessWidget {
   const Application({super.key});
@@ -17,10 +19,17 @@ class Application extends StatelessWidget {
             ),
           );
         } else {
-          return MaterialApp(
-            home: LoginView(),
-            debugShowCheckedModeBanner: false,
-            title: 'Cashier GMJ App',
+          return MultiProvider(
+            providers: [
+              ChangeNotifierProvider(
+                create: (_) => LoginNotifier(),
+              ),
+            ],
+            child: MaterialApp(
+              home: LoginView(),
+              debugShowCheckedModeBanner: false,
+              title: 'Cashier GMJ App',
+            ),
           );
         }
       },
