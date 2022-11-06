@@ -9,9 +9,9 @@ class LoginView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Row(
-        children: [
+        children: const [
           CarouselImageWidget(),
-          const LoginWidget(),
+          LoginWidget(),
         ],
       ),
     );

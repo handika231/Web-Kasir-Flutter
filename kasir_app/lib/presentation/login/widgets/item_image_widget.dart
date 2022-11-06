@@ -1,6 +1,5 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
-import 'package:kasir_app/common/extension.dart';
 import 'package:kasir_app/common/style.dart';
 import 'package:provider/provider.dart';
 
@@ -19,15 +18,17 @@ class ItemImageWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              'img-1'.toPNG,
+              provider.imageData[provider.currentIndex]['image'],
               width: 500,
+              height: 350,
             ),
             const SizedBox(
               height: 30,
             ),
-            const Text(
-              'Mendata secara detail transaksi yang terjadi',
-              style: TextStyle(
+            Text(
+              provider.imageData[provider.currentIndex]['title'],
+              textAlign: TextAlign.center,
+              style: const TextStyle(
                 fontSize: 24,
                 fontWeight: AppStyle.semiBold,
                 color: AppStyle.black,
@@ -36,10 +37,10 @@ class ItemImageWidget extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            const Text(
-              'Mendata secara detail transaksi yang terjadi pada tiap-tiap cabang\nretail yang sudah dikonfigurasikan sebelumnya.',
+            Text(
+              provider.imageData[provider.currentIndex]['subtitle'],
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 16,
               ),
             ),

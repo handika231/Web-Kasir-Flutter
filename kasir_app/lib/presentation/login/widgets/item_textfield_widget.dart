@@ -2,14 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:kasir_app/common/style.dart';
 
 class ItemTextFieldWidget extends StatelessWidget {
-  final bool isPassword;
   final String hintText;
   final String text;
   const ItemTextFieldWidget(
-      {Key? key,
-      this.isPassword = false,
-      required this.hintText,
-      required this.text})
+      {Key? key, required this.hintText, required this.text})
       : super(key: key);
 
   @override
@@ -29,7 +25,6 @@ class ItemTextFieldWidget extends StatelessWidget {
             ),
           ),
           TextField(
-            obscureText: isPassword,
             decoration: InputDecoration(
               filled: true,
               fillColor: AppStyle.white,

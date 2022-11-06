@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:kasir_app/common/extension.dart';
 import 'package:kasir_app/common/style.dart';
+import 'package:provider/provider.dart';
 
+import '../provider/login_notifier.dart';
 import 'item_textfield_widget.dart';
 
 class LoginWidget extends StatelessWidget {
@@ -11,6 +13,7 @@ class LoginWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final provider = context.watch<LoginNotifier>();
     return Expanded(
       flex: 3,
       child: Container(
@@ -88,10 +91,46 @@ class LoginWidget extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                const ItemTextFieldWidget(
-                  hintText: 'Password',
-                  text: 'Password',
-                  isPassword: true,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 120),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.only(left: 16, bottom: 8),
+                        child: Text(
+                          'Password',
+                          style: TextStyle(
+                            color: AppStyle.white,
+                          ),
+                        ),
+                      ),
+                      TextField(
+                        obscureText: provider.isPassword,
+                        decoration: InputDecoration(
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              provider.changePassword();
+                            },
+                            icon: Icon(
+                              provider.isPassword
+                                  ? Icons.remove_red_eye
+                                  : Icons.remove_red_eye_outlined,
+                              color: AppStyle.black,
+                            ),
+                          ),
+                          filled: true,
+                          fillColor: AppStyle.white,
+                          hintText: 'Masukkan Password',
+                          border: const OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(8),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(
                   height: 30,
