@@ -17,7 +17,7 @@ class Application extends StatelessWidget {
             ),
           );
         } else {
-          return const MaterialApp(
+          return MaterialApp(
             home: LoginView(),
             debugShowCheckedModeBanner: false,
             title: 'Cashier GMJ App',
