@@ -145,7 +145,9 @@ class LoginWidget extends StatelessWidget {
                       ),
                       minimumSize: const Size(double.infinity, 60),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/menu');
+                    },
                     child: const Text(
                       "Sign In",
                     ),
