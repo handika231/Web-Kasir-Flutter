@@ -17,7 +17,7 @@ class LoginWidget extends StatelessWidget {
     return Expanded(
       flex: 3,
       child: Container(
-        color: AppStyle.black,
+        color: AppStyle.blackColor,
         child: Center(
           child: DefaultTextStyle(
             style: const TextStyle(

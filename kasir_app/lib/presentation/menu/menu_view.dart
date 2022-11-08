@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:sidebarx/sidebarx.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:kasir_app/common/extension.dart';
+import 'package:kasir_app/common/style.dart';
+import 'package:side_navigation/side_navigation.dart';
 
 class MenuView extends StatefulWidget {
   const MenuView({super.key});
@@ -10,216 +13,133 @@ class MenuView extends StatefulWidget {
 
 class _MenuViewState extends State<MenuView> {
   int currentIndex = 0;
-
-  final _controller = SidebarXController(selectedIndex: 0, extended: true);
-  final _key = GlobalKey<ScaffoldState>();
-
+  List<Widget> views = const [
+    Center(
+      child: Text('Dashboard'),
+    ),
+    Center(
+      child: Text('Account'),
+    ),
+    Center(
+      child: Text('Settings'),
+    ),
+    Center(
+      child: Text('Dashboard'),
+    ),
+    Center(
+      child: Text('Account'),
+    ),
+    Center(
+      child: Text('Settings'),
+    ),
+    Center(
+      child: Text('Settings'),
+    ),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Builder(
-        builder: (context) {
-          final isSmallScreen = MediaQuery.of(context).size.width < 600;
-          return Scaffold(
-            key: _key,
-            appBar: isSmallScreen
-                ? AppBar(
-                    backgroundColor: canvasColor,
-                    title: Text(_getTitleByIndex(_controller.selectedIndex)),
-                    leading: IconButton(
-                      onPressed: () {
-                        // if (!Platform.isAndroid && !Platform.isIOS) {
-                        //   _controller.setExtended(true);
-                        // }
-                        _key.currentState?.openDrawer();
-                      },
-                      icon: const Icon(Icons.menu),
+      body: Row(
+        children: [
+          Container(
+            color: AppStyle.blackColor,
+            padding: const EdgeInsets.all(18),
+            child: SideNavigationBar(
+              toggler: const SideBarToggler(
+                shrinkIcon: Icons.menu,
+                expandIcon: Icons.menu,
+              ),
+              theme: SideNavigationBarTheme(
+                itemTheme: SideNavigationBarItemTheme(
+                  selectedItemColor: AppStyle.white,
+                ),
+                togglerTheme: const SideNavigationBarTogglerTheme(
+                  expandIconColor: Colors.white,
+                  shrinkIconColor: Colors.white,
+                ),
+                dividerTheme: const SideNavigationBarDividerTheme(
+                  showHeaderDivider: false,
+                  showMainDivider: false,
+                  showFooterDivider: false,
+                ),
+                backgroundColor: AppStyle.blackColor,
+              ),
+              header: SideNavigationBarHeader(
+                image: Column(
+                  children: [
+                    Image.asset(
+                      'logo'.toPNG,
+                      width: 55,
                     ),
-                  )
-                : null,
-            drawer: ExampleSidebarX(controller: _controller),
-            body: Row(
-              children: [
-                if (!isSmallScreen) ExampleSidebarX(controller: _controller),
-                Expanded(
-                  child: Center(
-                    child: _ScreensExample(
-                      controller: _controller,
+                    const SizedBox(height: 24),
+                    const Text(
+                      'Menu',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: AppStyle.bold,
+                        color: AppStyle.white,
+                      ),
                     ),
+                    const SizedBox(
+                      height: 24,
+                    ),
+                  ],
+                ),
+                title: const Text(
+                  'GMJ\nTamanan',
+                  style: TextStyle(
+                    fontWeight: AppStyle.bold,
+                    fontSize: 24,
+                    color: AppStyle.white,
                   ),
                 ),
-              ],
-            ),
-          );
-        },
-      ),
-    );
-  }
-}
-
-String _getTitleByIndex(int index) {
-  switch (index) {
-    case 0:
-      return 'Home';
-    case 1:
-      return 'Search';
-    case 2:
-      return 'People';
-    case 3:
-      return 'Favorites';
-    case 4:
-      return 'Custom iconWidget';
-    case 5:
-      return 'Profile';
-    case 6:
-      return 'Settings';
-    default:
-      return 'Not found page';
-  }
-}
-
-Color primaryColor = const Color(0xFF685BFF);
-Color canvasColor = const Color(0xFF2E2E48);
-Color scaffoldBackgroundColor = const Color(0xFF464667);
-Color accentCanvasColor = const Color(0xFF3E3E61);
-Color white = Colors.white;
-final actionColor = const Color(0xFF5F5FA7).withOpacity(0.6);
-final divider = Divider(color: white.withOpacity(0.3), height: 1);
-
-class ExampleSidebarX extends StatelessWidget {
-  const ExampleSidebarX({
-    Key? key,
-    required SidebarXController controller,
-  })  : _controller = controller,
-        super(key: key);
-
-  final SidebarXController _controller;
-
-  @override
-  Widget build(BuildContext context) {
-    return SidebarX(
-      controller: _controller,
-      theme: SidebarXTheme(
-        margin: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          color: canvasColor,
-          borderRadius: BorderRadius.circular(20),
-        ),
-        hoverColor: scaffoldBackgroundColor,
-        textStyle: TextStyle(color: Colors.white.withOpacity(0.7)),
-        selectedTextStyle: const TextStyle(color: Colors.white),
-        itemTextPadding: const EdgeInsets.only(left: 30),
-        selectedItemTextPadding: const EdgeInsets.only(left: 30),
-        itemDecoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: canvasColor),
-        ),
-        selectedItemDecoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(
-            color: actionColor.withOpacity(0.37),
-          ),
-          gradient: LinearGradient(
-            colors: [accentCanvasColor, canvasColor],
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.28),
-              blurRadius: 30,
-            )
-          ],
-        ),
-        iconTheme: IconThemeData(
-          color: Colors.white.withOpacity(0.7),
-          size: 20,
-        ),
-        selectedIconTheme: const IconThemeData(
-          color: Colors.white,
-          size: 20,
-        ),
-      ),
-      extendedTheme: SidebarXTheme(
-        width: 200,
-        decoration: BoxDecoration(
-          color: canvasColor,
-        ),
-      ),
-      footerDivider: divider,
-      headerBuilder: (context, extended) {
-        return const SizedBox(
-          height: 100,
-          child: Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Text('SidebarX', style: TextStyle(color: Colors.white)),
-          ),
-        );
-      },
-      items: [
-        SidebarXItem(
-          icon: Icons.home,
-          label: 'Home',
-          onTap: () {
-            debugPrint('Home');
-          },
-        ),
-        const SidebarXItem(
-          icon: Icons.search,
-          label: 'Search',
-        ),
-        const SidebarXItem(
-          icon: Icons.people,
-          label: 'People',
-        ),
-        const SidebarXItem(
-          icon: Icons.favorite,
-          label: 'Favorites',
-        ),
-        const SidebarXItem(
-          iconWidget: FlutterLogo(size: 20),
-          label: 'Flutter',
-        ),
-      ],
-    );
-  }
-}
-
-class _ScreensExample extends StatelessWidget {
-  const _ScreensExample({
-    Key? key,
-    required this.controller,
-  }) : super(key: key);
-
-  final SidebarXController controller;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return AnimatedBuilder(
-      animation: controller,
-      builder: (context, child) {
-        final pageTitle = _getTitleByIndex(controller.selectedIndex);
-        switch (controller.selectedIndex) {
-          case 0:
-            return ListView.builder(
-              padding: const EdgeInsets.only(top: 10),
-              itemBuilder: (context, index) => Container(
-                height: 100,
-                width: double.infinity,
-                margin: const EdgeInsets.only(bottom: 10, right: 10, left: 10),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Theme.of(context).canvasColor,
-                  boxShadow: const [BoxShadow()],
-                ),
+                subtitle: const SizedBox(),
               ),
-            );
-          default:
-            return Text(
-              pageTitle,
-              style: theme.textTheme.headlineSmall,
-            );
-        }
-      },
+              selectedIndex: currentIndex,
+              items: const [
+                SideNavigationBarItem(
+                  icon: Icons.dashboard,
+                  label: 'Dashboard',
+                ),
+                SideNavigationBarItem(
+                  icon: Icons.attach_money,
+                  label: 'Transaksi',
+                ),
+                SideNavigationBarItem(
+                  icon: Icons.receipt,
+                  label: 'Laporan Transaksi',
+                ),
+                SideNavigationBarItem(
+                  icon: Icons.dataset,
+                  label: 'Data Barang Gadai',
+                ),
+                SideNavigationBarItem(
+                  icon: FontAwesomeIcons.user,
+                  label: 'Data Nasabah',
+                ),
+                SideNavigationBarItem(
+                  icon: FontAwesomeIcons.cashRegister,
+                  label: 'Cash Opname',
+                ),
+                SideNavigationBarItem(
+                  icon: Icons.logout,
+                  label: 'Keluar',
+                ),
+              ],
+              onTap: (index) {
+                setState(
+                  () {
+                    currentIndex = index;
+                  },
+                );
+              },
+            ),
+          ),
+          Expanded(
+            child: views.elementAt(currentIndex),
+          ),
+        ],
+      ),
     );
   }
 }

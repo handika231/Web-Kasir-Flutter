@@ -5,6 +5,7 @@ class AppStyle {
   static const Color black = Colors.black;
   static const Color white = Colors.white;
   static const Color blackColor = Color(0xff1E1E1E);
+  static const Color redColor = Color(0xffCD0909);
 
   static const FontWeight bold = FontWeight.w700;
   static const FontWeight semiBold = FontWeight.w600;
