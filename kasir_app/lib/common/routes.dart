@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kasir_app/presentation/dashboard/page/dashboard_view.dart';
 import 'package:kasir_app/presentation/login/view/login_view.dart';
-import 'package:kasir_app/presentation/menu/menu_view.dart';
+import 'package:kasir_app/presentation/menu/page/menu_view.dart';
 
 class RoutesGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
