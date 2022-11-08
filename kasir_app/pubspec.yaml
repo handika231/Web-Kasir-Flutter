@@ -39,7 +39,6 @@ dependencies:
   dots_indicator: ^2.1.0
   google_fonts: ^3.0.1
   side_navigation: ^1.0.4
-  font_awesome_flutter: ^10.2.1
 
 dev_dependencies:
   flutter_test:

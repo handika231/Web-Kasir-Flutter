@@ -1,29 +1,60 @@
 import 'package:flutter/material.dart';
+import 'package:kasir_app/presentation/menu/widgets/menu_scaffold.dart';
 import 'package:side_navigation/side_navigation.dart';
 
 class MenuNotifier extends ChangeNotifier {
   int currentIndex = 0;
-  List<Widget> views = const [
-    Center(
-      child: Text('Dashboard'),
+  List<Widget> views = [
+    MenuScaffold(
+      body: Container(
+        color: Colors.orange,
+      ),
+      title: 'Dashboard',
+      subtitle: 'Detail ringkasan informasi mengenai cabang',
     ),
-    Center(
-      child: Text('Account'),
+    MenuScaffold(
+      body: Expanded(
+        child: Container(
+          color: Colors.orange,
+        ),
+      ),
+      title: 'Dashboard',
+      subtitle: 'Detail ringkasan informasi mengenai cabang',
     ),
-    Center(
-      child: Text('Settings'),
+    MenuScaffold(
+      body: Container(
+        color: Colors.orange,
+      ),
+      title: 'Dashboard',
+      subtitle: 'Detail ringkasan informasi mengenai cabang',
     ),
-    Center(
-      child: Text('Dashboard'),
+    MenuScaffold(
+      body: Container(
+        color: Colors.orange,
+      ),
+      title: 'Dashboard',
+      subtitle: 'Detail ringkasan informasi mengenai cabang',
     ),
-    Center(
-      child: Text('Account'),
+    MenuScaffold(
+      body: Container(
+        color: Colors.orange,
+      ),
+      title: 'Dashboard',
+      subtitle: 'Detail ringkasan informasi mengenai cabang',
     ),
-    Center(
-      child: Text('Settings'),
+    MenuScaffold(
+      body: Container(
+        color: Colors.orange,
+      ),
+      title: 'Dashboard',
+      subtitle: 'Detail ringkasan informasi mengenai cabang',
     ),
-    Center(
-      child: Text('Settings'),
+    MenuScaffold(
+      body: Container(
+        color: Colors.orange,
+      ),
+      title: 'Dashboard',
+      subtitle: 'Detail ringkasan informasi mengenai cabang',
     ),
   ];
 
