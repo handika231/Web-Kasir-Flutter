@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kasir_app/common/extension.dart';
+import 'package:kasir_app/common/navigation.dart';
 import 'package:kasir_app/common/style.dart';
 import 'package:provider/provider.dart';
 
@@ -146,7 +147,7 @@ class LoginWidget extends StatelessWidget {
                       minimumSize: const Size(double.infinity, 60),
                     ),
                     onPressed: () {
-                      Navigator.pushNamed(context, '/menu');
+                      Navigation.pushNamed('/menu');
                     },
                     child: const Text(
                       "Sign In",

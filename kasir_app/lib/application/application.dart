@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kasir_app/common/navigation.dart';
 import 'package:kasir_app/presentation/login/provider/login_notifier.dart';
 import 'package:kasir_app/presentation/login/view/login_view.dart';
 import 'package:kasir_app/presentation/menu/provider/menu_provider.dart';
@@ -31,10 +32,11 @@ class Application extends StatelessWidget {
                 create: (_) => MenuNotifier(),
               ),
             ],
-            child: const MaterialApp(
+            child: MaterialApp(
               initialRoute: '/',
               onGenerateRoute: RoutesGenerator.generateRoute,
-              home: LoginView(),
+              home: const LoginView(),
+              navigatorKey: navigationKey,
               debugShowCheckedModeBanner: false,
               title: 'Cashier GMJ App',
             ),

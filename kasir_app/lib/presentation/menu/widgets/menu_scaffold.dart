@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:kasir_app/common/style.dart';
 
 class MenuScaffold extends StatelessWidget {
   final Widget body;
   final String title;
   final String? subtitle;
-  const MenuScaffold(
+  MenuScaffold(
       {super.key, required this.body, required this.title, this.subtitle});
+
+  final String time = DateFormat('kk:mm:dd').format(DateTime.now());
+  final String day = DateFormat.yMMMEd().format(DateTime.now());
 
   @override
   Widget build(BuildContext context) {
@@ -77,6 +81,12 @@ class MenuScaffold extends StatelessWidget {
                         width: 27,
                       ),
                       PopupMenuButton(
+                        constraints: const BoxConstraints(
+                          minWidth: 200,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18),
+                        ),
                         icon: const Icon(
                           Icons.arrow_drop_down,
                           color: AppStyle.textSecondaryColor,
@@ -86,16 +96,12 @@ class MenuScaffold extends StatelessWidget {
                         itemBuilder: (context) {
                           return [
                             const PopupMenuItem(
-                              value: 'logout',
-                              child: Text('Logout'),
+                              value: 'profile',
+                              child: Text('Profile'),
                             ),
                             const PopupMenuItem(
-                              value: 'logout',
-                              child: Text('Logout'),
-                            ),
-                            const PopupMenuItem(
-                              value: 'logout',
-                              child: Text('Logout'),
+                              value: 'keluar',
+                              child: Text('Keluar'),
                             ),
                           ];
                         },
@@ -104,6 +110,27 @@ class MenuScaffold extends StatelessWidget {
                     ],
                   ),
                 )
+              ],
+            ),
+          ),
+          const SizedBox(
+            height: 8,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 30,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  time,
+                  style: const TextStyle(
+                    fontSize: 22,
+                    fontWeight: AppStyle.bold,
+                  ),
+                ),
+                Text(day),
               ],
             ),
           ),

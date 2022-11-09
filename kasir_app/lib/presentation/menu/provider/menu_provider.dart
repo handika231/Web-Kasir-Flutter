@@ -13,20 +13,10 @@ class MenuNotifier extends ChangeNotifier {
       subtitle: 'Detail ringkasan informasi mengenai cabang',
     ),
     MenuScaffold(
-      body: Expanded(
-        child: Container(
-          color: Colors.orange,
-        ),
-      ),
-      title: 'Dashboard',
-      subtitle: 'Detail ringkasan informasi mengenai cabang',
-    ),
-    MenuScaffold(
       body: Container(
         color: Colors.orange,
       ),
-      title: 'Dashboard',
-      subtitle: 'Detail ringkasan informasi mengenai cabang',
+      title: 'Transaksi',
     ),
     MenuScaffold(
       body: Container(
@@ -58,38 +48,34 @@ class MenuNotifier extends ChangeNotifier {
     ),
   ];
 
-  List<SideNavigationBarItem> listOfSideNav = const [
-    SideNavigationBarItem(
+  List<SideNavigationBarItem> listOfSideNav = [
+    const SideNavigationBarItem(
       icon: Icons.dashboard,
       label: 'Dashboard',
     ),
-    SideNavigationBarItem(
+    const SideNavigationBarItem(
       icon: Icons.attach_money,
       label: 'Transaksi',
     ),
-    SideNavigationBarItem(
+    const SideNavigationBarItem(
       icon: Icons.receipt,
       label: 'Laporan Transaksi',
     ),
-    SideNavigationBarItem(
+    const SideNavigationBarItem(
       icon: Icons.dataset,
       label: 'Data Barang Gadai',
     ),
-    SideNavigationBarItem(
+    const SideNavigationBarItem(
       icon: Icons.person,
       label: 'Data Nasabah',
     ),
-    SideNavigationBarItem(
+    const SideNavigationBarItem(
       icon: Icons.monetization_on_rounded,
       label: 'Cash Opname',
     ),
-    SideNavigationBarItem(
-      icon: Icons.logout,
-      label: 'Keluar',
-    ),
   ];
 
-  changeIndex(int index) {
+  void changeIndex(int index) {
     currentIndex = index;
     notifyListeners();
   }
