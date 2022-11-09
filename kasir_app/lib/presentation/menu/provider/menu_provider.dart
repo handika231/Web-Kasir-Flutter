@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:kasir_app/presentation/dashboard/page/dashboard_view.dart';
 import 'package:kasir_app/presentation/menu/widgets/menu_scaffold.dart';
 import 'package:side_navigation/side_navigation.dart';
 
 class MenuNotifier extends ChangeNotifier {
   int currentIndex = 0;
   List<Widget> views = [
-    MenuScaffold(
-      body: Container(
-        color: Colors.orange,
-      ),
-      title: 'Dashboard',
-      subtitle: 'Detail ringkasan informasi mengenai cabang',
-    ),
+    const DashboardView(),
     MenuScaffold(
       body: Container(
         color: Colors.orange,
