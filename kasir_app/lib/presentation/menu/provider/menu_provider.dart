@@ -23,28 +23,30 @@ class MenuNotifier extends ChangeNotifier {
         color: Colors.orange,
       ),
       title: 'Dashboard',
-      subtitle: 'Detail ringkasan informasi mengenai cabang',
     ),
     MenuScaffold(
       body: Container(
         color: Colors.orange,
       ),
       title: 'Dashboard',
-      subtitle: 'Detail ringkasan informasi mengenai cabang',
     ),
     MenuScaffold(
       body: Container(
         color: Colors.orange,
       ),
       title: 'Dashboard',
-      subtitle: 'Detail ringkasan informasi mengenai cabang',
     ),
     MenuScaffold(
       body: Container(
         color: Colors.orange,
       ),
       title: 'Dashboard',
-      subtitle: 'Detail ringkasan informasi mengenai cabang',
+    ),
+    MenuScaffold(
+      body: Container(
+        color: Colors.orange,
+      ),
+      title: 'Keluar',
     ),
   ];
 
@@ -72,6 +74,10 @@ class MenuNotifier extends ChangeNotifier {
     const SideNavigationBarItem(
       icon: Icons.monetization_on_rounded,
       label: 'Cash Opname',
+    ),
+    const SideNavigationBarItem(
+      icon: Icons.logout,
+      label: 'Keluar',
     ),
   ];
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:kasir_app/common/style.dart';
 
@@ -100,9 +101,12 @@ class MenuScaffold extends StatelessWidget {
                               value: 'profile',
                               child: Text('Profile'),
                             ),
-                            const PopupMenuItem(
+                            PopupMenuItem(
+                              onTap: () {
+                                GoRouter.of(context).replace('/');
+                              },
                               value: 'keluar',
-                              child: Text('Keluar'),
+                              child: const Text('Keluar'),
                             ),
                           ];
                         },

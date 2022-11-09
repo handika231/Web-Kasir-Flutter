@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:kasir_app/common/extension.dart';
-import 'package:kasir_app/common/navigation.dart';
 import 'package:kasir_app/common/style.dart';
 import 'package:provider/provider.dart';
 
@@ -147,7 +147,7 @@ class LoginWidget extends StatelessWidget {
                       minimumSize: const Size(double.infinity, 60),
                     ),
                     onPressed: () {
-                      Navigation.pushNamed('/menu');
+                      GoRouter.of(context).replace('/menu');
                     },
                     child: const Text(
                       "Sign In",

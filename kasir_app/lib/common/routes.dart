@@ -6,7 +6,7 @@ import 'package:kasir_app/presentation/menu/page/menu_view.dart';
 class RoutesGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case '/':
+      case '/login':
         return MaterialPageRoute(
           builder: (_) => const LoginView(),
         );
