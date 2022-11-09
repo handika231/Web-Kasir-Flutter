@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:kasir_app/common/navigation.dart';
 import 'package:kasir_app/presentation/login/provider/login_notifier.dart';
 import 'package:kasir_app/presentation/login/view/login_view.dart';
@@ -34,6 +36,17 @@ class Application extends StatelessWidget {
             ],
             child: MaterialApp(
               initialRoute: '/',
+              localizationsDelegates: const [
+                AppLocalizations.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              locale: const Locale('id', ''),
+              supportedLocales: const [
+                Locale('en', ''),
+                Locale('id', ''),
+              ],
               onGenerateRoute: RoutesGenerator.generateRoute,
               home: const LoginView(),
               navigatorKey: navigationKey,

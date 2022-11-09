@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:intl/intl.dart';
 import 'package:kasir_app/common/style.dart';
 
@@ -10,7 +11,7 @@ class MenuScaffold extends StatelessWidget {
       {super.key, required this.body, required this.title, this.subtitle});
 
   final String time = DateFormat('kk:mm:dd').format(DateTime.now());
-  final String day = DateFormat.yMMMEd().format(DateTime.now());
+  final DateTime now = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -120,18 +121,22 @@ class MenuScaffold extends StatelessWidget {
             padding: const EdgeInsets.symmetric(
               horizontal: 30,
             ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  time,
-                  style: const TextStyle(
-                    fontSize: 22,
-                    fontWeight: AppStyle.bold,
+            child: DefaultTextStyle(
+              style: const TextStyle(
+                fontSize: 22,
+                fontWeight: AppStyle.bold,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    time,
                   ),
-                ),
-                Text(day),
-              ],
+                  Text(
+                    AppLocalizations.of(context)!.todayDate(now),
+                  ),
+                ],
+              ),
             ),
           ),
           body,

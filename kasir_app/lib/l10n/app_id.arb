@@ -1,0 +1,16 @@
+{
+  "titleApp": "Aplikasi Lokalisasi",
+  "@titleApp": {
+    "description": "Deskripsi mengenai variabel titleApp"
+  },
+  "todayDate": "{dateNow}",
+  "@todayDate": {
+    "description": "Deskripsi mengenai variabel todayDate",
+    "placeholders": {
+      "dateNow": {
+        "type": "DateTime",
+        "format": "yMMMMEEEEd"
+      }
+    }
+  }
+}
