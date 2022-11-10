@@ -9,7 +9,7 @@ class Application extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        if (constraints.maxWidth <= 960) {
+        if (constraints.maxWidth <= 1200) {
           return const MobileScreen();
         }
         return const WebScreen();

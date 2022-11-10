@@ -8,6 +8,7 @@ class AppStyle {
   static const Color btnColor = Color(0xffFFC903);
   static const Color bgColorDashboard = Color(0xffF5F5F5);
   static const Color textSecondaryColor = Color(0xffA7A7A7);
+  static const Color greenColor = Color(0xff00CE7B);
   static const FontWeight bold = FontWeight.w700;
   static const FontWeight semiBold = FontWeight.w600;
   static const FontWeight medium = FontWeight.w500;

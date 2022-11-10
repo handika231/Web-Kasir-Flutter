@@ -38,10 +38,10 @@ dependencies:
   cupertino_icons: ^1.0.2
   provider: ^6.0.4
   dots_indicator: ^2.1.0
-  google_fonts: ^3.0.1
   side_navigation: ^1.0.4
   intl: ^0.17.0
   go_router: ^5.1.5
+  percent_indicator: ^4.2.2
 
 dev_dependencies:
   flutter_test:
