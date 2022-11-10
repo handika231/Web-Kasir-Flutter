@@ -54,7 +54,7 @@ class MenuScaffold extends StatelessWidget {
                                   return const CircularProgressIndicator();
                                 } else {
                                   return Text(
-                                    DateFormat('hh : mm : ss')
+                                    DateFormat('HH : mm : ss')
                                         .format(DateTime.now()),
                                   );
                                 }
