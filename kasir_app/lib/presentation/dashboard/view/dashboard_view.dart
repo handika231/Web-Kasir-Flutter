@@ -10,6 +10,8 @@ class DashboardView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MenuScaffold(
+      title: 'Dashboard',
+      subtitle: 'Detail ringkasan informasi mengenai cabang',
       body: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 30,
@@ -26,12 +28,13 @@ class DashboardView extends StatelessWidget {
                   CardBalanceWidget(),
                 ],
               ),
-            )
+            ),
+            const SizedBox(
+              height: 24,
+            ),
           ],
         ),
       ),
-      title: 'Dashboard',
-      subtitle: 'Detail ringkasan informasi mengenai cabang',
     );
   }
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:kasir_app/presentation/menu/provider/menu_provider.dart';
+import 'package:provider/provider.dart';
 
 import '../../../common/style.dart';
 
@@ -15,6 +17,7 @@ class HeaderMenuWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Provider.of<MenuNotifier>(context, listen: false);
     return Container(
       color: AppStyle.white,
       padding: const EdgeInsets.symmetric(
@@ -89,9 +92,13 @@ class HeaderMenuWidget extends StatelessWidget {
                   position: PopupMenuPosition.under,
                   itemBuilder: (context) {
                     return [
-                      const PopupMenuItem(
+                      PopupMenuItem(
+                        onTap: () {
+                          // TODO:  HARDCODE
+                          context.read<MenuNotifier>().changeIndex(7);
+                        },
                         value: 'profile',
-                        child: Text('Profile'),
+                        child: const Text('Profile'),
                       ),
                       PopupMenuItem(
                         onTap: () {
