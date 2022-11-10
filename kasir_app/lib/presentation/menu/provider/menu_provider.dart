@@ -5,6 +5,7 @@ import 'package:side_navigation/side_navigation.dart';
 
 class MenuNotifier extends ChangeNotifier {
   int currentIndex = 0;
+
   List<Widget> views = [
     const DashboardView(),
     MenuScaffold(

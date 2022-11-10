@@ -9,19 +9,16 @@ class MenuView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async => false,
-      child: Scaffold(
-        body: Row(
-          children: [
-            const SideNavWidget(),
-            Consumer<MenuNotifier>(
-              builder: (context, value, child) => Expanded(
-                child: value.views.elementAt(value.currentIndex),
-              ),
+    return Scaffold(
+      body: Row(
+        children: [
+          const SideNavWidget(),
+          Consumer<MenuNotifier>(
+            builder: (context, value, child) => Expanded(
+              child: value.views.elementAt(value.currentIndex),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
