@@ -28,7 +28,6 @@ class ImageProfileWidget extends StatelessWidget {
           ),
           Consumer<ProfileNotifier>(
             builder: (context, value, child) {
-              print(value.imagePath);
               if (value.imagePath == null) {
                 return SizedBox(
                   height: 250,
@@ -54,8 +53,8 @@ class ImageProfileWidget extends StatelessWidget {
               } else {
                 return ClipRRect(
                   borderRadius: BorderRadius.circular(16),
-                  child: Image.file(
-                    value.imagePath!,
+                  child: Image.memory(
+                    value.imageBytes,
                     width: 250,
                     height: 250,
                   ),
