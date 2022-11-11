@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:go_router/go_router.dart';
+import 'package:kasir_app/injector.dart' as di;
 import 'package:kasir_app/presentation/menu/view/menu_view.dart';
+import 'package:kasir_app/presentation/profile/provider/profile_notifier.dart';
 import 'package:provider/provider.dart';
 
 import '../presentation/login/provider/login_notifier.dart';
@@ -21,6 +23,9 @@ class WebScreen extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (_) => MenuNotifier(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => di.locator<ProfileNotifier>(),
         ),
       ],
       child: MaterialApp.router(

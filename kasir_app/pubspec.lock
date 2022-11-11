@@ -84,6 +84,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  get_it:
+    dependency: "direct main"
+    description:
+      name: get_it
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "7.2.0"
   go_router:
     dependency: "direct main"
     description:
@@ -91,6 +98,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "5.1.5"
+  image_picker_web:
+    dependency: "direct main"
+    description:
+      name: image_picker_web
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.1"
   intl:
     dependency: "direct main"
     description:
