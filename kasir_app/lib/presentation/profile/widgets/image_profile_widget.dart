@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kasir_app/common/result_state.dart';
 import 'package:kasir_app/presentation/profile/provider/profile_notifier.dart';
 import 'package:provider/provider.dart';
 
@@ -28,7 +29,17 @@ class ImageProfileWidget extends StatelessWidget {
           ),
           Consumer<ProfileNotifier>(
             builder: (context, value, child) {
-              if (value.imagePath == null) {
+              if (value.state == ResultState.HasData) {
+                return ClipRRect(
+                  borderRadius: BorderRadius.circular(16),
+                  child: Image.memory(
+                    value.imageBytes,
+                    width: 250,
+                    fit: BoxFit.contain,
+                    height: 250,
+                  ),
+                );
+              } else {
                 return SizedBox(
                   height: 250,
                   width: 250,
@@ -48,15 +59,6 @@ class ImageProfileWidget extends StatelessWidget {
                         ),
                       ),
                     ),
-                  ),
-                );
-              } else {
-                return ClipRRect(
-                  borderRadius: BorderRadius.circular(16),
-                  child: Image.memory(
-                    value.imageBytes,
-                    width: 250,
-                    height: 250,
                   ),
                 );
               }

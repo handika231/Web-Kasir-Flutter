@@ -11,7 +11,7 @@ class FormProfileWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
             'Nama',
@@ -167,6 +167,19 @@ class FormProfileWidget extends StatelessWidget {
                 ),
               ),
             ],
+          ),
+          const SizedBox(
+            height: 55,
+          ),
+          SizedBox(
+            height: 55,
+            width: 200,
+            child: ElevatedButton(
+              onPressed: () {},
+              child: const Text(
+                "Simpan",
+              ),
+            ),
           ),
         ],
       ),
