@@ -31,7 +31,7 @@ class MenuScaffold extends StatelessWidget {
           // TODO: HARDCODE
           Consumer<MenuNotifier>(
             builder: (context, value, child) {
-              return value.currentIndex != 7
+              return value.currentIndex == 0 || value.currentIndex == 1
                   ? Padding(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 30,
