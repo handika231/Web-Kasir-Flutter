@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../common/style.dart';
 
@@ -152,6 +153,9 @@ class FormProfileWidget extends StatelessWidget {
                       height: 12,
                     ),
                     TextField(
+                      inputFormatters: [
+                        FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                      ],
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         hintText: '08xxxxxxxxxx',
@@ -171,13 +175,20 @@ class FormProfileWidget extends StatelessWidget {
           const SizedBox(
             height: 55,
           ),
-          SizedBox(
-            height: 55,
-            width: 200,
-            child: ElevatedButton(
-              onPressed: () {},
-              child: const Text(
-                "Simpan",
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              fixedSize: const Size(200, 55),
+              backgroundColor: AppStyle.btnColor,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
+            ),
+            onPressed: () {},
+            child: const Text(
+              "Simpan",
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: AppStyle.semiBold,
               ),
             ),
           ),

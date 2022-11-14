@@ -7,12 +7,6 @@ import 'common/utils/image_picker_helper.dart';
 final locator = GetIt.instance;
 
 init() {
-  // locator.registerLazySingleton(() => Api());
-  // locator.registerLazySingleton(() => DatabaseHelper());
-  // locator.registerLazySingleton(() => SharedPref());
-  // locator.registerLazySingleton(() => Repository());
-  // locator.registerLazySingleton(() => Bloc());
-
 // PACKAGE
   locator.registerLazySingleton(() => ImagePicker());
 

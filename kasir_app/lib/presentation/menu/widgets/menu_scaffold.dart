@@ -18,7 +18,7 @@ class MenuScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Provider.of<MenuNotifier>(context, listen: false);
-    return Container(
+    return DecoratedBox(
       decoration: const BoxDecoration(
         color: AppStyle.bgColorDashboard,
       ),
@@ -51,11 +51,12 @@ class MenuScaffold extends StatelessWidget {
                               builder: (context, snapshot) {
                                 if (snapshot.connectionState ==
                                     ConnectionState.waiting) {
-                                  return const CircularProgressIndicator();
+                                  return const Text('- - : - - : - -');
                                 } else {
                                   return Text(
-                                    DateFormat('HH : mm : ss')
-                                        .format(DateTime.now()),
+                                    DateFormat('HH : mm : ss').format(
+                                      DateTime.now(),
+                                    ),
                                   );
                                 }
                               },
