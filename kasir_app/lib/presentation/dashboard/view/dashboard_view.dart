@@ -24,7 +24,6 @@ class DashboardView extends StatelessWidget {
             },
           ),
           child: ListView(
-            shrinkWrap: true,
             padding: const EdgeInsets.symmetric(
               horizontal: 30,
             ),

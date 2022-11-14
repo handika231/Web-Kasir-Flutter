@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kasir_app/presentation/cash_opname/widgets/title_cash_opname_widget.dart';
 
 import '../../../common/style.dart';
 import 'custom_textfield_cash_opname.dart';
@@ -21,7 +22,7 @@ class CustomCountCashOpname extends StatelessWidget {
         color: AppStyle.textSecondaryColor,
       ),
       child: Expanded(
-        child: Container(
+        child: DecoratedBox(
           decoration: BoxDecoration(
             color: AppStyle.white,
             borderRadius: BorderRadius.circular(16),
@@ -29,28 +30,9 @@ class CustomCountCashOpname extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              DecoratedBox(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(colors: linearColor),
-                  borderRadius: const BorderRadius.vertical(
-                    top: Radius.circular(16),
-                  ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                    left: 34,
-                    top: 8,
-                    bottom: 8,
-                  ),
-                  child: Text(
-                    title,
-                    style: const TextStyle(
-                      fontSize: 22,
-                      fontWeight: AppStyle.bold,
-                      color: AppStyle.white,
-                    ),
-                  ),
-                ),
+              TitleCashOpnameWidget(
+                title: title,
+                linearColor: linearColor,
               ),
               const SizedBox(
                 height: 30,
