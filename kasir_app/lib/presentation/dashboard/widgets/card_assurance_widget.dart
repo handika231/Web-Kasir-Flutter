@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kasir_app/common/extension.dart';
 
 import '../../../common/style.dart';
 import 'item_total_widget.dart';
@@ -112,7 +113,7 @@ class CardAssuranceWidget extends StatelessWidget {
                     right: 0,
                     bottom: 0,
                     child: Image.asset(
-                      'assets/ic-wave.png',
+                      'ic-wave'.toPNG,
                       width: 380,
                       height: 160,
                     ),

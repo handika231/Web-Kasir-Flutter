@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:kasir_app/common/style.dart';
 
 import '../../../common/extension.dart';
 import '../../menu/widgets/menu_scaffold.dart';
@@ -94,11 +95,153 @@ class DashboardView extends StatelessWidget {
                 ],
               ),
               const SizedBox(
-                height: 100,
+                height: 20,
+              ),
+              Stack(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.fromLTRB(60, 50, 25, 20),
+                    decoration: BoxDecoration(
+                      color: AppStyle.blackColor,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Row(
+                      children: [
+                        const Text(
+                          'Sept\n2022',
+                          style: TextStyle(
+                            fontSize: 30,
+                            fontWeight: AppStyle.bold,
+                            color: AppStyle.white,
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 90,
+                        ),
+                        _buildItem(
+                          icon: 'ic-diamond',
+                          title: 'Total Barang Jaminan',
+                          price: 'Rp 100.000.000',
+                          desc: '100',
+                        ),
+                        const SizedBox(
+                          width: 18,
+                        ),
+                        _buildItem(
+                          icon: 'ic-mtd-jasa',
+                          title: 'MTD Jasa',
+                          price: 'Rp 100.000.000',
+                          desc: '90%',
+                        ),
+                        const SizedBox(
+                          width: 18,
+                        ),
+                        _buildItem(
+                          icon: 'ic-mtd-expense',
+                          title: 'MTD Expense',
+                          desc: 'Rp 20.000.000',
+                        ),
+                        const SizedBox(
+                          width: 18,
+                        ),
+                        _buildItem(
+                          icon: 'ic-mtd-nota',
+                          desc: 'Rp 10.000.000',
+                          title: 'MTD Nota',
+                        ),
+                      ],
+                    ),
+                  ),
+                  Positioned(
+                    right: 0,
+                    bottom: 0,
+                    child: Image.asset(
+                      'ic-wave'.toPNG,
+                      width: 380,
+                      height: 160,
+                    ),
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 20,
               ),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildItem(
+      {String title = '',
+      String desc = '',
+      String icon = '',
+      String price = ''}) {
+    return Flexible(
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              color: AppStyle.white,
+              borderRadius: BorderRadius.circular(20),
+            ),
+            padding: const EdgeInsets.only(
+              left: 30,
+              bottom: 20,
+              top: 30,
+              right: 50,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(
+                  title,
+                  style: const TextStyle(
+                    fontSize: 15,
+                    fontWeight: AppStyle.bold,
+                  ),
+                ),
+                const SizedBox(
+                  height: 24,
+                ),
+                Text(
+                  desc,
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: AppStyle.bold,
+                  ),
+                ),
+                const SizedBox(
+                  height: 4,
+                ),
+                Text(
+                  price,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: AppStyle.semiBold,
+                  ),
+                )
+              ],
+            ),
+          ),
+          Positioned(
+            top: -30,
+            left: 30,
+            child: Container(
+              padding: const EdgeInsets.all(13),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: AppStyle.redColor,
+              ),
+              child: Image.asset(
+                icon.toPNG,
+                width: 21,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
