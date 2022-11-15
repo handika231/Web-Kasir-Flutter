@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:intl/intl.dart';
-import 'package:kasir_app/common/style.dart';
 import 'package:provider/provider.dart';
 
+import '../../../common/style.dart';
 import '../provider/menu_provider.dart';
 import 'header_menu_widget.dart';
 

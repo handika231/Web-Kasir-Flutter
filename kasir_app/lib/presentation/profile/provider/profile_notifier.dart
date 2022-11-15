@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
-import 'package:kasir_app/common/result_state.dart';
-import 'package:kasir_app/common/utils/image_picker_helper.dart';
+
+import '../../../common/result_state.dart';
+import '../../../common/utils/image_picker_helper.dart';
 
 class ProfileNotifier extends ChangeNotifier {
   final ImagePickerHelper helper;

@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:kasir_app/common/extension.dart';
 
+import '../../../common/extension.dart';
 import '../../menu/widgets/menu_scaffold.dart';
 import '../widgets/card_assurance_widget.dart';
 import '../widgets/card_balance_widget.dart';

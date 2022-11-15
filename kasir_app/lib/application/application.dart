@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:kasir_app/application/mobile_screen.dart';
-import 'package:kasir_app/application/web_screen.dart';
+
+import 'mobile_screen.dart';
+import 'web_screen.dart';
 
 class Application extends StatelessWidget {
   const Application({super.key});

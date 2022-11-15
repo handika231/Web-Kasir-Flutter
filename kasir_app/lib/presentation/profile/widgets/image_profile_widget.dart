@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:kasir_app/common/result_state.dart';
-import 'package:kasir_app/presentation/profile/provider/profile_notifier.dart';
 import 'package:provider/provider.dart';
 
+import '../../../common/result_state.dart';
 import '../../../common/style.dart';
+import '../provider/profile_notifier.dart';
 
 class ImageProfileWidget extends StatelessWidget {
   const ImageProfileWidget({

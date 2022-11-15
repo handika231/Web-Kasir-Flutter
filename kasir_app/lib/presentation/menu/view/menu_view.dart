@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:kasir_app/presentation/menu/widgets/side_nav_widget.dart';
 import 'package:provider/provider.dart';
 
 import '../provider/menu_provider.dart';
+import '../widgets/side_nav_widget.dart';
 
 class MenuView extends StatelessWidget {
   const MenuView({super.key});

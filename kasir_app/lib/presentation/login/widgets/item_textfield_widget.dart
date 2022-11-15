@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kasir_app/common/style.dart';
+
+import '../../../common/style.dart';
 
 class ItemTextFieldWidget extends StatelessWidget {
   final String hintText;

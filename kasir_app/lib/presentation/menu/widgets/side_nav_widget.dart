@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:kasir_app/common/extension.dart';
 import 'package:provider/provider.dart';
 import 'package:side_navigation/side_navigation.dart';
 
+import '../../../common/extension.dart';
 import '../../../common/style.dart';
 import '../provider/menu_provider.dart';
 

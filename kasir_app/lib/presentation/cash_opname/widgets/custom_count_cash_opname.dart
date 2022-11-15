@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:kasir_app/presentation/cash_opname/widgets/title_cash_opname_widget.dart';
 
 import '../../../common/style.dart';
 import 'custom_textfield_cash_opname.dart';
+import 'title_cash_opname_widget.dart';
 
 class CustomCountCashOpname extends StatelessWidget {
   final String title;
@@ -43,11 +43,51 @@ class CustomCountCashOpname extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    const CustomTextFieldCashOpname(),
+                    const CustomTextFieldCashOpname(
+                      textPrice: 'Rp. 100.000',
+                    ),
                     const SizedBox(
                       height: 16,
                     ),
-                    const CustomTextFieldCashOpname(),
+                    const CustomTextFieldCashOpname(
+                      textPrice: 'Rp 75.000',
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    const CustomTextFieldCashOpname(
+                      textPrice: 'Rp 50.000',
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    const CustomTextFieldCashOpname(
+                      textPrice: 'Rp 20.000',
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    const CustomTextFieldCashOpname(
+                      textPrice: 'Rp 10.000',
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    const CustomTextFieldCashOpname(
+                      textPrice: 'Rp 5000',
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    const CustomTextFieldCashOpname(
+                      textPrice: 'Rp 2000',
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    const CustomTextFieldCashOpname(
+                      textPrice: 'Rp 1000',
+                    ),
                     Padding(
                       padding: const EdgeInsets.only(
                         top: 50,

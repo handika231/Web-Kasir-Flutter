@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import '../../../common/style.dart';
 
 class CustomTextFieldCashOpname extends StatelessWidget {
+  final String textPrice;
   const CustomTextFieldCashOpname({
     Key? key,
+    required this.textPrice,
   }) : super(key: key);
 
   @override
@@ -16,8 +18,9 @@ class CustomTextFieldCashOpname extends StatelessWidget {
           child: SizedBox(
             height: 50,
             child: TextField(
+              readOnly: true,
               decoration: InputDecoration(
-                hintText: 'Rp 100.000',
+                hintText: textPrice,
                 hintStyle: const TextStyle(
                   color: AppStyle.textSecondaryColor,
                   fontWeight: AppStyle.bold,

@@ -1,8 +1,8 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
-import 'package:kasir_app/common/style.dart';
 import 'package:provider/provider.dart';
 
+import '../../../common/style.dart';
 import '../provider/login_notifier.dart';
 
 class ItemImageWidget extends StatelessWidget {
