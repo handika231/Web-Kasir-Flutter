@@ -33,6 +33,7 @@ class ProfileView extends StatelessWidget {
                 fontWeight: AppStyle.bold,
               ),
             ),
+            const Divider(),
             const SizedBox(
               height: 38,
             ),
