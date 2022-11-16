@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:go_router/go_router.dart';
+import 'package:kasir_app/presentation/customer_data/edit_customer/view/edit_customer_view.dart';
 import 'package:provider/provider.dart';
 
 import '../injector.dart' as di;
@@ -57,6 +58,10 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: '/menu',
       builder: (context, state) => const MenuView(),
+    ),
+    GoRoute(
+      path: '/edit',
+      builder: (context, state) => const EditCustomerView(),
     ),
   ],
 );

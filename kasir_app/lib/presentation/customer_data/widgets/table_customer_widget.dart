@@ -139,7 +139,7 @@ class TableCustomerWidget extends StatelessWidget {
             ),
             child: InkWell(
               borderRadius: BorderRadius.circular(8),
-              onTap: customer.onTap,
+              onTap: () {},
               child: Container(
                 padding: const EdgeInsets.all(8),
                 child: const Icon(
@@ -164,8 +164,8 @@ class TableCustomerWidget extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
       ),
-      child: AspectRatio(
-        aspectRatio: 3 / 2,
+      child: FractionallySizedBox(
+        heightFactor: 0.7,
         child: Container(
           padding: const EdgeInsets.only(
             left: 40,

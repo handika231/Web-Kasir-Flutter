@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kasir_app/presentation/customer_data/edit_customer/view/edit_customer_view.dart';
 import 'package:side_navigation/side_navigation.dart';
 
 import '../../cash_opname/view/cash_opname_view.dart';
@@ -13,7 +14,7 @@ import '../widgets/menu_scaffold.dart';
 class MenuNotifier extends ChangeNotifier {
   int currentIndex = 0;
 
-  List views = [
+  List<Widget> views = [
     const DashboardView(),
     const TransactionView(),
     const ReportTransactionView(),
@@ -23,6 +24,7 @@ class MenuNotifier extends ChangeNotifier {
     MenuScaffold(body: const SizedBox(), title: 'LogOut'),
     // TODO: ADD HARDCODE
     const ProfileView(),
+    const EditCustomerView(),
   ];
 
   List<SideNavigationBarItem> listOfSideNav = [

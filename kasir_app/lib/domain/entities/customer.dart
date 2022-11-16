@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/animation.dart';
+import 'package:flutter/material.dart';
 
 class Customer extends Equatable {
   final String id;
