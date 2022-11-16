@@ -1,25 +1,37 @@
-import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
-class MyWidget extends StatelessWidget {
-  const MyWidget({super.key});
+abstract class Car {
+  void drive();
+}
 
+class CarImpl implements Car {
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: generateContainer,
-      ),
-    );
+  void drive() {
+    print('Driving');
   }
 }
 
-List<Widget> get generateContainer {
-  return List.generate(
-    10,
-    (index) => Container(
-      height: 100,
-      width: 100,
-      color: Colors.red,
-    ),
-  );
+class CarMock implements Car {
+  @override
+  void drive() {
+    print('Driving mock');
+  }
+}
+
+class Engine {
+  Car car;
+  Engine(this.car);
+}
+
+void main() async {
+  init();
+  Engine engine = locator<Engine>();
+  engine.car.drive();
+}
+
+GetIt locator = GetIt.instance;
+
+init() {
+  locator.registerLazySingleton<Car>(() => CarImpl());
+  locator.registerLazySingleton(() => Engine(locator()));
 }
