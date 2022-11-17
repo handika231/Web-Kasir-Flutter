@@ -8,6 +8,7 @@ class ProfileNotifier extends ChangeNotifier {
   ProfileNotifier(this.helper);
   Uint8List imageBytes = Uint8List(8);
   ResultState state = ResultState.NoData;
+
   Future pickImage() async {
     state = ResultState.Loading;
     notifyListeners();

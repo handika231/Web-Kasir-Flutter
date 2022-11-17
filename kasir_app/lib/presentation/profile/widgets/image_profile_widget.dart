@@ -12,7 +12,7 @@ class ImageProfileWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Provider.of<ProfileNotifier>(context, listen: false);
+    final provider = Provider.of<ProfileNotifier>(context);
     return Expanded(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -27,20 +27,8 @@ class ImageProfileWidget extends StatelessWidget {
           const SizedBox(
             height: 12,
           ),
-          Consumer<ProfileNotifier>(
-            builder: (context, value, child) {
-              if (value.state == ResultState.HasData) {
-                return ClipRRect(
-                  borderRadius: BorderRadius.circular(16),
-                  child: Image.memory(
-                    value.imageBytes,
-                    width: 250,
-                    fit: BoxFit.contain,
-                    height: 250,
-                  ),
-                );
-              } else {
-                return SizedBox(
+          provider.state != ResultState.HasData
+              ? SizedBox(
                   height: 250,
                   width: 250,
                   child: Material(
@@ -48,7 +36,7 @@ class ImageProfileWidget extends StatelessWidget {
                     borderRadius: BorderRadius.circular(16),
                     child: InkWell(
                       onTap: () {
-                        value.pickImage();
+                        provider.pickImage();
                       },
                       borderRadius: BorderRadius.circular(16),
                       child: const Center(
@@ -60,10 +48,16 @@ class ImageProfileWidget extends StatelessWidget {
                       ),
                     ),
                   ),
-                );
-              }
-            },
-          )
+                )
+              : ClipRRect(
+                  borderRadius: BorderRadius.circular(16),
+                  child: Image.memory(
+                    provider.imageBytes,
+                    width: 250,
+                    fit: BoxFit.contain,
+                    height: 250,
+                  ),
+                ),
         ],
       ),
     );
