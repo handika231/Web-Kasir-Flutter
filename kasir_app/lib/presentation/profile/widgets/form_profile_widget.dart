@@ -175,20 +175,22 @@ class FormProfileWidget extends StatelessWidget {
           const SizedBox(
             height: 55,
           ),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              fixedSize: const Size(200, 55),
-              backgroundColor: AppStyle.btnColor,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
+          Flexible(
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                minimumSize: const Size(200, 55),
+                backgroundColor: AppStyle.btnColor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
               ),
-            ),
-            onPressed: () {},
-            child: const Text(
-              "Simpan",
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: AppStyle.semiBold,
+              onPressed: () {},
+              child: const Text(
+                "Simpan",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: AppStyle.semiBold,
+                ),
               ),
             ),
           ),
