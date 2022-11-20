@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:side_navigation/side_navigation.dart';
 
 import '../../cash_opname/view/cash_opname_view.dart';
@@ -8,7 +9,6 @@ import '../../inventory/view/inventory_view.dart';
 import '../../profile/view/profile_view.dart';
 import '../../report_transaction/view/report_transaction_view.dart';
 import '../../transaction/view/transaction_view.dart';
-import '../widgets/menu_scaffold.dart';
 
 class MenuNotifier extends ChangeNotifier {
   int currentIndex = 0;
@@ -20,8 +20,7 @@ class MenuNotifier extends ChangeNotifier {
     const InventoryView(),
     const CustomerDataView(),
     const CashOpnameView(),
-    MenuScaffold(body: const SizedBox(), title: 'LogOut'),
-    // TODO: ADD HARDCODE
+    const LogOutPage(),
     const ProfileView(),
   ];
 
@@ -59,5 +58,15 @@ class MenuNotifier extends ChangeNotifier {
   void changeIndex(int index) {
     currentIndex = index;
     notifyListeners();
+  }
+}
+
+class LogOutPage extends StatelessWidget {
+  const LogOutPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    Future.microtask(() => GoRouter.of(context).replace('/'));
+    return const Scaffold();
   }
 }
