@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:kasir_app/common/style.dart';
+import 'package:kasir_app/domain/entities/transaction.dart';
 
 import '../../../common/extension.dart';
 import '../../menu/widgets/menu_scaffold.dart';
@@ -165,6 +166,182 @@ class DashboardView extends StatelessWidget {
               ),
               const SizedBox(
                 height: 20,
+              ),
+              Container(
+                padding: const EdgeInsets.fromLTRB(30, 30, 30, 100),
+                decoration: BoxDecoration(
+                  color: AppStyle.white,
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Row(
+                      children: [
+                        const Text(
+                          'Transaksi Hari Ini',
+                          style: TextStyle(
+                            fontSize: 22,
+                            fontWeight: AppStyle.bold,
+                          ),
+                        ),
+                        const Spacer(),
+                        PopupMenuButton(
+                          offset: const Offset(0, 10),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          position: PopupMenuPosition.under,
+                          child: Container(
+                            padding: const EdgeInsets.all(12),
+                            decoration: BoxDecoration(
+                              color: AppStyle.redColor,
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Row(
+                              children: const [
+                                Text(
+                                  'Semua Transaksi',
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: AppStyle.bold,
+                                    color: AppStyle.white,
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.arrow_drop_down_sharp,
+                                  color: AppStyle.white,
+                                )
+                              ],
+                            ),
+                          ),
+                          itemBuilder: (context) {
+                            return [
+                              const PopupMenuItem(
+                                child: Text('Semua Transaksi'),
+                              ),
+                              const PopupMenuItem(
+                                child: Text('Gadai'),
+                              ),
+                              const PopupMenuItem(
+                                child: Text('Tebus'),
+                              ),
+                              const PopupMenuItem(
+                                child: Text('Perpanjangan'),
+                              ),
+                              const PopupMenuItem(
+                                child: Text('Lelang'),
+                              ),
+                              const PopupMenuItem(
+                                child: Text('Titip'),
+                              ),
+                              const PopupMenuItem(
+                                child: Text('Petty Cash'),
+                              ),
+                            ];
+                          },
+                        ),
+                        const SizedBox(
+                          width: 24,
+                        ),
+                        SizedBox(
+                          height: 50,
+                          width: 300,
+                          child: TextField(
+                            decoration: InputDecoration(
+                              suffixIcon: const Icon(Icons.search),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 40,
+                    ),
+                    DataTable(
+                      dataTextStyle: const TextStyle(
+                        fontSize: 15,
+                        fontWeight: AppStyle.semiBold,
+                      ),
+                      columns: const [
+                        DataColumn(
+                          label: Text(
+                            'Nomor Nota',
+                          ),
+                        ),
+                        DataColumn(
+                          label: Text(
+                            'Jenis Transaksi',
+                          ),
+                        ),
+                        DataColumn(
+                          label: Text(
+                            'Kasir',
+                          ),
+                        ),
+                        DataColumn(
+                          label: Text(
+                            'Barang',
+                          ),
+                        ),
+                        DataColumn(
+                          label: Text(
+                            'Status',
+                          ),
+                        ),
+                        DataColumn(
+                          label: Text(
+                            'Nominal',
+                          ),
+                        ),
+                      ],
+                      rows: dataTransaction
+                          .map(
+                            (data) => DataRow(
+                              cells: [
+                                DataCell(
+                                  Text(
+                                    data.number,
+                                    style: const TextStyle(
+                                      color: AppStyle.greenColor,
+                                    ),
+                                  ),
+                                ),
+                                DataCell(
+                                  Text(
+                                    data.transaction,
+                                  ),
+                                ),
+                                DataCell(
+                                  Text(
+                                    data.cashier,
+                                  ),
+                                ),
+                                DataCell(
+                                  Text(
+                                    data.item,
+                                  ),
+                                ),
+                                DataCell(
+                                  Text(
+                                    data.status,
+                                  ),
+                                ),
+                                DataCell(
+                                  Text(
+                                    '${data.nominal}'.convertMoney,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
+                          .toList(),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
