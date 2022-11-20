@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import 'package:side_navigation/side_navigation.dart';
 
 import '../../cash_opname/view/cash_opname_view.dart';
@@ -61,12 +62,25 @@ class MenuNotifier extends ChangeNotifier {
   }
 }
 
-class LogOutPage extends StatelessWidget {
+class LogOutPage extends StatefulWidget {
   const LogOutPage({super.key});
 
   @override
+  State<LogOutPage> createState() => _LogOutPageState();
+}
+
+class _LogOutPageState extends State<LogOutPage> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<MenuNotifier>(context, listen: false).changeIndex(0);
+      context.replace('/');
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    Future.microtask(() => GoRouter.of(context).replace('/'));
     return const Scaffold();
   }
 }
