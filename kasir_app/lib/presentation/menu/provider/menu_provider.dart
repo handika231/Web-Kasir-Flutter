@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
-import 'package:side_navigation/side_navigation.dart';
 
 import '../../cash_opname/view/cash_opname_view.dart';
 import '../../customer_data/view/customer_data_view.dart';
 import '../../dashboard/view/dashboard_view.dart';
 import '../../inventory/view/inventory_view.dart';
+import '../../logout/logout_view.dart';
 import '../../profile/view/profile_view.dart';
 import '../../report_transaction/view/report_transaction_view.dart';
 import '../../transaction/view/transaction_view.dart';
 
 class MenuNotifier extends ChangeNotifier {
   int currentIndex = 0;
+  bool isCollapsed = true;
+
+  void toggleCollapsed() {
+    isCollapsed = !isCollapsed;
+    notifyListeners();
+  }
 
   List<Widget> views = [
     const DashboardView(),
@@ -25,62 +29,51 @@ class MenuNotifier extends ChangeNotifier {
     const ProfileView(),
   ];
 
-  List<SideNavigationBarItem> listOfSideNav = [
-    const SideNavigationBarItem(
-      icon: Icons.dashboard,
-      label: 'Dashboard',
+  List<NavigationRailDestination> listOfSideNav = [
+    const NavigationRailDestination(
+      icon: Icon(Icons.home),
+      selectedIcon: Icon(Icons.home),
+      label: Text('Dashboard'),
     ),
-    const SideNavigationBarItem(
-      icon: Icons.attach_money,
-      label: 'Transaksi',
+    const NavigationRailDestination(
+      icon: Icon(Icons.shopping_cart),
+      selectedIcon: Icon(Icons.shopping_cart),
+      label: Text('Transaksi'),
     ),
-    const SideNavigationBarItem(
-      icon: Icons.receipt,
-      label: 'Laporan Transaksi',
+    const NavigationRailDestination(
+      icon: Icon(Icons.receipt),
+      selectedIcon: Icon(Icons.receipt),
+      label: Text('Laporan Transaksi'),
     ),
-    const SideNavigationBarItem(
-      icon: Icons.dataset,
-      label: 'Data Barang Gadai',
+    const NavigationRailDestination(
+      icon: Icon(Icons.inventory),
+      selectedIcon: Icon(Icons.inventory),
+      label: Text('Inventory'),
     ),
-    const SideNavigationBarItem(
-      icon: Icons.person,
-      label: 'Data Nasabah',
+    const NavigationRailDestination(
+      icon: Icon(Icons.person),
+      selectedIcon: Icon(Icons.person),
+      label: Text('Data Pelanggan'),
     ),
-    const SideNavigationBarItem(
-      icon: Icons.monetization_on_rounded,
-      label: 'Cash Opname',
+    const NavigationRailDestination(
+      icon: Icon(Icons.money),
+      selectedIcon: Icon(Icons.money),
+      label: Text('Cash Opname'),
     ),
-    const SideNavigationBarItem(
-      icon: Icons.logout,
-      label: 'Keluar',
+    const NavigationRailDestination(
+      icon: Icon(Icons.logout),
+      selectedIcon: Icon(Icons.logout),
+      label: Text('Log Out'),
+    ),
+    const NavigationRailDestination(
+      icon: Icon(Icons.person),
+      selectedIcon: Icon(Icons.person),
+      label: Text('Profile'),
     ),
   ];
 
   void changeIndex(int index) {
     currentIndex = index;
     notifyListeners();
-  }
-}
-
-class LogOutPage extends StatefulWidget {
-  const LogOutPage({super.key});
-
-  @override
-  State<LogOutPage> createState() => _LogOutPageState();
-}
-
-class _LogOutPageState extends State<LogOutPage> {
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Provider.of<MenuNotifier>(context, listen: false).changeIndex(0);
-      context.replace('/');
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold();
   }
 }

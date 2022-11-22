@@ -17,16 +17,27 @@ class HeaderMenuWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Provider.of<MenuNotifier>(context, listen: false);
+    final provider = Provider.of<MenuNotifier>(context, listen: false);
     return Container(
       color: AppStyle.white,
       padding: const EdgeInsets.symmetric(
-        horizontal: 50,
+        horizontal: 25,
         vertical: 24,
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          IconButton(
+            onPressed: () {
+              provider.toggleCollapsed();
+            },
+            icon: const Icon(
+              Icons.menu,
+              size: 30,
+            ),
+          ),
+          const SizedBox(
+            width: 24,
+          ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -49,6 +60,7 @@ class HeaderMenuWidget extends StatelessWidget {
                 ),
             ],
           ),
+          const Spacer(),
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
             decoration: BoxDecoration(
