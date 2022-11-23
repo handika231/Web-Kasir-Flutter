@@ -10,6 +10,7 @@ import '../presentation/login/provider/login_notifier.dart';
 import '../presentation/login/view/login_view.dart';
 import '../presentation/menu/provider/menu_provider.dart';
 import '../presentation/menu/view/menu_view.dart';
+import '../presentation/profile/view/profile_view.dart';
 
 class WebScreen extends StatelessWidget {
   const WebScreen({super.key});
@@ -57,6 +58,10 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: '/menu',
       builder: (context, state) => const MenuView(),
+    ),
+    GoRoute(
+      path: '/profile',
+      builder: (context, state) => const ProfileView(),
     ),
   ],
 );

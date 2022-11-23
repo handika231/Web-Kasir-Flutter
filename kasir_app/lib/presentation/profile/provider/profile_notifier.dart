@@ -9,7 +9,7 @@ class ProfileNotifier extends ChangeNotifier {
   Uint8List imageBytes = Uint8List(8);
   ResultState state = ResultState.NoData;
 
-  Future pickImage() async {
+  Future<void> pickImage() async {
     state = ResultState.Loading;
     notifyListeners();
     try {

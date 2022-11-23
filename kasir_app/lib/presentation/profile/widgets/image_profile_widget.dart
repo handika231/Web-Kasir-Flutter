@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -49,15 +51,41 @@ class ImageProfileWidget extends StatelessWidget {
                     ),
                   ),
                 )
-              : ClipRRect(
-                  borderRadius: BorderRadius.circular(16),
-                  child: Image.memory(
-                    provider.imageBytes,
+              : MouseRegion(
+                  onHover: (event) {
+                    print('onHover');
+                  },
+                  child: Container(
                     width: 250,
-                    fit: BoxFit.contain,
                     height: 250,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      image: DecorationImage(
+                        image: MemoryImage(provider.imageBytes),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    child: Center(
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(16),
+                        child: BackdropFilter(
+                          filter: ImageFilter.blur(
+                            sigmaX: 10.0,
+                            sigmaY: 10.0,
+                          ),
+                          child: Container(
+                            padding: const EdgeInsets.all(16),
+                            color: AppStyle.white.withOpacity(0.5),
+                            child: const Icon(
+                              Icons.delete_sharp,
+                              color: AppStyle.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
-                ),
+                )
         ],
       ),
     );

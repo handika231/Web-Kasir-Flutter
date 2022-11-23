@@ -12,40 +12,58 @@ class SideNavWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final provider = Provider.of<MenuNotifier>(context, listen: true);
     return AnimatedContainer(
-      curve: Curves.fastLinearToSlowEaseIn,
-      width: provider.isCollapsed ? 80 : 250,
-      duration: const Duration(milliseconds: 500),
+      curve: Curves.fastOutSlowIn,
+      width: provider.isExpand ? 280 : 175,
+      duration: const Duration(milliseconds: 700),
       color: AppStyle.blackColor,
       padding: const EdgeInsets.all(18),
       child: NavigationRail(
-        leading: Image.asset(
-          'logo'.toPNG,
-          width: 200,
+        groupAlignment: -0.5,
+        useIndicator: !provider.isExpand,
+        indicatorColor: AppStyle.redColor,
+        leading: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Image.asset(
+              'logo'.toPNG,
+              width: 60,
+              height: 60,
+              fit: BoxFit.cover,
+            ),
+            const SizedBox(
+              width: 16,
+            ),
+            Flexible(
+              child: Visibility(
+                visible: provider.isExpand,
+                child: const Text(
+                  'GMJ\nTamanan',
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: AppStyle.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            )
+          ],
         ),
         backgroundColor: AppStyle.blackColor,
         selectedIndex: provider.currentIndex,
-        destinations: const [
-          NavigationRailDestination(
-            icon: Icon(Icons.home),
-            selectedIcon: Icon(Icons.home),
-            label: Text('Home'),
-          ),
-          NavigationRailDestination(
-            icon: Icon(Icons.favorite_border),
-            selectedIcon: Icon(Icons.favorite),
-            label: Text('Favorites'),
-          ),
-          NavigationRailDestination(
-            icon: Icon(Icons.bookmark_border),
-            selectedIcon: Icon(Icons.book),
-            label: Text('Books'),
-          ),
-          NavigationRailDestination(
-            icon: Icon(Icons.star_border),
-            selectedIcon: Icon(Icons.star),
-            label: Text('Albums'),
-          ),
-        ],
+        unselectedLabelTextStyle: TextStyle(
+          fontSize: 14,
+          color: AppStyle.textSecondaryColor.withOpacity(0.5),
+        ),
+        selectedLabelTextStyle: const TextStyle(
+          color: AppStyle.white,
+          fontSize: 14,
+          fontWeight: AppStyle.bold,
+        ),
+        onDestinationSelected: (index) {
+          provider.changeIndex(index);
+        },
+        destinations: provider.listOfSideNav,
+        extended: provider.isExpand,
       ),
     );
   }

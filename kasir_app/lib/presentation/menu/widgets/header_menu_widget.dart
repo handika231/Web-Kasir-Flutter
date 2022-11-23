@@ -107,7 +107,7 @@ class HeaderMenuWidget extends StatelessWidget {
                       PopupMenuItem(
                         onTap: () {
                           // TODO:  HARDCODE
-                          context.read<MenuNotifier>().changeIndex(7);
+                          context.read<MenuNotifier>().changeIndex(6);
                         },
                         value: 'profile',
                         child: const Text('Profile'),

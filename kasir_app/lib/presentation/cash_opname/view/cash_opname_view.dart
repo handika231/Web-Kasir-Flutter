@@ -197,26 +197,32 @@ class CashOpnameView extends StatelessWidget {
                     const SizedBox(
                       height: 50,
                     ),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        minimumSize: const Size(double.infinity, 60),
-                        backgroundColor: AppStyle.btnColor,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 34),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          minimumSize: const Size(double.infinity, 60),
+                          backgroundColor: AppStyle.btnColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
                         ),
-                      ),
-                      onPressed: () {},
-                      child: const Text(
-                        "PROSES",
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: AppStyle.semiBold,
-                          color: AppStyle.white,
+                        onPressed: () {},
+                        child: const Text(
+                          "PROSES",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: AppStyle.semiBold,
+                            color: AppStyle.white,
+                          ),
                         ),
                       ),
                     ),
                   ],
                 ),
+              ),
+              const SizedBox(
+                height: 50,
               ),
             ],
           ),
