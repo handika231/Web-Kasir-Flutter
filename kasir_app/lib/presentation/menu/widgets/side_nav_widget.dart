@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kasir_app/common/extension.dart';
 import 'package:provider/provider.dart';
 
 import '../../../common/style.dart';
@@ -17,6 +18,10 @@ class SideNavWidget extends StatelessWidget {
       color: AppStyle.blackColor,
       padding: const EdgeInsets.all(18),
       child: NavigationRail(
+        leading: Image.asset(
+          'logo'.toPNG,
+          width: 200,
+        ),
         backgroundColor: AppStyle.blackColor,
         selectedIndex: provider.currentIndex,
         destinations: const [
