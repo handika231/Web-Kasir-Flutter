@@ -1,10 +1,10 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:kasir_app/common/extension.dart';
-import 'package:kasir_app/presentation/customer_data/widgets/edit_customer_widget.dart';
 
+import '../../../common/extension.dart';
 import '../../../common/style.dart';
 import '../../../domain/entities/customer.dart';
+import 'edit_customer_widget.dart';
 
 class TableCustomerWidget extends StatelessWidget {
   const TableCustomerWidget({

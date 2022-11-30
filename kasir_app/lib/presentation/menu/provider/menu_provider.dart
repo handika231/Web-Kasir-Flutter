@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:kasir_app/common/extension.dart';
-import 'package:kasir_app/presentation/profile/view/profile_view.dart';
 
+import '../../../common/extension.dart';
 import '../../cash_opname/view/cash_opname_view.dart';
 import '../../customer_data/view/customer_data_view.dart';
 import '../../dashboard/view/dashboard_view.dart';
 import '../../inventory/view/inventory_view.dart';
 import '../../logout/logout_view.dart';
+import '../../profile/view/profile_view.dart';
 import '../../report_transaction/view/report_transaction_view.dart';
 import '../../transaction/view/transaction_view.dart';
 

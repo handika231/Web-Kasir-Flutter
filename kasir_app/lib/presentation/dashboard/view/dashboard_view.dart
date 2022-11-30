@@ -1,9 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:kasir_app/common/style.dart';
-import 'package:kasir_app/domain/entities/transaction.dart';
 
 import '../../../common/extension.dart';
+import '../../../common/style.dart';
+import '../../../domain/entities/transaction.dart';
 import '../../menu/widgets/menu_scaffold.dart';
 import '../widgets/card_assurance_widget.dart';
 import '../widgets/card_balance_widget.dart';

@@ -1,10 +1,10 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:kasir_app/common/extension.dart';
-import 'package:kasir_app/common/style.dart';
-import 'package:kasir_app/domain/entities/report_transaction.dart';
 
+import '../../../common/extension.dart';
+import '../../../common/style.dart';
+import '../../../domain/entities/report_transaction.dart';
 import '../../menu/widgets/menu_scaffold.dart';
 
 class ReportTransactionView extends StatelessWidget {

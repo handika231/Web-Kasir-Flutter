@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kasir_app/common/extension.dart';
 
+import '../../../common/extension.dart';
 import '../../../common/style.dart';
 import 'item_total_widget.dart';
 

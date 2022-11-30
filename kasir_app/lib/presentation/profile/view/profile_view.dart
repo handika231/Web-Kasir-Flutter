@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:kasir_app/injector.dart' as di;
-import 'package:kasir_app/presentation/profile/provider/profile_notifier.dart';
 import 'package:provider/provider.dart';
 
 import '../../../common/style.dart';
+import '../../../injector.dart' as di;
 import '../../menu/widgets/menu_scaffold.dart';
+import '../provider/profile_notifier.dart';
 import '../widgets/form_profile_widget.dart';
 import '../widgets/image_profile_widget.dart';
 
