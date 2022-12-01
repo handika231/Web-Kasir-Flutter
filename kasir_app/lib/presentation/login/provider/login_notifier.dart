@@ -11,32 +11,6 @@ class LoginNotifier extends ChangeNotifier {
   int currentIndex = 0;
   bool isPassword = true;
   final PageController pageController = PageController();
-  List<Branch> listBranch = [];
-  ResultState state = ResultState.noData;
-  Future<void> fetchListBranch() async {
-    state = ResultState.loading;
-    notifyListeners();
-    final result = await getListBranch.execute();
-    result.fold((failure) {
-      state = ResultState.error;
-      notifyListeners();
-    }, (data) {
-      state = ResultState.hasData;
-      listBranch = data;
-      notifyListeners();
-    });
-  }
-
-  changePassword() {
-    isPassword = !isPassword;
-    notifyListeners();
-  }
-
-  void changeIndex(int index) {
-    currentIndex = index;
-    notifyListeners();
-  }
-
   List<Map<String, dynamic>> imageData = [
     {
       'image': 'assets/img-1.png',
@@ -57,10 +31,47 @@ class LoginNotifier extends ChangeNotifier {
           'Memberikan laporan secara real-time atau langsung sesuai\ndengan keadaan di lapangan'
     }
   ];
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  //key
+  final formKey = GlobalKey<FormState>(debugLabel: '_loginForm');
+  List<Branch> listBranch = [];
+  ResultState state = ResultState.noData;
+  Future<void> fetchListBranch() async {
+    state = ResultState.loading;
+    notifyListeners();
+    final result = await getListBranch.execute();
+    result.fold((failure) {
+      state = ResultState.error;
+      notifyListeners();
+    }, (data) {
+      state = ResultState.hasData;
+      listBranch = data;
+      notifyListeners();
+    });
+  }
+
+  void changePassword() {
+    isPassword = !isPassword;
+    notifyListeners();
+  }
+
+  void changeIndex(int index) {
+    currentIndex = index;
+    notifyListeners();
+  }
+
+  Future<void> login() async {
+    if (formKey.currentState!.validate()) {
+      print('login');
+    }
+  }
 
   @override
   void dispose() {
     super.dispose();
     pageController.dispose();
+    usernameController.dispose();
+    passwordController.dispose();
   }
 }

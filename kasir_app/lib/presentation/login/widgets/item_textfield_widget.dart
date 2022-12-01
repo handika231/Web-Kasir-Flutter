@@ -5,8 +5,12 @@ import '../../../common/style.dart';
 class ItemTextFieldWidget extends StatelessWidget {
   final String hintText;
   final String text;
+  final TextEditingController controller;
   const ItemTextFieldWidget(
-      {Key? key, required this.hintText, required this.text})
+      {Key? key,
+      required this.controller,
+      required this.hintText,
+      required this.text})
       : super(key: key);
 
   @override
@@ -25,7 +29,7 @@ class ItemTextFieldWidget extends StatelessWidget {
               ),
             ),
           ),
-          TextField(
+          TextFormField(
             decoration: InputDecoration(
               filled: true,
               fillColor: AppStyle.white,

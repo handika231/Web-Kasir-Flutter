@@ -35,5 +35,5 @@ init() {
       () => RemoteDataSourceImpl(locator()));
 
 //STATE
-  locator.registerLazySingleton(() => LoginNotifier(locator()));
+  locator.registerFactory(() => LoginNotifier(locator()));
 }
