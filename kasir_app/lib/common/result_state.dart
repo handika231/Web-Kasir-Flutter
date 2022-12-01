@@ -1,6 +1,6 @@
 enum ResultState {
-  Loading,
-  NoData,
-  HasData,
-  Error,
+  loading,
+  noData,
+  hasData,
+  error,
 }

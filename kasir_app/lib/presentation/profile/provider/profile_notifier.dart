@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:kasir_app/data/exception.dart';
 
 import '../../../common/result_state.dart';
 import '../../../common/utils/image_picker_helper.dart';
@@ -7,18 +8,19 @@ class ProfileNotifier extends ChangeNotifier {
   final ImagePickerHelper helper;
   ProfileNotifier(this.helper);
   Uint8List imageBytes = Uint8List(8);
-  ResultState state = ResultState.NoData;
+  ResultState state = ResultState.noData;
 
   Future<void> pickImage() async {
-    state = ResultState.Loading;
+    state = ResultState.loading;
     notifyListeners();
     try {
       imageBytes = await helper.pickImage();
-      state = ResultState.HasData;
+      state = ResultState.hasData;
       notifyListeners();
-    } catch (e) {
-      state = ResultState.Error;
+    } on ImageException catch (e) {
+      state = ResultState.error;
       notifyListeners();
+      throw ImageException(message: e.message);
     }
   }
 }

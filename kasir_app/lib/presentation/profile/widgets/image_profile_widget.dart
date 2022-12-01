@@ -29,7 +29,7 @@ class ImageProfileWidget extends StatelessWidget {
           const SizedBox(
             height: 12,
           ),
-          provider.state != ResultState.HasData
+          provider.state != ResultState.hasData
               ? SizedBox(
                   height: 250,
                   width: 250,

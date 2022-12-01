@@ -17,7 +17,7 @@ class WebScreen extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (_) => LoginNotifier(),
+          create: (_) => di.locator<LoginNotifier>(),
         ),
         ChangeNotifierProvider(
           create: (_) => MenuNotifier(),

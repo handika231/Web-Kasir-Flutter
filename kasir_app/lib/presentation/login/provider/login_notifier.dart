@@ -1,9 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:kasir_app/common/result_state.dart';
+import 'package:kasir_app/domain/entities/branch.dart';
+import 'package:kasir_app/domain/usecases/get_list_branch.dart';
 
 class LoginNotifier extends ChangeNotifier {
+  final GetListBranch getListBranch;
+  LoginNotifier(this.getListBranch);
   int currentIndex = 0;
   bool isPassword = true;
   final PageController pageController = PageController();
+  List<Branch> listBranch = [];
+  ResultState state = ResultState.noData;
+  Future<void> fetchListBranch() async {
+    state = ResultState.loading;
+    notifyListeners();
+    final result = await getListBranch.execute();
+    result.fold((failure) {
+      state = ResultState.error;
+      notifyListeners();
+    }, (data) {
+      state = ResultState.hasData;
+      listBranch = data;
+      notifyListeners();
+    });
+  }
 
   changePassword() {
     isPassword = !isPassword;

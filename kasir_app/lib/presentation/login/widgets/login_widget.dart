@@ -14,7 +14,7 @@ class LoginWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = context.watch<LoginNotifier>();
+    final provider = Provider.of<LoginNotifier>(context);
     return Expanded(
       flex: 3,
       child: Container(
