@@ -17,7 +17,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
 
   @override
   Future<List<BranchModel>> getListBranch() async {
-    final response = await client.get(Uri.parse(Urls.baseUrl));
+    final response = await client.get(Uri.parse('${Urls.baseUrl}/api/branchs'));
     if (response.statusCode == 200) {
       List result = json.decode(response.body)['data'];
       return result.map((value) => BranchModel.fromJson(value)).toList();

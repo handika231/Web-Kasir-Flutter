@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:kasir_app/common/result_state.dart';
 import 'package:provider/provider.dart';
 
 import '../../../common/extension.dart';
@@ -14,7 +15,7 @@ class LoginWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<LoginNotifier>(context);
+    final provider = Provider.of<LoginNotifier>(context, listen: false);
     return Expanded(
       flex: 3,
       child: Container(
@@ -51,34 +52,39 @@ class LoginWidget extends StatelessWidget {
                           ),
                         ),
                       ),
-                      DropdownButtonFormField<String>(
-                        items: const [
-                          DropdownMenuItem(
-                            value: 'Cabang 1',
-                            child: Text('Cabang 1'),
-                          ),
-                          DropdownMenuItem(
-                            value: 'Cabang 2',
-                            child: Text('Cabang 2'),
-                          ),
-                          DropdownMenuItem(
-                            value: 'Cabang 3',
-                            child: Text('Cabang 3'),
-                          ),
-                        ],
-                        decoration: const InputDecoration(
-                          filled: true,
-                          fillColor: AppStyle.white,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(8),
-                            ),
-                          ),
-                        ),
-                        onChanged: (val) {},
-                        value: 'Cabang 1',
-                        hint: const Text('Pilih Cabang'),
-                      ),
+                      Consumer<LoginNotifier>(
+                        builder: (context, value, child) {
+                          if (value.state == ResultState.hasData) {
+                            return DropdownButtonFormField<String>(
+                              items: value.listBranch
+                                  .map(
+                                    (result) => DropdownMenuItem<String>(
+                                      value: result.name,
+                                      child: Text(
+                                        result.name ?? "Kantor Pusat",
+                                      ),
+                                    ),
+                                  )
+                                  .toList(),
+                              decoration: const InputDecoration(
+                                filled: true,
+                                fillColor: AppStyle.white,
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(8),
+                                  ),
+                                ),
+                              ),
+                              onChanged: (val) {},
+                              value: 'Kantor Pusat',
+                              hint: const Text('Pilih Cabang'),
+                            );
+                          } else {
+                            return const Center(
+                                child: CircularProgressIndicator());
+                          }
+                        },
+                      )
                     ],
                   ),
                 ),

@@ -5,7 +5,9 @@ import 'package:kasir_app/domain/usecases/get_list_branch.dart';
 
 class LoginNotifier extends ChangeNotifier {
   final GetListBranch getListBranch;
-  LoginNotifier(this.getListBranch);
+  LoginNotifier(this.getListBranch) {
+    fetchListBranch();
+  }
   int currentIndex = 0;
   bool isPassword = true;
   final PageController pageController = PageController();
