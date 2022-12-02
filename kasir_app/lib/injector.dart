@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:kasir_app/data/auth/authentication.dart';
 import 'package:kasir_app/data/datasources/remote_data_source.dart';
 import 'package:kasir_app/data/repositories/branch_repository_impl.dart';
 import 'package:kasir_app/domain/repositories/branch_repository.dart';
@@ -35,5 +36,8 @@ init() {
       () => RemoteDataSourceImpl(locator()));
 
 //STATE
-  locator.registerFactory(() => LoginNotifier(locator()));
+  locator.registerFactory(() => LoginNotifier(locator(), locator()));
+
+  // AUTHENTICATION
+  locator.registerLazySingleton<Authentication>(() => AuthenticationImpl());
 }

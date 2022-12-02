@@ -1,9 +1,13 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:kasir_app/common/result_state.dart';
+import 'package:http/http.dart' as client;
 import 'package:provider/provider.dart';
 
+import '../../../common/constant.dart';
 import '../../../common/extension.dart';
 import '../../../common/style.dart';
+import '../../../data/exception.dart';
 import '../provider/login_notifier.dart';
 import 'item_textfield_widget.dart';
 
@@ -11,6 +15,26 @@ class LoginWidget extends StatelessWidget {
   const LoginWidget({
     Key? key,
   }) : super(key: key);
+  Future login(String username, String password, String branchID) async {
+    final response = await client.post(
+      Uri.parse('${Urls.baseUrl}/api/auth/login'),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: json.encode({
+        'username': username,
+        'password': password,
+        'branch_id': branchID,
+      }),
+    );
+    if (response.statusCode == 200) {
+      final data = json.decode(response.body)['data']['token'];
+      return data;
+    } else {
+      throw const LoginException(message: 'Gagal login');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +49,6 @@ class LoginWidget extends StatelessWidget {
               fontSize: 16,
             ),
             child: Form(
-              autovalidateMode: AutovalidateMode.onUserInteraction,
               key: provider.formKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -56,12 +79,14 @@ class LoginWidget extends StatelessWidget {
                         ),
                         Consumer<LoginNotifier>(
                           builder: (context, value, child) {
-                            if (value.state == ResultState.hasData) {
+                            if (value.listBranch.isEmpty) {
+                              return const SizedBox();
+                            } else {
                               return DropdownButtonFormField<String>(
                                 items: value.listBranch
                                     .map(
                                       (result) => DropdownMenuItem<String>(
-                                        value: result.name,
+                                        value: result.id.toString(),
                                         child: Text(
                                           result.name ?? "",
                                         ),
@@ -78,14 +103,10 @@ class LoginWidget extends StatelessWidget {
                                   ),
                                 ),
                                 onChanged: (val) {
-                                  debugPrint(val.toString());
+                                  value.branchId = val ?? '1';
                                 },
-                                value: value.listBranch.first.name,
+                                value: value.listBranch.first.id.toString(),
                                 hint: const Text('Pilih Cabang'),
-                              );
-                            } else {
-                              return const Center(
-                                child: CircularProgressIndicator(),
                               );
                             }
                           },
@@ -121,6 +142,9 @@ class LoginWidget extends StatelessWidget {
                         Consumer<LoginNotifier>(
                           builder: (context, value, child) {
                             return TextFormField(
+                              validator: (value) => value!.isEmpty
+                                  ? 'Password tidak boleh kosong'
+                                  : null,
                               controller: value.passwordController,
                               obscureText: value.isPassword,
                               decoration: InputDecoration(
@@ -155,17 +179,23 @@ class LoginWidget extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 120),
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppStyle.btnColor,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
+                    child: Consumer<LoginNotifier>(
+                      builder: (context, value, child) => ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppStyle.btnColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          minimumSize: const Size(double.infinity, 60),
                         ),
-                        minimumSize: const Size(double.infinity, 60),
-                      ),
-                      onPressed: () {},
-                      child: const Text(
-                        "Sign In",
+                        onPressed: () async {
+                          await value.login(
+                            context,
+                          );
+                        },
+                        child: const Text(
+                          "Sign In",
+                        ),
                       ),
                     ),
                   ),

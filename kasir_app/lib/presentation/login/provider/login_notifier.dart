@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:kasir_app/common/result_state.dart';
+import 'package:kasir_app/data/auth/authentication.dart';
 import 'package:kasir_app/domain/entities/branch.dart';
 import 'package:kasir_app/domain/usecases/get_list_branch.dart';
 
 class LoginNotifier extends ChangeNotifier {
   final GetListBranch getListBranch;
-  LoginNotifier(this.getListBranch) {
+  final Authentication authentication;
+  LoginNotifier(this.getListBranch, this.authentication) {
     fetchListBranch();
   }
   int currentIndex = 0;
@@ -33,8 +36,10 @@ class LoginNotifier extends ChangeNotifier {
   ];
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  String branchId = '1';
   //key
   final formKey = GlobalKey<FormState>(debugLabel: '_loginForm');
+
   List<Branch> listBranch = [];
   ResultState state = ResultState.noData;
   Future<void> fetchListBranch() async {
@@ -51,6 +56,23 @@ class LoginNotifier extends ChangeNotifier {
     });
   }
 
+  Future<void> login(context) async {
+    if (formKey.currentState!.validate()) {
+      final result = await authentication.signIn(
+        usernameController.text,
+        passwordController.text,
+        branchId,
+      );
+      result.fold((failure) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(failure.message),
+        ));
+      }, (data) {
+        GoRouter.of(context).replace('/menu');
+      });
+    }
+  }
+
   void changePassword() {
     isPassword = !isPassword;
     notifyListeners();
@@ -59,12 +81,6 @@ class LoginNotifier extends ChangeNotifier {
   void changeIndex(int index) {
     currentIndex = index;
     notifyListeners();
-  }
-
-  Future<void> login() async {
-    if (formKey.currentState!.validate()) {
-      print('login');
-    }
   }
 
   @override

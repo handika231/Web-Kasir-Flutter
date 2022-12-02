@@ -30,6 +30,8 @@ class ItemTextFieldWidget extends StatelessWidget {
             ),
           ),
           TextFormField(
+            controller: controller,
+            validator: (value) => value!.isEmpty ? 'Tidak boleh kosong' : null,
             decoration: InputDecoration(
               filled: true,
               fillColor: AppStyle.white,
