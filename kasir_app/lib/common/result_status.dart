@@ -1,0 +1,4 @@
+enum ResultStatus {
+  active,
+  backlist,
+}

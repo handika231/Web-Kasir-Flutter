@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:kasir_app/common/result_status.dart';
 
 class EditDataNotifier extends ChangeNotifier {
-  bool isStatus = false;
-  void changeStatus(bool value) {
-    isStatus = value;
+  ResultStatus? status = ResultStatus.active;
+
+  void changeStatus(ResultStatus value) {
+    status = value;
     notifyListeners();
   }
 }
