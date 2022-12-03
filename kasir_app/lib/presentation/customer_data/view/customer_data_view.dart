@@ -23,9 +23,9 @@ class CustomerDataView extends StatelessWidget {
               right: 30,
               top: 14,
             ),
-            children: const [
-              HeadingCustomerWidget(),
-              SizedBox(
+            children: [
+              const HeadingCustomerWidget(),
+              const SizedBox(
                 height: 21,
               ),
               TableCustomerWidget(),

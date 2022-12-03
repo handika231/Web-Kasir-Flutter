@@ -7,10 +7,11 @@ import '../../../domain/entities/customer.dart';
 import 'edit_customer_widget.dart';
 
 class TableCustomerWidget extends StatelessWidget {
-  const TableCustomerWidget({
+  TableCustomerWidget({
     Key? key,
   }) : super(key: key);
   final String valueRadio = '';
+  final ScrollController _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -21,58 +22,66 @@ class TableCustomerWidget extends StatelessWidget {
           PointerDeviceKind.mouse,
         },
       ),
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: DataTable(
-          headingTextStyle: const TextStyle(
-            fontSize: 15,
-            color: AppStyle.textSecondaryColor,
+      child: Scrollbar(
+        thumbVisibility: true,
+        thickness: 10,
+        interactive: true,
+        controller: _scrollController,
+        child: SingleChildScrollView(
+          controller: _scrollController,
+          scrollDirection: Axis.horizontal,
+          child: DataTable(
+            columnSpacing: 80,
+            headingTextStyle: const TextStyle(
+              fontSize: 15,
+              color: AppStyle.textSecondaryColor,
+            ),
+            dataTextStyle: const TextStyle(
+              fontSize: 15,
+              fontWeight: AppStyle.bold,
+              color: AppStyle.blackColor,
+            ),
+            border: const TableBorder(
+              horizontalInside: BorderSide(
+                color: AppStyle.bgColorDashboard,
+                width: 1,
+              ),
+            ),
+            columns: const [
+              DataColumn(
+                label: Text('CIF'),
+              ),
+              DataColumn(
+                label: Text('Nama'),
+              ),
+              DataColumn(
+                label: Text('NIK'),
+              ),
+              DataColumn(
+                label: Text('Nomor Telepon'),
+              ),
+              DataColumn(
+                label: Text('Alamat'),
+              ),
+              DataColumn(
+                label: Text('Pekerjaan'),
+              ),
+              DataColumn(
+                label: Text('Email'),
+              ),
+              DataColumn(
+                label: Text('Status'),
+              ),
+              DataColumn(
+                label: Text(''),
+              ),
+            ],
+            rows: dataCustomer
+                .map(
+                  (customer) => _buildRow(context, customer),
+                )
+                .toList(),
           ),
-          dataTextStyle: const TextStyle(
-            fontSize: 15,
-            fontWeight: AppStyle.bold,
-            color: AppStyle.blackColor,
-          ),
-          border: const TableBorder(
-            horizontalInside: BorderSide(
-              color: AppStyle.bgColorDashboard,
-              width: 1,
-            ),
-          ),
-          columns: const [
-            DataColumn(
-              label: Text('CIF'),
-            ),
-            DataColumn(
-              label: Text('Nama'),
-            ),
-            DataColumn(
-              label: Text('NIK'),
-            ),
-            DataColumn(
-              label: Text('Nomor Telepon'),
-            ),
-            DataColumn(
-              label: Text('Alamat'),
-            ),
-            DataColumn(
-              label: Text('Pekerjaan'),
-            ),
-            DataColumn(
-              label: Text('Email'),
-            ),
-            DataColumn(
-              label: Text('Status'),
-            ),
-            DataColumn(
-              label: Text(''),
-            ),
-          ],
-          rows: dataCustomer
-              .map(
-                (customer) => _buildRow(context, customer),
-              )
-              .toList(),
         ),
       ),
     );

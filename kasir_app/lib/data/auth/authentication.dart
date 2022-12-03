@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:kasir_app/common/constant.dart';
 import 'package:kasir_app/data/failure.dart';
@@ -10,7 +11,7 @@ abstract class Authentication {
   Future<Either<Failure, LoginModel>> signIn(
       String username, String password, String branchId);
 
-  Future<void> logOut();
+  Future logOut();
 }
 
 class AuthenticationImpl implements Authentication {
@@ -41,8 +42,8 @@ class AuthenticationImpl implements Authentication {
   }
 
   @override
-  Future<void> logOut() async {
-    await http.post(
+  Future logOut() async {
+    final data = await http.post(
       Uri.parse('${Urls.baseUrl}/api/auth/logout'),
       headers: {
         'Content-Type': 'application/json',
@@ -51,5 +52,7 @@ class AuthenticationImpl implements Authentication {
         'Authorization': 'Bearer ${Urls.apiToken}',
       },
     );
+    final result = json.decode(data.body);
+    debugPrint(result.toString());
   }
 }

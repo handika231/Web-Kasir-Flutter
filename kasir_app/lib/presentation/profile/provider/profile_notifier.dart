@@ -10,6 +10,18 @@ class ProfileNotifier extends ChangeNotifier {
   Uint8List imageBytes = Uint8List(8);
   ResultState state = ResultState.noData;
 
+  bool isHover = false;
+
+  void onHover() {
+    isHover = true;
+    notifyListeners();
+  }
+
+  void onExit() {
+    isHover = false;
+    notifyListeners();
+  }
+
   Future<void> pickImage() async {
     state = ResultState.loading;
     notifyListeners();

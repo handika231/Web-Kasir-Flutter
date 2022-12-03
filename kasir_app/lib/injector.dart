@@ -22,7 +22,8 @@ init() {
   locator.registerLazySingleton(() => ImagePickerHelper(locator()));
 
   // PRESENTATION
-  locator.registerLazySingleton(() => ProfileNotifier(locator()));
+  locator.registerFactory(() => ProfileNotifier(locator()));
+  locator.registerFactory(() => LoginNotifier(locator(), locator()));
 
   // USES CASE
   locator.registerLazySingleton(() => GetListBranch(locator()));
@@ -34,9 +35,6 @@ init() {
   // DATA SOURCE
   locator.registerLazySingleton<RemoteDataSource>(
       () => RemoteDataSourceImpl(locator()));
-
-//STATE
-  locator.registerFactory(() => LoginNotifier(locator(), locator()));
 
   // AUTHENTICATION
   locator.registerLazySingleton<Authentication>(() => AuthenticationImpl());

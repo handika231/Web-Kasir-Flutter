@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:kasir_app/presentation/login/provider/login_notifier.dart';
 import 'package:provider/provider.dart';
 
 import '../menu/provider/menu_provider.dart';
@@ -17,7 +18,9 @@ class _LogOutPageState extends State<LogOutPage> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Provider.of<MenuNotifier>(context, listen: false).changeIndex(0);
-      context.replace('/');
+      context.read<LoginNotifier>().logout(context).then((_) {
+        context.replace('/');
+      });
     });
   }
 

@@ -68,9 +68,15 @@ class LoginNotifier extends ChangeNotifier {
           content: Text(failure.message),
         ));
       }, (data) {
-        GoRouter.of(context).replace('/menu');
+        GoRouter.of(context).go('/menu');
       });
     }
+  }
+
+  Future<void> logout(context) async {
+    final data = await authentication.logOut();
+    debugPrint(data);
+    GoRouter.of(context).go('/');
   }
 
   void changePassword() {

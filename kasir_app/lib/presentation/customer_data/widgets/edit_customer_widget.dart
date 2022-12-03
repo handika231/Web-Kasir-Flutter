@@ -10,8 +10,6 @@ class EditCustomerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      insetAnimationCurve: Curves.easeInQuint,
-      insetAnimationDuration: const Duration(milliseconds: 500),
       elevation: 12,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
@@ -19,6 +17,10 @@ class EditCustomerWidget extends StatelessWidget {
       child: AspectRatio(
         aspectRatio: 1.5,
         child: Container(
+          decoration: BoxDecoration(
+            color: AppStyle.white,
+            borderRadius: BorderRadius.circular(16),
+          ),
           padding: const EdgeInsets.only(
             top: 16,
             left: 28,
@@ -32,176 +34,150 @@ class EditCustomerWidget extends StatelessWidget {
                 PointerDeviceKind.mouse,
               },
             ),
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Edit Data Nasabah GMJ Gadai',
-                    style: TextStyle(
-                      fontSize: 22,
-                      fontWeight: AppStyle.bold,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  const Divider(
-                    thickness: 4,
-                    color: AppStyle.bgColorDashboard,
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  Row(
-                    children: [
-                      _buildFormField(label: 'Nama'),
-                      _buildFormField(isNumberField: true, label: 'NIK'),
-                      _buildFormField(isNumberField: true, label: 'CIF'),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  Row(
-                    children: [
-                      _buildFormField(
-                          label: 'No. Telepon', isNumberField: true),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
-                              'Pekerjaan',
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: AppStyle.semiBold,
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 12,
-                            ),
-                            SizedBox(
-                              width: 250,
-                              child: DecoratedBox(
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    width: 1,
-                                    color: AppStyle.black,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: DropdownButtonHideUnderline(
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(6),
-                                    child: DropdownButton(
-                                      isExpanded: true,
-                                      value: 'Karyawan Swasta',
-                                      borderRadius: BorderRadius.circular(8),
-                                      items: const [
-                                        DropdownMenuItem(
-                                          value: 'Karyawan Swasta',
-                                          child: Text('Karyawan Swasta'),
-                                        ),
-                                        DropdownMenuItem(
-                                          value: 'PNS',
-                                          child: Text('PNS'),
-                                        ),
-                                        DropdownMenuItem(
-                                          value: 'Wiraswasta',
-                                          child: Text('Wiraswasta'),
-                                        ),
-                                      ],
-                                      onChanged: (val) {},
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+            child: LayoutBuilder(
+              builder: (_, BoxConstraints constraint) {
+                return ListView(
+                  children: [
+                    const Text(
+                      'Edit Data Nasabah',
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: AppStyle.bold,
                       ),
-                      _buildFormField(label: 'Email'),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  IntrinsicHeight(
-                    child: Row(
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    Row(
                       children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
-                              'Alamat',
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: AppStyle.semiBold,
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 12,
-                            ),
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.5,
-                              child: const TextField(
-                                maxLines: 7,
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(8),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
+                        SizedBox(
+                          width: constraint.maxWidth * 0.3,
+                          child: _buildFormField(
+                            label: 'Nama Lengkap',
+                          ),
                         ),
                         const SizedBox(
-                          width: 21,
+                          width: 16,
                         ),
-                        Column(
-                          children: [
-                            _buildFormField(label: 'Nama Ibu Kandung'),
-                            const SizedBox(
-                              height: 12,
+                        SizedBox(
+                          width: constraint.maxWidth * 0.3,
+                          child: _buildFormField(
+                            isNumberField: true,
+                            label: 'NIK',
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 16,
+                        ),
+                        SizedBox(
+                          width: constraint.maxWidth * 0.3,
+                          child: _buildFormField(
+                            isNumberField: true,
+                            label: 'CIF',
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: constraint.maxWidth * 0.3,
+                          child: _buildFormField(
+                            label: 'No Telepon',
+                            isNumberField: true,
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 16,
+                        ),
+                        SizedBox(
+                          width: constraint.maxWidth * 0.3,
+                          child: DefaultTextStyle(
+                            style: const TextStyle(
+                              fontSize: 15,
+                              fontWeight: AppStyle.semiBold,
                             ),
-                            Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text('Pekerjaan'),
+                                const SizedBox(
+                                  height: 12,
+                                ),
+                                DropdownButtonHideUnderline(
+                                  child: DropdownButtonFormField<String>(
+                                    decoration: const InputDecoration(
+                                      contentPadding: EdgeInsets.symmetric(
+                                        horizontal: 16,
+                                        vertical: 12,
+                                      ),
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(8),
+                                        ),
+                                      ),
+                                    ),
+                                    items: const [
+                                      DropdownMenuItem(
+                                        value: 'PNS',
+                                        child: Text('PNS'),
+                                      ),
+                                      DropdownMenuItem(
+                                        value: 'Swasta',
+                                        child: Text('Swasta'),
+                                      ),
+                                      DropdownMenuItem(
+                                        value: 'Wiraswasta',
+                                        child: Text('Wiraswasta'),
+                                      ),
+                                    ],
+                                    onChanged: (val) {},
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 16,
+                        ),
+                        SizedBox(
+                          width: constraint.maxWidth * 0.3,
+                          child: _buildFormField(
+                            label: 'Email',
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    IntrinsicHeight(
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            width: constraint.maxWidth * 0.7,
+                            child: DefaultTextStyle(
+                              style: const TextStyle(
+                                fontSize: 15,
+                                fontWeight: AppStyle.semiBold,
+                              ),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const Text(
-                                    'Tanggal Pertama Gadai',
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: AppStyle.semiBold,
-                                    ),
-                                  ),
-                                  const SizedBox(
+                                children: const [
+                                  Text('Alamat'),
+                                  SizedBox(
                                     height: 12,
                                   ),
-                                  SizedBox(
-                                    width: 250,
-                                    child: TextField(
-                                      onTap: () {
-                                        showDatePicker(
-                                          context: context,
-                                          initialDate: DateTime.now(),
-                                          firstDate: DateTime(2020),
-                                          lastDate: DateTime(2025),
-                                        );
-                                      },
-                                      readOnly: true,
-                                      decoration: const InputDecoration(
-                                        prefixIcon: Icon(
-                                          Icons.calendar_today,
-                                          color: AppStyle.black,
-                                        ),
-                                        border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.all(
-                                            Radius.circular(8),
-                                          ),
+                                  TextField(
+                                    maxLines: 6,
+                                    decoration: InputDecoration(
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(8),
                                         ),
                                       ),
                                     ),
@@ -209,168 +185,71 @@ class EditCustomerWidget extends StatelessWidget {
                                 ],
                               ),
                             ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 21,
-                  ),
-                  Row(
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            'Status',
-                            style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: AppStyle.semiBold,
-                            ),
                           ),
                           const SizedBox(
-                            height: 12,
+                            width: 24,
                           ),
-                          Row(
+                          Column(
                             children: [
-                              Radio(
-                                value: 1,
-                                groupValue: 1,
-                                onChanged: (val) {},
+                              SizedBox(
+                                width: constraint.maxWidth * 0.2,
+                                child: _buildFormField(
+                                  label: 'Nama Ibu Kandung',
+                                ),
                               ),
-                              const Text('Aktif'),
                               const SizedBox(
-                                width: 12,
-                              ),
-                              Radio(
-                                value: 2,
-                                groupValue: 1,
-                                onChanged: (val) {},
-                              ),
-                              const Text('Tidak Aktif'),
-                            ],
-                          )
-                        ],
-                      ),
-                      const SizedBox(
-                        width: 40,
-                      ),
-                      DefaultTextStyle(
-                        style: const TextStyle(
-                          fontSize: 15,
-                          fontWeight: AppStyle.semiBold,
-                        ),
-                        child: Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
-                              Text('Alasan Blacklist'),
-                              SizedBox(
-                                height: 12,
+                                height: 16,
                               ),
                               SizedBox(
-                                width: 750,
-                                child: TextField(
-                                  decoration: InputDecoration(
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(8),
+                                width: constraint.maxWidth * 0.2,
+                                child: DefaultTextStyle(
+                                  style: const TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: AppStyle.semiBold,
+                                  ),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      const Text('Tanggal Pertama Gadai'),
+                                      const SizedBox(
+                                        height: 12,
                                       ),
-                                    ),
+                                      TextField(
+                                        onTap: () {
+                                          showDatePicker(
+                                            context: context,
+                                            initialDate: DateTime.now(),
+                                            firstDate: DateTime(2000),
+                                            lastDate: DateTime(2050),
+                                          ).then((value) {
+                                            debugPrint(value.toString());
+                                          });
+                                        },
+                                        readOnly: true,
+                                        decoration: const InputDecoration(
+                                          prefixIcon: Icon(
+                                            Icons.calendar_today,
+                                          ),
+                                          border: OutlineInputBorder(
+                                            borderRadius: BorderRadius.all(
+                                              Radius.circular(8),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),
                             ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 21,
-                  ),
-                  const Text(
-                    'Foto Nasabah',
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: AppStyle.semiBold,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  Material(
-                    elevation: 2,
-                    color: Colors.grey,
-                    borderRadius: BorderRadius.circular(8),
-                    child: InkWell(
-                      onTap: () {},
-                      borderRadius: BorderRadius.circular(8),
-                      child: Container(
-                        width: 200,
-                        height: 200,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: const Center(
-                          child: Icon(
-                            Icons.add_a_photo,
-                            size: 50,
-                          ),
-                        ),
+                          )
+                        ],
                       ),
                     ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.symmetric(
-                      vertical: 50,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: AppStyle.textSecondaryColor,
-                            minimumSize: const Size(200, 55),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                          ),
-                          onPressed: () {},
-                          child: const Text(
-                            "Kembali",
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: AppStyle.semiBold,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 22,
-                        ),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: AppStyle.btnColor,
-                            minimumSize: const Size(200, 55),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                          ),
-                          onPressed: () {},
-                          child: const Text(
-                            "Simpan",
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: AppStyle.semiBold,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
+                  ],
+                );
+              },
             ),
           ),
         ),
@@ -378,41 +257,36 @@ class EditCustomerWidget extends StatelessWidget {
     );
   }
 
-  _buildFormField({String label = '', bool isNumberField = false}) {
+  Widget _buildFormField({String label = '', bool isNumberField = false}) {
     return DefaultTextStyle(
       style: const TextStyle(
         fontSize: 15,
         fontWeight: AppStyle.semiBold,
       ),
-      child: Expanded(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(label),
-            const SizedBox(
-              height: 12,
-            ),
-            SizedBox(
-              width: 250,
-              child: TextField(
-                inputFormatters: isNumberField
-                    ? [
-                        FilteringTextInputFormatter.allow(
-                          RegExp(r'[0-9]'),
-                        ),
-                      ]
-                    : null,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(label),
+          const SizedBox(
+            height: 12,
+          ),
+          TextField(
+            inputFormatters: isNumberField
+                ? [
+                    FilteringTextInputFormatter.allow(
+                      RegExp(r'[0-9]'),
                     ),
-                  ),
+                  ]
+                : null,
+            decoration: const InputDecoration(
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

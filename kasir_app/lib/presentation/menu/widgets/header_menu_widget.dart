@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:kasir_app/presentation/login/provider/login_notifier.dart';
 import 'package:provider/provider.dart';
 
 import '../../../common/style.dart';
@@ -113,8 +114,13 @@ class HeaderMenuWidget extends StatelessWidget {
                         child: const Text('Profile'),
                       ),
                       PopupMenuItem(
-                        onTap: () {
-                          GoRouter.of(context).replace('/');
+                        onTap: () async {
+                          await context
+                              .read<LoginNotifier>()
+                              .logout(context)
+                              .then((_) {
+                            GoRouter.of(context).replace('/');
+                          });
                         },
                         value: 'keluar',
                         child: const Text('Keluar'),

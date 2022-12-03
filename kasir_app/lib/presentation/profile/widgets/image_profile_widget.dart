@@ -53,7 +53,10 @@ class ImageProfileWidget extends StatelessWidget {
                 )
               : MouseRegion(
                   onHover: (event) {
-                    print('onHover');
+                    provider.onHover();
+                  },
+                  onExit: (event) {
+                    provider.onExit();
                   },
                   child: Container(
                     width: 250,
@@ -65,25 +68,27 @@ class ImageProfileWidget extends StatelessWidget {
                         fit: BoxFit.cover,
                       ),
                     ),
-                    child: Center(
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(16),
-                        child: BackdropFilter(
-                          filter: ImageFilter.blur(
-                            sigmaX: 10.0,
-                            sigmaY: 10.0,
-                          ),
-                          child: Container(
-                            padding: const EdgeInsets.all(16),
-                            color: AppStyle.white.withOpacity(0.5),
-                            child: const Icon(
-                              Icons.delete_sharp,
-                              color: AppStyle.white,
+                    child: provider.isHover
+                        ? Center(
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(16),
+                              child: BackdropFilter(
+                                filter: ImageFilter.blur(
+                                  sigmaX: 10.0,
+                                  sigmaY: 10.0,
+                                ),
+                                child: Container(
+                                  padding: const EdgeInsets.all(16),
+                                  color: AppStyle.white.withOpacity(0.5),
+                                  child: const Icon(
+                                    Icons.delete_sharp,
+                                    color: AppStyle.white,
+                                  ),
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
-                      ),
-                    ),
+                          )
+                        : const SizedBox(),
                   ),
                 )
         ],
