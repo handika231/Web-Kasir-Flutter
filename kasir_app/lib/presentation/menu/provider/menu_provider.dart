@@ -62,7 +62,7 @@ class MenuNotifier extends ChangeNotifier {
         width: 18,
         fit: BoxFit.cover,
       ),
-      label: const Text('Inventory'),
+      label: const Text('Data Barang\nGadai'),
     ),
     NavigationRailDestination(
       icon: Image.asset(

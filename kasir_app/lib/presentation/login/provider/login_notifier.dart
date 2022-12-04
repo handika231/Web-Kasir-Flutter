@@ -57,19 +57,24 @@ class LoginNotifier extends ChangeNotifier {
   }
 
   Future<void> login(context) async {
-    if (formKey.currentState!.validate()) {
-      final result = await authentication.signIn(
-        usernameController.text,
-        passwordController.text,
-        branchId,
-      );
-      result.fold((failure) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(failure.message),
-        ));
-      }, (data) {
-        GoRouter.of(context).go('/menu');
-      });
+    try {
+      notifyListeners();
+      if (formKey.currentState!.validate()) {
+        final result = await authentication.signIn(
+          usernameController.text,
+          passwordController.text,
+          branchId,
+        );
+        result.fold((failure) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(failure.message),
+          ));
+        }, (data) {
+          GoRouter.of(context).go('/menu');
+        });
+      }
+    } catch (e) {
+      throw Exception(e);
     }
   }
 

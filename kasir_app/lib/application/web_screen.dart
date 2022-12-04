@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:kasir_app/presentation/customer_data/provider/edit_data_notifier.dart';
+import 'package:kasir_app/presentation/report_transaction/provider/report_transaction_notifier.dart';
 import 'package:provider/provider.dart';
 
 import '../common/router/navigation.dart';
@@ -28,6 +29,9 @@ class WebScreen extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (_) => EditDataNotifier(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => ReportTransactionNotifier(),
         ),
       ],
       child: MaterialApp.router(
