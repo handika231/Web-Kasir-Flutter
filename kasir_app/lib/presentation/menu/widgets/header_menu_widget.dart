@@ -54,7 +54,7 @@ class HeaderMenuWidget extends StatelessWidget {
               ),
               if (subtitle != null)
                 Text(
-                  subtitle!,
+                  subtitle ?? '',
                   style: const TextStyle(
                     color: AppStyle.textSecondaryColor,
                   ),
