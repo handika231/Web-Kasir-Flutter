@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:kasir_app/common/extension.dart';
 
 import '../../../common/style.dart';
 
@@ -184,19 +185,18 @@ class PettyCashWidget extends StatelessWidget {
               height: 12,
             ),
             SizedBox(
-              height: 200,
-              width: 200,
+              height: 165,
+              width: 165,
               child: Material(
                 color: AppStyle.textSecondaryColor.withOpacity(0.4),
                 borderRadius: BorderRadius.circular(16),
                 child: InkWell(
                   onTap: () {},
                   borderRadius: BorderRadius.circular(16),
-                  child: const Center(
-                    child: Icon(
-                      Icons.camera_alt,
-                      size: 100,
-                      color: AppStyle.textSecondaryColor,
+                  child: Center(
+                    child: Image.asset(
+                      'ic-img'.toPNG,
+                      width: 55,
                     ),
                   ),
                 ),

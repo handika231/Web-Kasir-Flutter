@@ -4,10 +4,11 @@ import 'package:kasir_app/common/extension.dart';
 
 import '../../../common/style.dart';
 
-class TebusWidget extends StatelessWidget {
-  const TebusWidget({super.key});
+class TitipWidget extends StatelessWidget {
+  const TitipWidget({
+    Key? key,
+  }) : super(key: key);
   final String groupValue = '';
-
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -40,49 +41,34 @@ class TebusWidget extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Nomor Nota'),
+                    const Text('NIK/No.SIM/Nama'),
                     const SizedBox(
                       height: 12,
                     ),
                     SizedBox(
-                      width: width * 0.8,
-                      child: Row(
-                        children: [
-                          SizedBox(
-                            width: width * 0.3,
-                            child: TextField(
-                              inputFormatters: [
-                                FilteringTextInputFormatter.allow(
-                                  RegExp(r'[0-9]'),
-                                ),
-                              ],
-                              decoration: const InputDecoration(
-                                hintText: 'Masukkan nomor nota',
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(8),
-                                  ),
-                                ),
-                              ),
+                      width: width * 0.5,
+                      child: DropdownButtonFormField(
+                        icon: const Icon(
+                          Icons.circle_outlined,
+                          color: AppStyle.textSecondaryColor,
+                        ),
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(8),
                             ),
                           ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: AppStyle.redColor,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              fixedSize: const Size(150, 50),
-                            ),
-                            onPressed: () {},
-                            child: const Text('Cari'),
+                        ),
+                        hint: const Text('Masukan nomor ktp/sim/nama'),
+                        items: const [
+                          DropdownMenuItem(
+                            value: 1,
+                            child: Text('34021'),
                           ),
                         ],
+                        onChanged: (value) {},
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -381,8 +367,84 @@ class TebusWidget extends StatelessWidget {
                     ),
                   ),
                 ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  _itemField('Saldo Titip'),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  _itemField('Nominal Titip'),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  _itemField('Total Titip'),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  _itemField('Jumlah yang Di Bayarkan'),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  _itemField('Kembalian'),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const SizedBox(
+                    height: 100,
+                  ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppStyle.btnColor,
+                      fixedSize: const Size.fromHeight(50),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    onPressed: () {},
+                    child: const Text(
+                      "TITIP",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: AppStyle.semiBold,
+                      ),
+                    ),
+                  ),
+                ],
               )
             ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  _itemField(String title) {
+    return Row(
+      children: [
+        Expanded(
+          child: Text(
+            title,
+            style: const TextStyle(
+              fontSize: 15,
+              fontWeight: AppStyle.medium,
+            ),
+          ),
+        ),
+        Expanded(
+          child: TextField(
+            inputFormatters: [
+              FilteringTextInputFormatter.allow(
+                RegExp(r'[0-9]'),
+              ),
+            ],
+            decoration: const InputDecoration(
+              prefixText: 'Rp. ',
+            ),
           ),
         ),
       ],

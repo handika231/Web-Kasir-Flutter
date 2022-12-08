@@ -4,8 +4,8 @@ import 'package:kasir_app/common/extension.dart';
 
 import '../../../common/style.dart';
 
-class TebusWidget extends StatelessWidget {
-  const TebusWidget({super.key});
+class LelangWidget extends StatelessWidget {
+  const LelangWidget({super.key});
   final String groupValue = '';
 
   @override
