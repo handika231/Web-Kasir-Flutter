@@ -381,6 +381,172 @@ class PerpanjanganWidget extends StatelessWidget {
                     ),
                   ),
                 ),
+              ),
+              const SizedBox(
+                height: 100,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Data Barang',
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: AppStyle.bold,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  _buildFormField(
+                    width: width * 0.3,
+                    label: 'Nomor Nota',
+                    hint: 'Nomor nota',
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    children: [
+                      _buildFormField(
+                        width: width * 0.4,
+                        label: 'Barang Jaminan',
+                        hint: 'Masukan detail barang jaminan',
+                      ),
+                      const SizedBox(
+                        width: 18,
+                      ),
+                      _buildFormField(
+                        width: width * 0.3,
+                        label: 'IMEI/ESN',
+                        hint: 'Masukan IMEI',
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    children: [
+                      _buildFormField(
+                        width: width * 0.35,
+                        label: 'Kelengkapan',
+                        hint: 'Kelengkapan barang jaminan',
+                      ),
+                      const SizedBox(
+                        width: 18,
+                      ),
+                      _buildFormField(
+                        width: width * 0.35,
+                        label: 'Minus',
+                        hint: 'Minus barang jaminan',
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  DefaultTextStyle(
+                    style: const TextStyle(
+                      fontSize: 15,
+                      fontWeight: AppStyle.semiBold,
+                    ),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text(
+                                'Foto Barang Jaminan',
+                              ),
+                              const SizedBox(
+                                height: 12,
+                              ),
+                              Row(
+                                children: [
+                                  SizedBox(
+                                    height: 165,
+                                    width: 165,
+                                    child: Material(
+                                      color: AppStyle.textSecondaryColor
+                                          .withOpacity(0.4),
+                                      borderRadius: BorderRadius.circular(16),
+                                      child: InkWell(
+                                        onTap: () {},
+                                        borderRadius: BorderRadius.circular(16),
+                                        child: Center(
+                                          child: Image.asset(
+                                            'ic-img'.toPNG,
+                                            width: 55,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: 24,
+                                  ),
+                                  SizedBox(
+                                    height: 165,
+                                    width: 165,
+                                    child: Material(
+                                      color: AppStyle.textSecondaryColor
+                                          .withOpacity(0.4),
+                                      borderRadius: BorderRadius.circular(16),
+                                      child: InkWell(
+                                        onTap: () {},
+                                        borderRadius: BorderRadius.circular(16),
+                                        child: Center(
+                                          child: Image.asset(
+                                            'ic-img'.toPNG,
+                                            width: 55,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text(
+                                'Foto Barang Jaminan & Nasabah',
+                              ),
+                              const SizedBox(
+                                height: 12,
+                              ),
+                              SizedBox(
+                                height: 165,
+                                width: 165,
+                                child: Material(
+                                  color: AppStyle.textSecondaryColor
+                                      .withOpacity(0.4),
+                                  borderRadius: BorderRadius.circular(16),
+                                  child: InkWell(
+                                    onTap: () {},
+                                    borderRadius: BorderRadius.circular(16),
+                                    child: Center(
+                                      child: Image.asset(
+                                        'ic-img'.toPNG,
+                                        width: 55,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
               )
             ],
           ),
