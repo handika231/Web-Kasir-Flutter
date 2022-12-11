@@ -54,16 +54,19 @@ class FormProfileWidget extends StatelessWidget {
                     const SizedBox(
                       height: 12,
                     ),
-                    TextField(
-                      decoration: InputDecoration(
-                        hintText: 'Jabatan',
-                        hintStyle: const TextStyle(
-                          color: AppStyle.textSecondaryColor,
-                        ),
+                    DropdownButtonFormField<String>(
+                      items: const [],
+                      decoration: const InputDecoration(
+                        filled: true,
+                        fillColor: AppStyle.white,
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(8),
+                          ),
                         ),
                       ),
+                      onChanged: (val) {},
+                      hint: const Text('Pilih Cabang'),
                     ),
                   ],
                 ),
