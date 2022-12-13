@@ -15,5 +15,5 @@ class Branch extends Equatable {
     this.address,
   });
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [id, code, name, email, address];
 }

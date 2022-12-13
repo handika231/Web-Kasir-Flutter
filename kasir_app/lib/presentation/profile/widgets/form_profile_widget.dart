@@ -1,15 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 import '../../../common/style.dart';
+import '../provider/profile_notifier.dart';
 
-class FormProfileWidget extends StatelessWidget {
+class FormProfileWidget extends StatefulWidget {
   const FormProfileWidget({
     Key? key,
   }) : super(key: key);
 
   @override
+  State<FormProfileWidget> createState() => _FormProfileWidgetState();
+}
+
+class _FormProfileWidgetState extends State<FormProfileWidget> {
+  @override
+  void initState() {
+    super.initState();
+    Future.microtask(() => Provider.of<ProfileNotifier>(context, listen: false)
+        .fetchListPosition());
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<ProfileNotifier>(context, listen: false);
+    print(provider.listPositions);
     return Expanded(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,7 +71,14 @@ class FormProfileWidget extends StatelessWidget {
                       height: 12,
                     ),
                     DropdownButtonFormField<String>(
-                      items: const [],
+                      items: provider.listPositions
+                          .map(
+                            (item) => DropdownMenuItem<String>(
+                              value: item.name,
+                              child: Text(item.name),
+                            ),
+                          )
+                          .toList(),
                       decoration: const InputDecoration(
                         filled: true,
                         fillColor: AppStyle.white,

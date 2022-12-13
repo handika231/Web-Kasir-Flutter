@@ -180,27 +180,21 @@ class LoginWidget extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 120),
                     child: Consumer<LoginNotifier>(
-                      builder: (context, value, child) => GestureDetector(
-                        behavior: HitTestBehavior.translucent,
-                        onTap: () {
-                          print('TEST');
+                      builder: (context, value, child) => ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppStyle.btnColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          minimumSize: const Size(double.infinity, 60),
+                        ),
+                        onPressed: () async {
+                          await value.login(
+                            context,
+                          );
                         },
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: AppStyle.btnColor,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            minimumSize: const Size(double.infinity, 60),
-                          ),
-                          onPressed: () async {
-                            await value.login(
-                              context,
-                            );
-                          },
-                          child: const Text(
-                            "Sign In",
-                          ),
+                        child: const Text(
+                          "Sign In",
                         ),
                       ),
                     ),

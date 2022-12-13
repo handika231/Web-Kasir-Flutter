@@ -9,7 +9,7 @@ import '../models/branch_model.dart';
 
 abstract class RemoteDataSource {
   Future<List<BranchModel>> getListBranch();
-  Future<List<PositionModel>> getPosition();
+  Future<List<PositionModel>> getListPosition();
 }
 
 class RemoteDataSourceImpl implements RemoteDataSource {
@@ -33,7 +33,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   }
 
   @override
-  Future<List<PositionModel>> getPosition() async {
+  Future<List<PositionModel>> getListPosition() async {
     final response =
         await client.get(Uri.parse('${Urls.baseUrl}/api/positions'), headers: {
       'Content-Type': 'application/json',

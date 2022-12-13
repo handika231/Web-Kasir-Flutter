@@ -5,7 +5,6 @@ import '../../cash_opname/view/cash_opname_view.dart';
 import '../../customer_data/view/customer_data_view.dart';
 import '../../dashboard/view/dashboard_view.dart';
 import '../../inventory/view/inventory_view.dart';
-import '../../logout/logout_view.dart';
 import '../../profile/view/profile_view.dart';
 import '../../report_transaction/view/report_transaction_view.dart';
 import '../../transaction/view/transaction_view.dart';
@@ -28,7 +27,6 @@ class MenuNotifier extends ChangeNotifier {
     const CustomerDataView(),
     const CashOpnameView(),
     const ProfileView(),
-    const LogOutPage(),
   ];
 
   List<NavigationRailDestination> listOfSideNav = [
@@ -86,13 +84,6 @@ class MenuNotifier extends ChangeNotifier {
         color: Colors.white,
       ),
       label: Text('Profil'),
-    ),
-    const NavigationRailDestination(
-      icon: Icon(
-        Icons.logout,
-        color: Colors.white,
-      ),
-      label: Text('Keluar'),
     ),
   ];
 
