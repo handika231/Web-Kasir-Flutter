@@ -127,7 +127,6 @@ class HeaderMenuWidget extends StatelessWidget {
                       ),
                     ];
                   },
-                  onSelected: (value) {},
                 ),
               ],
             ),

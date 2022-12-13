@@ -80,7 +80,7 @@ class LoginNotifier extends ChangeNotifier {
 
   Future<void> logout(context) async {
     final data = await authentication.logOut();
-    debugPrint(data);
+    debugPrint(data.toString());
     GoRouter.of(context).go('/');
   }
 
