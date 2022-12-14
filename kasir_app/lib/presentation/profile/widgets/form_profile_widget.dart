@@ -25,7 +25,6 @@ class _FormProfileWidgetState extends State<FormProfileWidget> {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<ProfileNotifier>(context, listen: false);
-    print(provider.listPositions);
     return Expanded(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,27 +69,33 @@ class _FormProfileWidgetState extends State<FormProfileWidget> {
                     const SizedBox(
                       height: 12,
                     ),
-                    DropdownButtonFormField<String>(
-                      items: provider.listPositions
-                          .map(
-                            (item) => DropdownMenuItem<String>(
-                              value: item.name,
-                              child: Text(item.name),
-                            ),
-                          )
-                          .toList(),
-                      decoration: const InputDecoration(
-                        filled: true,
-                        fillColor: AppStyle.white,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(8),
-                          ),
-                        ),
-                      ),
-                      onChanged: (val) {},
-                      hint: const Text('Pilih Cabang'),
-                    ),
+                    Consumer<ProfileNotifier>(
+                      builder: (context, value, child) {
+                        return value.isHasData
+                            ? DropdownButtonFormField<String>(
+                                items: provider.listPositions
+                                    .map(
+                                      (item) => DropdownMenuItem<String>(
+                                        value: item.name,
+                                        child: Text(item.name),
+                                      ),
+                                    )
+                                    .toList(),
+                                decoration: const InputDecoration(
+                                  filled: true,
+                                  fillColor: AppStyle.white,
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(8),
+                                    ),
+                                  ),
+                                ),
+                                onChanged: (val) {},
+                                hint: const Text('Pilih Cabang'),
+                              )
+                            : const SizedBox();
+                      },
+                    )
                   ],
                 ),
               ),

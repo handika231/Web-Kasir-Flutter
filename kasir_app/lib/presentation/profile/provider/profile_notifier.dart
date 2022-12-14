@@ -12,6 +12,7 @@ class ProfileNotifier extends ChangeNotifier {
   ProfileNotifier(this.helper, this.getListPosition);
   Uint8List imageBytes = Uint8List(8);
   ResultState state = ResultState.noData;
+  bool isHasData = false;
 
   bool isHover = false;
   final positionValue = '';
@@ -47,6 +48,7 @@ class ProfileNotifier extends ChangeNotifier {
       notifyListeners();
     }, (data) {
       listPositions = data;
+      isHasData = true;
       notifyListeners();
     });
   }
