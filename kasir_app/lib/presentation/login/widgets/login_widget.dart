@@ -1,13 +1,8 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as client;
 import 'package:provider/provider.dart';
 
-import '../../../common/constant.dart';
 import '../../../common/extension.dart';
 import '../../../common/style.dart';
-import '../../../data/exception.dart';
 import '../provider/login_notifier.dart';
 import 'item_textfield_widget.dart';
 
@@ -15,26 +10,6 @@ class LoginWidget extends StatelessWidget {
   const LoginWidget({
     Key? key,
   }) : super(key: key);
-  Future login(String username, String password, String branchID) async {
-    final response = await client.post(
-      Uri.parse('${Urls.baseUrl}/api/auth/login'),
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-      body: json.encode({
-        'username': username,
-        'password': password,
-        'branch_id': branchID,
-      }),
-    );
-    if (response.statusCode == 200) {
-      final data = json.decode(response.body)['data']['token'];
-      return data;
-    } else {
-      throw const LoginException(message: 'Gagal login');
-    }
-  }
 
   @override
   Widget build(BuildContext context) {

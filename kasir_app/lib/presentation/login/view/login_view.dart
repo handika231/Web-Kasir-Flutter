@@ -7,12 +7,15 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Row(
-        children: const [
-          CarouselImageWidget(),
-          LoginWidget(),
-        ],
+    return WillPopScope(
+      onWillPop: () async => Future.value(false),
+      child: Scaffold(
+        body: Row(
+          children: const [
+            CarouselImageWidget(),
+            LoginWidget(),
+          ],
+        ),
       ),
     );
   }

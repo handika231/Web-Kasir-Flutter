@@ -39,7 +39,7 @@ class WebScreen extends StatelessWidget {
         ),
       ],
       child: MaterialApp.router(
-        routerConfig: router,
+        routerConfig: Navigation.router,
         localizationsDelegates: const [
           AppLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,

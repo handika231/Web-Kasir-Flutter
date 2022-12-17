@@ -12,4 +12,10 @@ class PrefHelper {
     SharedPreferences pref = await SharedPreferences.getInstance();
     return pref.getString('token') ?? '';
   }
+
+  //remove token
+  Future<bool> removeToken() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    return pref.remove('token');
+  }
 }

@@ -70,7 +70,7 @@ class LoginNotifier extends ChangeNotifier {
             content: Text(failure.message),
           ));
         }, (data) {
-          GoRouter.of(context).go('/menu');
+          GoRouter.of(context).goNamed('menu');
         });
       }
     } catch (e) {
@@ -81,7 +81,7 @@ class LoginNotifier extends ChangeNotifier {
   Future<void> logout(context) async {
     final data = await authentication.logOut();
     debugPrint(data.toString());
-    GoRouter.of(context).go('/');
+    GoRouter.of(context).goNamed('login');
   }
 
   void changePassword() {

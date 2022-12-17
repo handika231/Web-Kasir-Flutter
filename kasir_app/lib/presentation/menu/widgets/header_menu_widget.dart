@@ -118,9 +118,12 @@ class HeaderMenuWidget extends StatelessWidget {
                           await context
                               .read<LoginNotifier>()
                               .logout(context)
-                              .then((_) {
-                            GoRouter.of(context).replace('/');
-                          });
+                              .then(
+                            (_) {
+                              GoRouter.of(context).goNamed('login');
+                              context.read<MenuNotifier>().changeIndex(0);
+                            },
+                          );
                         },
                         value: 'keluar',
                         child: const Text('Keluar'),

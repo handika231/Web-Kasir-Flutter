@@ -36,7 +36,10 @@ class AuthenticationImpl implements Authentication {
     );
     if (response.statusCode == 200) {
       final data = json.decode(response.body)['data'];
+      debugPrint(data['token'].toString());
+      Urls.token = data['token'];
       await prefHelper.saveToken(data['token']);
+
       return Right(LoginModel.fromJson(data));
     } else {
       return const Left(LoginFailure(message: 'Username atau Password salah'));
@@ -46,6 +49,7 @@ class AuthenticationImpl implements Authentication {
   @override
   Future logOut() async {
     String token = await prefHelper.getToken();
+    Urls.token = '';
     final data = await http.post(
       Uri.parse('${Urls.baseUrl}/api/auth/logout'),
       headers: {
@@ -55,6 +59,7 @@ class AuthenticationImpl implements Authentication {
         'Authorization': 'Bearer $token',
       },
     );
+    prefHelper.removeToken();
     final result = json.decode(data.body);
     debugPrint(result.toString());
   }
