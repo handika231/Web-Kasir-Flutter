@@ -4,6 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:kasir_app/common/constant.dart';
+import 'package:kasir_app/common/utils/pref_helper.dart';
 import 'package:kasir_app/data/failure.dart';
 import 'package:kasir_app/data/models/login_model/login_model.dart';
 
@@ -15,6 +16,7 @@ abstract class Authentication {
 }
 
 class AuthenticationImpl implements Authentication {
+  PrefHelper prefHelper = PrefHelper();
   @override
   Future<Either<Failure, LoginModel>> signIn(
       String username, String password, String branchId) async {
@@ -34,7 +36,7 @@ class AuthenticationImpl implements Authentication {
     );
     if (response.statusCode == 200) {
       final data = json.decode(response.body)['data'];
-      Urls.apiToken = data['token'];
+      await prefHelper.saveToken(data['token']);
       return Right(LoginModel.fromJson(data));
     } else {
       return const Left(LoginFailure(message: 'Username atau Password salah'));
@@ -43,13 +45,14 @@ class AuthenticationImpl implements Authentication {
 
   @override
   Future logOut() async {
+    String token = await prefHelper.getToken();
     final data = await http.post(
       Uri.parse('${Urls.baseUrl}/api/auth/logout'),
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         //ADD TOKEN HERE
-        'Authorization': 'Bearer ${Urls.apiToken}',
+        'Authorization': 'Bearer $token',
       },
     );
     final result = json.decode(data.body);

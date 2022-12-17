@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:kasir_app/common/constant.dart';
+import 'package:kasir_app/common/utils/pref_helper.dart';
 import 'package:kasir_app/data/models/position_model/position_model.dart';
 
 import '../exception.dart';
@@ -14,6 +15,7 @@ abstract class RemoteDataSource {
 
 class RemoteDataSourceImpl implements RemoteDataSource {
   final http.Client client;
+  PrefHelper prefHelper = PrefHelper();
 
   RemoteDataSourceImpl(this.client);
 
@@ -34,11 +36,12 @@ class RemoteDataSourceImpl implements RemoteDataSource {
 
   @override
   Future<List<PositionModel>> getListPosition() async {
+    String token = await prefHelper.getToken();
     final response =
         await client.get(Uri.parse('${Urls.baseUrl}/api/positions'), headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Authorization': 'Bearer ${Urls.apiToken}',
+      'Authorization': 'Bearer $token',
     });
     if (response.statusCode == 200) {
       List result = json.decode(response.body)['data'];
