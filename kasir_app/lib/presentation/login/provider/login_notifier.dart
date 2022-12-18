@@ -58,7 +58,6 @@ class LoginNotifier extends ChangeNotifier {
 
   Future<void> login(context) async {
     try {
-      notifyListeners();
       if (formKey.currentState!.validate()) {
         final result = await authentication.signIn(
           usernameController.text,

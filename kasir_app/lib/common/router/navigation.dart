@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:kasir_app/common/extension.dart';
+import 'package:kasir_app/common/style.dart';
 import 'package:kasir_app/common/utils/pref_helper.dart';
 
 import '../../presentation/login/view/login_view.dart';
@@ -50,9 +52,25 @@ class ErrorView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-        child: Text('Error Page'),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              '404'.toPNG,
+              height: 500,
+              width: 500,
+            ),
+            const Text(
+              'Maaf halaman yang anda cari tidak ditemukan',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: AppStyle.medium,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
