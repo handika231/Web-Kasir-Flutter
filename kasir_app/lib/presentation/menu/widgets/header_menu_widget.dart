@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import '../../../common/style.dart';
 import '../provider/menu_provider.dart';
 
-class HeaderMenuWidget extends StatelessWidget {
+class HeaderMenuWidget extends StatefulWidget {
   const HeaderMenuWidget({
     Key? key,
     required this.title,
@@ -15,6 +15,17 @@ class HeaderMenuWidget extends StatelessWidget {
 
   final String title;
   final String? subtitle;
+
+  @override
+  State<HeaderMenuWidget> createState() => _HeaderMenuWidgetState();
+}
+
+class _HeaderMenuWidgetState extends State<HeaderMenuWidget> {
+  @override
+  void initState() {
+    super.initState();
+    Future.microtask(() => context.read<MenuNotifier>().getUser());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +54,7 @@ class HeaderMenuWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                title,
+                widget.title,
                 style: const TextStyle(
                   fontSize: 22,
                   fontWeight: AppStyle.bold,
@@ -52,9 +63,9 @@ class HeaderMenuWidget extends StatelessWidget {
               const SizedBox(
                 height: 8,
               ),
-              if (subtitle != null)
+              if (widget.subtitle != null)
                 Text(
-                  subtitle ?? '',
+                  widget.subtitle ?? '',
                   style: const TextStyle(
                     color: AppStyle.textSecondaryColor,
                   ),
@@ -83,9 +94,15 @@ class HeaderMenuWidget extends StatelessWidget {
                 const SizedBox(
                   width: 27,
                 ),
-                const Text(
-                  'Fulana',
-                  style: TextStyle(fontSize: 18),
+                Consumer<MenuNotifier>(
+                  builder: (context, value, child) {
+                    return value.isHasData
+                        ? Text(
+                            context.read<MenuNotifier>().headerName,
+                            style: const TextStyle(fontSize: 18),
+                          )
+                        : const SizedBox();
+                  },
                 ),
                 const SizedBox(
                   width: 27,

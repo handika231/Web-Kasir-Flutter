@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'user.dart';
+import 'user_model.dart';
 
 part 'login_model.freezed.dart';
 part 'login_model.g.dart';
@@ -8,7 +8,7 @@ part 'login_model.g.dart';
 @freezed
 class LoginModel with _$LoginModel {
   factory LoginModel({
-    User? user,
+    UserModel? user,
     String? token,
   }) = _LoginModel;
 

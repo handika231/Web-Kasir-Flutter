@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kasir_app/domain/usecases/get_user.dart';
 
 import '../../../common/extension.dart';
 import '../../cash_opname/view/cash_opname_view.dart';
@@ -10,6 +11,23 @@ import '../../report_transaction/view/report_transaction_view.dart';
 import '../../transaction/view/transaction_view.dart';
 
 class MenuNotifier extends ChangeNotifier {
+  final GetUser _getUser;
+  MenuNotifier(this._getUser);
+  String headerName = 'no name';
+  bool isHasData = false;
+
+  Future getUser() async {
+    final result = await _getUser.execute();
+    result.fold((failure) {
+      headerName = 'no name';
+      notifyListeners();
+    }, (data) {
+      headerName = data.name ?? 'no name';
+      isHasData = true;
+      notifyListeners();
+    });
+  }
+
   int currentIndex = 0;
 
   bool isExpand = true;

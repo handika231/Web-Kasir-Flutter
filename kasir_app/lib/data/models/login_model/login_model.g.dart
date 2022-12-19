@@ -10,7 +10,7 @@ _$_LoginModel _$$_LoginModelFromJson(Map<String, dynamic> json) =>
     _$_LoginModel(
       user: json['user'] == null
           ? null
-          : User.fromJson(json['user'] as Map<String, dynamic>),
+          : UserModel.fromJson(json['user'] as Map<String, dynamic>),
       token: json['token'] as String?,
     );
 

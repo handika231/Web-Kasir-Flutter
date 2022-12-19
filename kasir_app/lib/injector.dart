@@ -7,10 +7,14 @@ import 'package:kasir_app/data/repositories/branch_repository_impl.dart';
 import 'package:kasir_app/domain/repositories/branch_repository.dart';
 import 'package:kasir_app/domain/repositories/position_repository.dart';
 import 'package:kasir_app/domain/usecases/get_list_position.dart';
+import 'package:kasir_app/domain/usecases/get_user.dart';
 import 'package:kasir_app/presentation/login/provider/login_notifier.dart';
+import 'package:kasir_app/presentation/menu/provider/menu_provider.dart';
 
 import 'common/utils/image_picker_helper.dart';
 import 'data/repositories/position_repository_impl.dart';
+import 'data/repositories/user_repository_impl.dart';
+import 'domain/repositories/user_repository.dart';
 import 'domain/usecases/get_list_branch.dart';
 import 'presentation/profile/provider/profile_notifier.dart';
 
@@ -27,19 +31,20 @@ init() {
   // PRESENTATION
   locator.registerFactory(() => ProfileNotifier(locator(), locator()));
   locator.registerFactory(() => LoginNotifier(locator(), locator()));
+  locator.registerFactory(() => MenuNotifier(locator()));
 
   // USES CASE
   locator.registerLazySingleton(() => GetListBranch(locator()));
   locator.registerLazySingleton(() => GetListPosition(locator()));
+  locator.registerLazySingleton(() => GetUser(locator()));
 
   // REPOSITORY
   locator.registerLazySingleton<BranchRepository>(
       () => BranchRepositoryImpl(locator()));
   locator.registerLazySingleton<PositionRepository>(
-    () => PositionRepositoryImpl(
-      locator(),
-    ),
-  );
+      () => PositionRepositoryImpl(locator()));
+  locator.registerLazySingleton<UserRepository>(
+      () => UserRepositoryImpl(locator()));
 
   // DATA SOURCE
   locator.registerLazySingleton<RemoteDataSource>(

@@ -23,7 +23,7 @@ class WebScreen extends StatelessWidget {
           create: (_) => di.locator<LoginNotifier>(),
         ),
         ChangeNotifierProvider(
-          create: (_) => MenuNotifier(),
+          create: (_) => di.locator<MenuNotifier>(),
         ),
         ChangeNotifierProvider(
           create: (_) => di.locator<ProfileNotifier>(),

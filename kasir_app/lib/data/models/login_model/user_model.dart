@@ -1,11 +1,11 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'user.freezed.dart';
-part 'user.g.dart';
+part 'user_model.freezed.dart';
+part 'user_model.g.dart';
 
 @freezed
-class User with _$User {
-  factory User({
+class UserModel with _$UserModel {
+  factory UserModel({
     int? id,
     String? name,
     String? email,
@@ -16,5 +16,6 @@ class User with _$User {
     @JsonKey(name: 'updated_at') DateTime? updatedAt,
   }) = _User;
 
-  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+  factory UserModel.fromJson(Map<String, dynamic> json) =>
+      _$UserModelFromJson(json);
 }

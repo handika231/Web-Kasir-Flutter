@@ -20,7 +20,7 @@ LoginModel _$LoginModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$LoginModel {
-  User? get user => throw _privateConstructorUsedError;
+  UserModel? get user => throw _privateConstructorUsedError;
   String? get token => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,9 +35,9 @@ abstract class $LoginModelCopyWith<$Res> {
           LoginModel value, $Res Function(LoginModel) then) =
       _$LoginModelCopyWithImpl<$Res, LoginModel>;
   @useResult
-  $Res call({User? user, String? token});
+  $Res call({UserModel? user, String? token});
 
-  $UserCopyWith<$Res>? get user;
+  $UserModelCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -60,7 +60,7 @@ class _$LoginModelCopyWithImpl<$Res, $Val extends LoginModel>
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as User?,
+              as UserModel?,
       token: freezed == token
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
@@ -70,12 +70,12 @@ class _$LoginModelCopyWithImpl<$Res, $Val extends LoginModel>
 
   @override
   @pragma('vm:prefer-inline')
-  $UserCopyWith<$Res>? get user {
+  $UserModelCopyWith<$Res>? get user {
     if (_value.user == null) {
       return null;
     }
 
-    return $UserCopyWith<$Res>(_value.user!, (value) {
+    return $UserModelCopyWith<$Res>(_value.user!, (value) {
       return _then(_value.copyWith(user: value) as $Val);
     });
   }
@@ -89,10 +89,10 @@ abstract class _$$_LoginModelCopyWith<$Res>
       __$$_LoginModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({User? user, String? token});
+  $Res call({UserModel? user, String? token});
 
   @override
-  $UserCopyWith<$Res>? get user;
+  $UserModelCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -113,7 +113,7 @@ class __$$_LoginModelCopyWithImpl<$Res>
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as User?,
+              as UserModel?,
       token: freezed == token
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
@@ -131,7 +131,7 @@ class _$_LoginModel implements _LoginModel {
       _$$_LoginModelFromJson(json);
 
   @override
-  final User? user;
+  final UserModel? user;
   @override
   final String? token;
 
@@ -168,13 +168,14 @@ class _$_LoginModel implements _LoginModel {
 }
 
 abstract class _LoginModel implements LoginModel {
-  factory _LoginModel({final User? user, final String? token}) = _$_LoginModel;
+  factory _LoginModel({final UserModel? user, final String? token}) =
+      _$_LoginModel;
 
   factory _LoginModel.fromJson(Map<String, dynamic> json) =
       _$_LoginModel.fromJson;
 
   @override
-  User? get user;
+  UserModel? get user;
   @override
   String? get token;
   @override
