@@ -29,8 +29,8 @@ class User extends Equatable {
 class Employee extends Equatable {
   final String? position;
   final String? trainingNip;
-  final int? nip;
-  final int? phoneNumber;
+  // final int? nip;
+  final String? phoneNumber;
   final String? address;
   final String? birthPlace;
   final String? birthDate;
@@ -47,7 +47,7 @@ class Employee extends Equatable {
   const Employee({
     this.position,
     this.trainingNip,
-    this.nip,
+    // this.nip,
     this.phoneNumber,
     this.address,
     this.birthPlace,
@@ -65,7 +65,7 @@ class Employee extends Equatable {
   List<Object?> get props => [
         position,
         trainingNip,
-        nip,
+        // nip,
         phoneNumber,
         address,
         birthPlace,

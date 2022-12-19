@@ -9,9 +9,9 @@ class EmployeeModel extends Equatable {
   final String? position;
   @JsonKey(name: 'training_nip')
   final String? trainingNip;
-  final int? nip;
+  // final int? nip; TODO NIP KOSONG DLU
   @JsonKey(name: 'phone_number')
-  final int? phoneNumber;
+  final String? phoneNumber;
   final String? address;
   @JsonKey(name: 'birth_place')
   final String? birthPlace;
@@ -35,7 +35,7 @@ class EmployeeModel extends Equatable {
   const EmployeeModel({
     this.position,
     this.trainingNip,
-    this.nip,
+    // this.nip, // TODO NIP KOSONG DLU
     this.phoneNumber,
     this.address,
     this.birthPlace,
@@ -76,7 +76,7 @@ class EmployeeModel extends Equatable {
     return EmployeeModel(
       position: position ?? this.position,
       trainingNip: trainingNip ?? this.trainingNip,
-      nip: nip ?? this.nip,
+      // nip: nip ?? this.nip,
       phoneNumber: phoneNumber ?? this.phoneNumber,
       address: address ?? this.address,
       birthPlace: birthPlace ?? this.birthPlace,
@@ -100,7 +100,7 @@ class EmployeeModel extends Equatable {
     return [
       position,
       trainingNip,
-      nip,
+      // nip,
       phoneNumber,
       address,
       birthPlace,
@@ -120,7 +120,7 @@ class EmployeeModel extends Equatable {
     return Employee(
       position: position,
       trainingNip: trainingNip,
-      nip: nip,
+      // nip: nip,
       phoneNumber: phoneNumber,
       address: address,
       birthPlace: birthPlace,

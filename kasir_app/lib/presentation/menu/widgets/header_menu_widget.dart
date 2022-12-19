@@ -24,7 +24,7 @@ class _HeaderMenuWidgetState extends State<HeaderMenuWidget> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() => context.read<MenuNotifier>().getUser());
+    Provider.of<MenuNotifier>(context, listen: false).getUser();
   }
 
   @override
@@ -95,13 +95,16 @@ class _HeaderMenuWidgetState extends State<HeaderMenuWidget> {
                   width: 27,
                 ),
                 Consumer<MenuNotifier>(
-                  builder: (context, value, child) {
-                    return value.isHasData
+                  builder: (context, ref, child) {
+                    return ref.isHasData
                         ? Text(
-                            context.read<MenuNotifier>().headerName,
+                            ref.headerName.toString(),
                             style: const TextStyle(fontSize: 18),
                           )
-                        : const SizedBox();
+                        : const Text(
+                            'Loading...',
+                            style: TextStyle(fontSize: 18),
+                          );
                   },
                 ),
                 const SizedBox(

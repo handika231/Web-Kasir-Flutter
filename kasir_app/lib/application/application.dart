@@ -13,7 +13,7 @@ class Application extends StatelessWidget {
         if (constraints.maxWidth <= 1200) {
           return const MobileScreen();
         }
-        return WebScreen();
+        return const WebScreen();
       },
     );
   }

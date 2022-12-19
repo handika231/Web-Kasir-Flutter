@@ -16,7 +16,7 @@ class MenuNotifier extends ChangeNotifier {
   String headerName = 'no name';
   bool isHasData = false;
 
-  Future getUser() async {
+  Future<void> getUser() async {
     final result = await _getUser.execute();
     result.fold((failure) {
       headerName = 'no name';
