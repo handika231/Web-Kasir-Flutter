@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../provider/menu_provider.dart';
+import '../provider/menu_notifier.dart';
 import '../widgets/side_nav_widget.dart';
 
 class MenuView extends StatelessWidget {

@@ -4,7 +4,7 @@ import 'package:kasir_app/presentation/login/provider/login_notifier.dart';
 import 'package:provider/provider.dart';
 
 import '../../../common/style.dart';
-import '../provider/menu_provider.dart';
+import '../provider/menu_notifier.dart';
 
 class HeaderMenuWidget extends StatefulWidget {
   const HeaderMenuWidget({
@@ -24,7 +24,7 @@ class _HeaderMenuWidgetState extends State<HeaderMenuWidget> {
   @override
   void initState() {
     super.initState();
-    Provider.of<MenuNotifier>(context, listen: false).getUser();
+    Provider.of<MenuNotifier>(context, listen: false).fetchUser();
   }
 
   @override
@@ -98,12 +98,12 @@ class _HeaderMenuWidgetState extends State<HeaderMenuWidget> {
                   builder: (context, ref, child) {
                     return ref.isHasData
                         ? Text(
-                            ref.headerName.toString(),
+                            provider.user.name.toString(),
                             style: const TextStyle(fontSize: 18),
                           )
-                        : const Text(
-                            'Loading...',
-                            style: TextStyle(fontSize: 18),
+                        : Text(
+                            provider.user.name.toString(),
+                            style: const TextStyle(fontSize: 18),
                           );
                   },
                 ),

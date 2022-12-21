@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kasir_app/domain/entities/user.dart';
 import 'package:kasir_app/domain/usecases/get_user.dart';
 
 import '../../../common/extension.dart';
@@ -13,18 +14,19 @@ import '../../transaction/view/transaction_view.dart';
 class MenuNotifier extends ChangeNotifier {
   final GetUser _getUser;
   MenuNotifier(this._getUser);
-  String headerName = 'no name';
   bool isHasData = false;
+  User user = const User();
 
-  Future<void> getUser() async {
+  Future<User> fetchUser() async {
     final result = await _getUser.execute();
-    result.fold((failure) {
-      headerName = 'no name';
-      notifyListeners();
+    return result.fold((failure) {
+      user = const User(name: 'no name');
+      return user;
     }, (data) {
-      headerName = data.name ?? 'no name';
       isHasData = true;
       notifyListeners();
+      user = data;
+      return user;
     });
   }
 

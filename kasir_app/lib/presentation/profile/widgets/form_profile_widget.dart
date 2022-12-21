@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:kasir_app/presentation/menu/provider/menu_notifier.dart';
 import 'package:provider/provider.dart';
 
 import '../../../common/style.dart';
@@ -18,13 +19,23 @@ class _FormProfileWidgetState extends State<FormProfileWidget> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() => Provider.of<ProfileNotifier>(context, listen: false)
-        .fetchListPosition());
+    Future.microtask(() {
+      Provider.of<ProfileNotifier>(context, listen: false).fetchListPosition();
+      Provider.of<MenuNotifier>(context, listen: false).fetchUser();
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<ProfileNotifier>(context, listen: false);
+    final menuProvider = Provider.of<MenuNotifier>(context, listen: false);
+    provider.nameController.text = menuProvider.user.name.toString();
+    provider.emailController.text = menuProvider.user.email.toString();
+    provider.phoneController.text =
+        menuProvider.user.employee!.phoneNumber.toString();
+    provider.positionController.text =
+        menuProvider.user.employee!.position!.toString();
+
     return Expanded(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,7 +50,8 @@ class _FormProfileWidgetState extends State<FormProfileWidget> {
           const SizedBox(
             height: 12,
           ),
-          TextField(
+          TextFormField(
+            controller: provider.nameController,
             decoration: InputDecoration(
               hintText: 'Nama',
               hintStyle: const TextStyle(
@@ -69,33 +81,29 @@ class _FormProfileWidgetState extends State<FormProfileWidget> {
                     const SizedBox(
                       height: 12,
                     ),
-                    Consumer<ProfileNotifier>(
-                      builder: (context, value, child) {
-                        return value.isHasData
-                            ? DropdownButtonFormField<String>(
-                                items: provider.listPositions
-                                    .map(
-                                      (item) => DropdownMenuItem<String>(
-                                        value: item.name,
-                                        child: Text(item.name),
+                    Consumer<MenuNotifier>(
+                      builder: (context, menu, child) =>
+                          Consumer<ProfileNotifier>(
+                        builder: (context, profile, child) {
+                          return profile.isHasData
+                              ? TextField(
+                                  readOnly: true,
+                                  enabled: false,
+                                  controller: profile.positionController,
+                                  decoration: const InputDecoration(
+                                    filled: true,
+                                    fillColor: AppStyle.textSecondaryColor,
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(8),
                                       ),
-                                    )
-                                    .toList(),
-                                decoration: const InputDecoration(
-                                  filled: true,
-                                  fillColor: AppStyle.white,
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(8),
                                     ),
                                   ),
-                                ),
-                                onChanged: (val) {},
-                                hint: const Text('Pilih Cabang'),
-                              )
-                            : const SizedBox();
-                      },
-                    )
+                                )
+                              : const SizedBox();
+                        },
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -116,7 +124,8 @@ class _FormProfileWidgetState extends State<FormProfileWidget> {
                     const SizedBox(
                       height: 12,
                     ),
-                    TextField(
+                    TextFormField(
+                      controller: provider.emailController,
                       decoration: InputDecoration(
                         hintText: 'Email',
                         hintStyle: const TextStyle(
@@ -151,7 +160,8 @@ class _FormProfileWidgetState extends State<FormProfileWidget> {
                     const SizedBox(
                       height: 12,
                     ),
-                    TextField(
+                    TextFormField(
+                      controller: provider.passwordController,
                       obscureText: true,
                       decoration: InputDecoration(
                         hintText: 'Password',
@@ -183,7 +193,8 @@ class _FormProfileWidgetState extends State<FormProfileWidget> {
                     const SizedBox(
                       height: 12,
                     ),
-                    TextField(
+                    TextFormField(
+                      controller: provider.phoneController,
                       inputFormatters: [
                         FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
                       ],
@@ -215,7 +226,9 @@ class _FormProfileWidgetState extends State<FormProfileWidget> {
                   borderRadius: BorderRadius.circular(8),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                provider.updateUserProfile(context);
+              },
               child: const Text(
                 "Simpan",
                 style: TextStyle(

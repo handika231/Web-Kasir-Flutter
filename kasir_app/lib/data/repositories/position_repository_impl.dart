@@ -19,4 +19,16 @@ class PositionRepositoryImpl implements PositionRepository {
       );
     }
   }
+
+  @override
+  Future<Either<Failure, Position>> getPositionById(int id) async {
+    try {
+      final data = await remoteDataSource.getPositionById(id);
+      return Right(data.toEntity());
+    } on ServerException {
+      return const Left(
+        ServerFailure(message: 'Gagal mengambil data jabatan'),
+      );
+    }
+  }
 }

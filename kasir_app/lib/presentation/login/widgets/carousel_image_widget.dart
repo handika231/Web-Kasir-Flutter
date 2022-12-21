@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -12,17 +13,25 @@ class CarouselImageWidget extends StatelessWidget {
     final provider = Provider.of<LoginNotifier>(context);
     return Expanded(
       flex: 4,
-      child: PageView(
-        physics: const NeverScrollableScrollPhysics(),
-        controller: provider.pageController,
-        onPageChanged: (value) {
-          provider.changeIndex(value);
-        },
-        children: const [
-          ItemImageWidget(),
-          ItemImageWidget(),
-          ItemImageWidget(),
-        ],
+      child: ScrollConfiguration(
+        behavior: const ScrollBehavior().copyWith(
+          dragDevices: {
+            PointerDeviceKind.touch,
+            PointerDeviceKind.mouse,
+          },
+        ),
+        child: PageView(
+          scrollDirection: Axis.horizontal,
+          controller: provider.pageController,
+          onPageChanged: (value) {
+            provider.changeIndex(value);
+          },
+          children: const [
+            ItemImageWidget(),
+            ItemImageWidget(),
+            ItemImageWidget(),
+          ],
+        ),
       ),
     );
   }

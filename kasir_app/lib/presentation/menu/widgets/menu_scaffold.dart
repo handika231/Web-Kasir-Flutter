@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../../../common/style.dart';
-import '../provider/menu_provider.dart';
+import '../provider/menu_notifier.dart';
 import 'header_menu_widget.dart';
 
 class MenuScaffold extends StatelessWidget {

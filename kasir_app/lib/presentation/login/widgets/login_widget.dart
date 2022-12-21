@@ -58,16 +58,14 @@ class LoginWidget extends StatelessWidget {
                               return const SizedBox();
                             } else {
                               return DropdownButtonFormField<String>(
-                                items: value.listBranch
-                                    .map(
-                                      (result) => DropdownMenuItem<String>(
-                                        value: result.id.toString(),
-                                        child: Text(
-                                          result.name ?? "",
-                                        ),
-                                      ),
-                                    )
-                                    .toList(),
+                                items: value.listBranch.map((result) {
+                                  return DropdownMenuItem<String>(
+                                    value: '${result.id}',
+                                    child: Text(
+                                      result.name ?? "",
+                                    ),
+                                  );
+                                }).toList(),
                                 decoration: const InputDecoration(
                                   filled: true,
                                   fillColor: AppStyle.white,
@@ -78,9 +76,9 @@ class LoginWidget extends StatelessWidget {
                                   ),
                                 ),
                                 onChanged: (val) {
-                                  value.branchId = val ?? '1';
+                                  value.branchName = val ?? 'branch name';
+                                  debugPrint(val);
                                 },
-                                value: value.listBranch.first.id.toString(),
                                 hint: const Text('Pilih Cabang'),
                               );
                             }

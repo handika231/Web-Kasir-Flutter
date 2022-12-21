@@ -18,4 +18,14 @@ class BranchRepositoryImpl implements BranchRepository {
       return const Left(ServerFailure(message: 'Gagal mengambil data cabang'));
     }
   }
+
+  @override
+  Future<Either<Failure, Branch>> getBranchById(int id) async {
+    try {
+      final data = await remoteDataSource.getBranchById(id);
+      return Right(data.toEntity());
+    } on ServerException {
+      return const Left(ServerFailure(message: 'Gagal mengambil data cabang'));
+    }
+  }
 }

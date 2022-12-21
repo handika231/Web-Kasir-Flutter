@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:kasir_app/presentation/login/provider/login_notifier.dart';
 import 'package:provider/provider.dart';
 
 import '../../../common/extension.dart';
 import '../../../common/style.dart';
-import '../provider/menu_provider.dart';
+import '../provider/menu_notifier.dart';
 
 class SideNavWidget extends StatelessWidget {
   const SideNavWidget({super.key});
@@ -36,10 +37,10 @@ class SideNavWidget extends StatelessWidget {
             Flexible(
               child: Visibility(
                 visible: provider.isExpand,
-                child: const Text(
-                  'GMJ\nTamanan',
-                  style: TextStyle(
-                    fontSize: 18,
+                child: Text(
+                  context.read<LoginNotifier>().branchName,
+                  style: const TextStyle(
+                    fontSize: 16,
                     color: AppStyle.white,
                     fontWeight: FontWeight.bold,
                   ),

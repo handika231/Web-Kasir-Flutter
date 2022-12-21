@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:kasir_app/common/constant.dart';
 import 'package:kasir_app/common/utils/pref_helper.dart';
@@ -13,6 +14,16 @@ abstract class RemoteDataSource {
   Future<List<BranchModel>> getListBranch();
   Future<List<PositionModel>> getListPosition();
   Future<UserModel> getUser();
+  Future<UserModel> updateProfile({
+    required String name,
+    required String email,
+    required String phone,
+    required String password,
+    required String position,
+    required String image,
+  });
+  Future<BranchModel> getBranchById(int id);
+  Future<PositionModel> getPositionById(int id);
 }
 
 class RemoteDataSourceImpl implements RemoteDataSource {
@@ -66,6 +77,71 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       return UserModel.fromJson(json.decode(response.body)['data']);
     } else {
       throw const ServerException(message: 'Gagal mengambil data user');
+    }
+  }
+
+  @override
+  Future<UserModel> updateProfile(
+      {required String name,
+      required String email,
+      required String phone,
+      required String password,
+      required String position,
+      required String image}) async {
+    String token = await prefHelper.getToken();
+
+    final response = await client.post(Uri.parse('${Urls.baseUrl}/api/user'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': 'Bearer $token',
+        },
+        body: json.encode({
+          'name': name,
+          'email': email,
+          'phone_number': phone,
+          'password': password,
+          'position_id': position,
+          // 'profile_picture': image,
+          //send file
+          '_method': 'PATCH'
+        }));
+    if (response.statusCode == 200) {
+      return UserModel.fromJson(json.decode(response.body)['data']);
+    } else {
+      debugPrint(response.body);
+      debugPrint(response.statusCode.toString());
+      throw const ServerException(message: 'Gagal mengambil data user');
+    }
+  }
+
+  @override
+  Future<BranchModel> getBranchById(int id) async {
+    final response = await client
+        .get(Uri.parse('${Urls.baseUrl}/api/branchs/$id'), headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    });
+    if (response.statusCode == 200) {
+      return BranchModel.fromJson(json.decode(response.body)['data']);
+    } else {
+      throw const ServerException(message: 'Gagal mengambil data cabang');
+    }
+  }
+
+  @override
+  Future<PositionModel> getPositionById(int id) async {
+    String token = await prefHelper.getToken();
+    final response = await client
+        .get(Uri.parse('${Urls.baseUrl}/api/positions/$id'), headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token',
+    });
+    if (response.statusCode == 200) {
+      return PositionModel.fromJson(json.decode(response.body)['data']);
+    } else {
+      throw const ServerException(message: 'Gagal mengambil data jabatan');
     }
   }
 }

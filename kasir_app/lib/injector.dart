@@ -6,10 +6,13 @@ import 'package:kasir_app/data/datasources/remote_data_source.dart';
 import 'package:kasir_app/data/repositories/branch_repository_impl.dart';
 import 'package:kasir_app/domain/repositories/branch_repository.dart';
 import 'package:kasir_app/domain/repositories/position_repository.dart';
+import 'package:kasir_app/domain/usecases/get_branch_id.dart';
 import 'package:kasir_app/domain/usecases/get_list_position.dart';
+import 'package:kasir_app/domain/usecases/get_position_id.dart';
 import 'package:kasir_app/domain/usecases/get_user.dart';
+import 'package:kasir_app/domain/usecases/update_user.dart';
 import 'package:kasir_app/presentation/login/provider/login_notifier.dart';
-import 'package:kasir_app/presentation/menu/provider/menu_provider.dart';
+import 'package:kasir_app/presentation/menu/provider/menu_notifier.dart';
 
 import 'common/utils/image_picker_helper.dart';
 import 'data/repositories/position_repository_impl.dart';
@@ -29,7 +32,8 @@ init() {
   locator.registerLazySingleton(() => ImagePickerHelper(locator()));
 
   // PRESENTATION
-  locator.registerFactory(() => ProfileNotifier(locator(), locator()));
+  locator
+      .registerFactory(() => ProfileNotifier(locator(), locator(), locator()));
   locator.registerFactory(() => LoginNotifier(locator(), locator()));
   locator.registerFactory(() => MenuNotifier(locator()));
 
@@ -37,6 +41,9 @@ init() {
   locator.registerLazySingleton(() => GetListBranch(locator()));
   locator.registerLazySingleton(() => GetListPosition(locator()));
   locator.registerLazySingleton(() => GetUser(locator()));
+  locator.registerLazySingleton(() => UpdateUser(locator()));
+  locator.registerLazySingleton(() => GetBranchById(locator()));
+  locator.registerLazySingleton(() => GetPositionById(locator()));
 
   // REPOSITORY
   locator.registerLazySingleton<BranchRepository>(

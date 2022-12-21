@@ -18,4 +18,26 @@ class UserRepositoryImpl implements UserRepository {
       return const Left(ServerFailure(message: 'Gagal mengambil data user'));
     }
   }
+
+  @override
+  Future<Either<Failure, User>> updateProfile(
+      {required String name,
+      required String email,
+      required String phone,
+      required String password,
+      required String position,
+      required String image}) async {
+    try {
+      final data = await remoteDataSource.updateProfile(
+          name: name,
+          email: email,
+          phone: phone,
+          password: password,
+          position: position,
+          image: image);
+      return Right(data.toEntity());
+    } on ServerException {
+      return const Left(ServerFailure(message: 'Gagal mengambil data user'));
+    }
+  }
 }

@@ -36,7 +36,7 @@ class LoginNotifier extends ChangeNotifier {
   ];
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  String branchId = '1';
+  String branchName = 'Cabang 1';
   //key
   final formKey = GlobalKey<FormState>(debugLabel: '_loginForm');
 
@@ -62,13 +62,14 @@ class LoginNotifier extends ChangeNotifier {
         final result = await authentication.signIn(
           usernameController.text,
           passwordController.text,
-          branchId,
+          '1', //TODO IMPLEMENTASI BRANCH
         );
         result.fold((failure) {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text(failure.message),
           ));
         }, (data) {
+          clear();
           GoRouter.of(context).goNamed('menu');
         });
       }
@@ -93,9 +94,15 @@ class LoginNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
+  void clear() {
+    usernameController.clear();
+    passwordController.clear();
+  }
+
   @override
   void dispose() {
     super.dispose();
+    clear();
     pageController.dispose();
     usernameController.dispose();
     passwordController.dispose();

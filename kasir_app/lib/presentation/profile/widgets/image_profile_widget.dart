@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -37,8 +35,9 @@ class ImageProfileWidget extends StatelessWidget {
                     color: AppStyle.textSecondaryColor.withOpacity(0.4),
                     borderRadius: BorderRadius.circular(16),
                     child: InkWell(
-                      onTap: () {
-                        provider.pickImage();
+                      onTap: () async {
+                        await provider.pickImage();
+                        print(provider.helper.imageName);
                       },
                       borderRadius: BorderRadius.circular(16),
                       child: const Center(
@@ -51,13 +50,8 @@ class ImageProfileWidget extends StatelessWidget {
                     ),
                   ),
                 )
-              : MouseRegion(
-                  onHover: (event) {
-                    provider.onHover();
-                  },
-                  onExit: (event) {
-                    provider.onExit();
-                  },
+              : GestureDetector(
+                  onTap: () {},
                   child: Container(
                     width: 250,
                     height: 250,
@@ -68,27 +62,7 @@ class ImageProfileWidget extends StatelessWidget {
                         fit: BoxFit.cover,
                       ),
                     ),
-                    child: provider.isHover
-                        ? Center(
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(16),
-                              child: BackdropFilter(
-                                filter: ImageFilter.blur(
-                                  sigmaX: 10.0,
-                                  sigmaY: 10.0,
-                                ),
-                                child: Container(
-                                  padding: const EdgeInsets.all(16),
-                                  color: AppStyle.white.withOpacity(0.5),
-                                  child: const Icon(
-                                    Icons.delete_sharp,
-                                    color: AppStyle.white,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          )
-                        : const SizedBox(),
+                    child: const SizedBox(),
                   ),
                 )
         ],
