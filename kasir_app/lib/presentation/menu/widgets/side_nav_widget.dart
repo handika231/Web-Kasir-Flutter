@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kasir_app/common/result_state.dart';
 import 'package:kasir_app/presentation/login/provider/login_notifier.dart';
 import 'package:provider/provider.dart';
 
@@ -11,7 +12,10 @@ class SideNavWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<MenuNotifier>(context, listen: true);
+    final provider = Provider.of<MenuNotifier>(context);
+    Provider.of<LoginNotifier>(context, listen: false)
+        .fetchBranchById(context.read<LoginNotifier>().branchId);
+
     return AnimatedContainer(
       curve: Curves.fastOutSlowIn,
       width: provider.isExpand ? 280 : 175,
@@ -37,13 +41,18 @@ class SideNavWidget extends StatelessWidget {
             Flexible(
               child: Visibility(
                 visible: provider.isExpand,
-                child: Text(
-                  context.read<LoginNotifier>().branchName,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    color: AppStyle.white,
-                    fontWeight: FontWeight.bold,
-                  ),
+                child: Consumer<LoginNotifier>(
+                  builder: (context, value, child) =>
+                      value.state == ResultState.hasData
+                          ? Text(
+                              value.branch.name.toString(),
+                              style: const TextStyle(
+                                fontSize: 18,
+                                color: AppStyle.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            )
+                          : const SizedBox(),
                 ),
               ),
             )

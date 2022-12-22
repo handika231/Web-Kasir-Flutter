@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:kasir_app/common/constant.dart';
 import 'package:kasir_app/common/utils/pref_helper.dart';
+import 'package:kasir_app/data/models/customer_model/customer_model.dart';
 import 'package:kasir_app/data/models/position_model/position_model.dart';
 import 'package:kasir_app/data/models/user_model/user_model.dart';
 
@@ -24,6 +25,7 @@ abstract class RemoteDataSource {
   });
   Future<BranchModel> getBranchById(int id);
   Future<PositionModel> getPositionById(int id);
+  Future<List<CustomerModel>> getListCustomer();
 }
 
 class RemoteDataSourceImpl implements RemoteDataSource {
@@ -142,6 +144,23 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       return PositionModel.fromJson(json.decode(response.body)['data']);
     } else {
       throw const ServerException(message: 'Gagal mengambil data jabatan');
+    }
+  }
+
+  @override
+  Future<List<CustomerModel>> getListCustomer() async {
+    String token = await prefHelper.getToken();
+    final response =
+        await client.get(Uri.parse('${Urls.baseUrl}/api/customers'), headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token',
+    });
+    if (response.statusCode == 200) {
+      List result = json.decode(response.body)['data'];
+      return result.map((value) => CustomerModel.fromJson(value)).toList();
+    } else {
+      throw const ServerException(message: 'Gagal mengambil data customer');
     }
   }
 }

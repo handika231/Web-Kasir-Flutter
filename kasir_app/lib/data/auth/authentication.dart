@@ -10,7 +10,7 @@ import 'package:kasir_app/data/models/login_model/login_model.dart';
 
 abstract class Authentication {
   Future<Either<Failure, LoginModel>> signIn(
-      String username, String password, String branchId);
+      String username, String password, int branchId);
 
   Future logOut();
 }
@@ -19,7 +19,7 @@ class AuthenticationImpl implements Authentication {
   PrefHelper prefHelper = PrefHelper();
   @override
   Future<Either<Failure, LoginModel>> signIn(
-      String username, String password, String branchId) async {
+      String username, String password, int branchId) async {
     final response = await http.post(
       Uri.parse('${Urls.baseUrl}/api/auth/login'),
       headers: {

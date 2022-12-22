@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 
 import '../common/router/navigation.dart';
 import '../injector.dart' as di;
+import '../presentation/customer_data/provider/table_customer_notifier.dart';
 import '../presentation/login/provider/login_notifier.dart';
 import '../presentation/menu/provider/menu_notifier.dart';
 import '../presentation/profile/provider/profile_notifier.dart';
@@ -37,6 +38,9 @@ class WebScreen extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => TransactionNotifier(),
         ),
+        ChangeNotifierProvider(
+          create: (_) => di.locator<TableCustomerNotifier>(),
+        )
       ],
       child: MaterialApp.router(
         routerConfig: Navigation.router,

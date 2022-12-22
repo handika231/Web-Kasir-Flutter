@@ -20,7 +20,6 @@ class _FormProfileWidgetState extends State<FormProfileWidget> {
   void initState() {
     super.initState();
     Future.microtask(() {
-      Provider.of<ProfileNotifier>(context, listen: false).fetchListPosition();
       Provider.of<MenuNotifier>(context, listen: false).fetchUser();
     });
   }
@@ -50,15 +49,17 @@ class _FormProfileWidgetState extends State<FormProfileWidget> {
           const SizedBox(
             height: 12,
           ),
-          TextFormField(
+          TextField(
+            readOnly: true,
+            enabled: false,
             controller: provider.nameController,
-            decoration: InputDecoration(
-              hintText: 'Nama',
-              hintStyle: const TextStyle(
-                color: AppStyle.textSecondaryColor,
-              ),
+            decoration: const InputDecoration(
+              filled: true,
+              fillColor: AppStyle.textSecondaryColor,
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
               ),
             ),
           ),
@@ -81,29 +82,20 @@ class _FormProfileWidgetState extends State<FormProfileWidget> {
                     const SizedBox(
                       height: 12,
                     ),
-                    Consumer<MenuNotifier>(
-                      builder: (context, menu, child) =>
-                          Consumer<ProfileNotifier>(
-                        builder: (context, profile, child) {
-                          return profile.isHasData
-                              ? TextField(
-                                  readOnly: true,
-                                  enabled: false,
-                                  controller: profile.positionController,
-                                  decoration: const InputDecoration(
-                                    filled: true,
-                                    fillColor: AppStyle.textSecondaryColor,
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(8),
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              : const SizedBox();
-                        },
+                    TextField(
+                      readOnly: true,
+                      enabled: false,
+                      controller: provider.positionController,
+                      decoration: const InputDecoration(
+                        filled: true,
+                        fillColor: AppStyle.textSecondaryColor,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(8),
+                          ),
+                        ),
                       ),
-                    ),
+                    )
                   ],
                 ),
               ),
@@ -124,18 +116,20 @@ class _FormProfileWidgetState extends State<FormProfileWidget> {
                     const SizedBox(
                       height: 12,
                     ),
-                    TextFormField(
+                    TextField(
+                      readOnly: true,
+                      enabled: false,
                       controller: provider.emailController,
-                      decoration: InputDecoration(
-                        hintText: 'Email',
-                        hintStyle: const TextStyle(
-                          color: AppStyle.textSecondaryColor,
-                        ),
+                      decoration: const InputDecoration(
+                        filled: true,
+                        fillColor: AppStyle.textSecondaryColor,
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(8),
+                          ),
                         ),
                       ),
-                    ),
+                    )
                   ],
                 ),
               ),
@@ -160,19 +154,20 @@ class _FormProfileWidgetState extends State<FormProfileWidget> {
                     const SizedBox(
                       height: 12,
                     ),
-                    TextFormField(
+                    TextField(
+                      readOnly: true,
+                      enabled: false,
                       controller: provider.passwordController,
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        hintText: 'Password',
-                        hintStyle: const TextStyle(
-                          color: AppStyle.textSecondaryColor,
-                        ),
+                      decoration: const InputDecoration(
+                        filled: true,
+                        fillColor: AppStyle.textSecondaryColor,
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(8),
+                          ),
                         ),
                       ),
-                    ),
+                    )
                   ],
                 ),
               ),
@@ -193,7 +188,7 @@ class _FormProfileWidgetState extends State<FormProfileWidget> {
                     const SizedBox(
                       height: 12,
                     ),
-                    TextFormField(
+                    TextField(
                       controller: provider.phoneController,
                       inputFormatters: [
                         FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),

@@ -1,20 +1,37 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../common/extension.dart';
 import '../../../common/style.dart';
 import '../../../domain/entities/customer.dart';
+import '../provider/table_customer_notifier.dart';
 import 'edit_customer_widget.dart';
 
-class TableCustomerWidget extends StatelessWidget {
-  TableCustomerWidget({
+class TableCustomerWidget extends StatefulWidget {
+  const TableCustomerWidget({
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<TableCustomerWidget> createState() => _TableCustomerWidgetState();
+}
+
+class _TableCustomerWidgetState extends State<TableCustomerWidget> {
+  @override
+  void initState() {
+    super.initState();
+    Future.microtask(
+        () => context.read<TableCustomerNotifier>().getListCustomerData());
+  }
+
   final String valueRadio = '';
+
   final ScrollController _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
+    Provider.of<TableCustomerNotifier>(context, listen: false);
     return ScrollConfiguration(
       behavior: const ScrollBehavior().copyWith(
         dragDevices: {
@@ -22,72 +39,76 @@ class TableCustomerWidget extends StatelessWidget {
           PointerDeviceKind.mouse,
         },
       ),
-      child: Scrollbar(
-        thumbVisibility: true,
-        thickness: 10,
-        interactive: true,
-        controller: _scrollController,
-        child: SingleChildScrollView(
+      child: Consumer<TableCustomerNotifier>(
+        builder: (context, value, child) => Scrollbar(
+          thumbVisibility: true,
+          thickness: 10,
+          interactive: true,
           controller: _scrollController,
-          scrollDirection: Axis.horizontal,
-          child: DataTable(
-            columnSpacing: 80,
-            headingTextStyle: const TextStyle(
-              fontSize: 15,
-              color: AppStyle.textSecondaryColor,
-            ),
-            dataTextStyle: const TextStyle(
-              fontSize: 15,
-              fontWeight: AppStyle.bold,
-              color: AppStyle.blackColor,
-            ),
-            border: const TableBorder(
-              horizontalInside: BorderSide(
-                color: AppStyle.bgColorDashboard,
-                width: 1,
-              ),
-            ),
-            columns: const [
-              DataColumn(
-                label: Text('CIF'),
-              ),
-              DataColumn(
-                label: Text('Nama'),
-              ),
-              DataColumn(
-                label: Text('NIK'),
-              ),
-              DataColumn(
-                label: Text('Nomor Telepon'),
-              ),
-              DataColumn(
-                label: Text('Alamat'),
-              ),
-              DataColumn(
-                label: Text('Pekerjaan'),
-              ),
-              DataColumn(
-                label: Text('Email'),
-              ),
-              DataColumn(
-                label: Text('Status'),
-              ),
-              DataColumn(
-                label: Text(''),
-              ),
-            ],
-            rows: dataCustomer
-                .map(
-                  (customer) => _buildRow(context, customer),
-                )
-                .toList(),
+          child: SingleChildScrollView(
+            controller: _scrollController,
+            scrollDirection: Axis.horizontal,
+            child: value.isHasData
+                ? DataTable(
+                    columnSpacing: 80,
+                    headingTextStyle: const TextStyle(
+                      fontSize: 15,
+                      color: AppStyle.textSecondaryColor,
+                    ),
+                    dataTextStyle: const TextStyle(
+                      fontSize: 15,
+                      fontWeight: AppStyle.bold,
+                      color: AppStyle.blackColor,
+                    ),
+                    border: const TableBorder(
+                      horizontalInside: BorderSide(
+                        color: AppStyle.bgColorDashboard,
+                        width: 1,
+                      ),
+                    ),
+                    columns: const [
+                      DataColumn(
+                        label: Text('CIF'),
+                      ),
+                      DataColumn(
+                        label: Text('Nama'),
+                      ),
+                      DataColumn(
+                        label: Text('NIK'),
+                      ),
+                      DataColumn(
+                        label: Text('Nomor Telepon'),
+                      ),
+                      DataColumn(
+                        label: Text('Alamat'),
+                      ),
+                      DataColumn(
+                        label: Text('Pekerjaan'),
+                      ),
+                      DataColumn(
+                        label: Text('Email'),
+                      ),
+                      DataColumn(
+                        label: Text('Status'),
+                      ),
+                      DataColumn(
+                        label: Text(''),
+                      ),
+                    ],
+                    rows: value.listCustomer
+                        .map((data) => _buildRow(context, data))
+                        .toList(),
+                  )
+                : const Center(
+                    child: CircularProgressIndicator(),
+                  ),
           ),
         ),
       ),
     );
   }
 
-  DataRow _buildRow(BuildContext context, Customer customer) {
+  DataRow _buildRow(BuildContext context, Customer data) {
     return DataRow(
       onLongPress: () {
         showDialog(
@@ -100,18 +121,18 @@ class TableCustomerWidget extends StatelessWidget {
       cells: [
         DataCell(
           Text(
-            customer.id,
+            data.cif ?? 'cif',
             style: const TextStyle(
               color: AppStyle.greenColor,
             ),
           ),
         ),
         DataCell(
-          Text(customer.name),
+          Text(data.name ?? 'name'),
         ),
         DataCell(
           Text(
-            customer.nik,
+            data.nik ?? 'nik',
             style: const TextStyle(
               fontWeight: AppStyle.regular,
             ),
@@ -119,27 +140,24 @@ class TableCustomerWidget extends StatelessWidget {
         ),
         DataCell(
           Text(
-            customer.phone,
+            data.phoneNumber ?? '08123456789',
             style: const TextStyle(
               fontWeight: AppStyle.regular,
             ),
           ),
         ),
         DataCell(
-          Text(customer.address),
+          Text(data.address ?? 'address'),
         ),
         DataCell(
-          Text(customer.job),
+          Text(data.work ?? 'work'),
         ),
         DataCell(
-          Text(customer.email),
+          Text(data.email ?? 'email'),
         ),
         DataCell(
           Text(
-            customer.status ? 'Aktif' : 'Backlist',
-            style: TextStyle(
-              color: customer.status ? AppStyle.greenColor : AppStyle.redColor,
-            ),
+            data.status ?? 'status',
           ),
         ),
         DataCell(

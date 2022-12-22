@@ -3,14 +3,14 @@ import 'package:go_router/go_router.dart';
 import 'package:kasir_app/common/result_state.dart';
 import 'package:kasir_app/data/auth/authentication.dart';
 import 'package:kasir_app/domain/entities/branch.dart';
+import 'package:kasir_app/domain/usecases/get_branch_id.dart';
 import 'package:kasir_app/domain/usecases/get_list_branch.dart';
 
 class LoginNotifier extends ChangeNotifier {
   final GetListBranch getListBranch;
+  final GetBranchById getBranchById;
   final Authentication authentication;
-  LoginNotifier(this.getListBranch, this.authentication) {
-    fetchListBranch();
-  }
+  LoginNotifier(this.getListBranch, this.authentication, this.getBranchById);
   int currentIndex = 0;
   bool isPassword = true;
   final PageController pageController = PageController();
@@ -36,7 +36,10 @@ class LoginNotifier extends ChangeNotifier {
   ];
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  String branchName = 'Cabang 1';
+  String branchName = '';
+  int branchId = 1;
+  late Branch branch;
+
   //key
   final formKey = GlobalKey<FormState>(debugLabel: '_loginForm');
 
@@ -56,13 +59,28 @@ class LoginNotifier extends ChangeNotifier {
     });
   }
 
+  Future<Branch> fetchBranchById(int id) async {
+    state = ResultState.loading;
+    final result = await getBranchById.execute(id);
+    branch = const Branch();
+    result.fold((failure) {
+      state = ResultState.error;
+      notifyListeners();
+    }, (data) {
+      state = ResultState.hasData;
+      branch = data;
+      notifyListeners();
+    });
+    return branch;
+  }
+
   Future<void> login(context) async {
     try {
       if (formKey.currentState!.validate()) {
         final result = await authentication.signIn(
           usernameController.text,
           passwordController.text,
-          '1', //TODO IMPLEMENTASI BRANCH
+          branchId,
         );
         result.fold((failure) {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(

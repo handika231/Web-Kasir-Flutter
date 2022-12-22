@@ -6,10 +6,24 @@ import '../../../common/style.dart';
 import '../provider/login_notifier.dart';
 import 'item_textfield_widget.dart';
 
-class LoginWidget extends StatelessWidget {
+class LoginWidget extends StatefulWidget {
   const LoginWidget({
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<LoginWidget> createState() => _LoginWidgetState();
+}
+
+class _LoginWidgetState extends State<LoginWidget> {
+  @override
+  void initState() {
+    super.initState();
+    Future.microtask(
+      () =>
+          Provider.of<LoginNotifier>(context, listen: false).fetchListBranch(),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,10 +71,10 @@ class LoginWidget extends StatelessWidget {
                             if (value.listBranch.isEmpty) {
                               return const SizedBox();
                             } else {
-                              return DropdownButtonFormField<String>(
+                              return DropdownButtonFormField<int>(
                                 items: value.listBranch.map((result) {
-                                  return DropdownMenuItem<String>(
-                                    value: '${result.id}',
+                                  return DropdownMenuItem<int>(
+                                    value: result.id,
                                     child: Text(
                                       result.name ?? "",
                                     ),
@@ -76,8 +90,8 @@ class LoginWidget extends StatelessWidget {
                                   ),
                                 ),
                                 onChanged: (val) {
-                                  value.branchName = val ?? 'branch name';
-                                  debugPrint(val);
+                                  value.branchId = val ?? 1;
+                                  debugPrint(val.toString());
                                 },
                                 hint: const Text('Pilih Cabang'),
                               );

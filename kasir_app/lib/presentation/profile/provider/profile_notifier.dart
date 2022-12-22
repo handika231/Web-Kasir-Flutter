@@ -51,14 +51,6 @@ class ProfileNotifier extends ChangeNotifier {
   TextEditingController passwordController = TextEditingController();
   TextEditingController positionController = TextEditingController();
 
-  void clear() {
-    nameController.clear();
-    emailController.clear();
-    phoneController.clear();
-    passwordController.clear();
-    positionController.clear();
-  }
-
   @override
   void dispose() {
     nameController.dispose();
@@ -66,7 +58,6 @@ class ProfileNotifier extends ChangeNotifier {
     phoneController.dispose();
     passwordController.dispose();
     positionController.dispose();
-    clear();
     super.dispose();
   }
 
@@ -93,7 +84,6 @@ class ProfileNotifier extends ChangeNotifier {
           content: Text('Update profile success'),
         ),
       );
-      clear();
     });
   }
 }
