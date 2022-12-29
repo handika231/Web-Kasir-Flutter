@@ -33,7 +33,7 @@ class _FormProfileWidgetState extends State<FormProfileWidget> {
     provider.phoneController.text =
         menuProvider.user.employee!.phoneNumber.toString();
     provider.positionController.text =
-        menuProvider.user.employee!.position!.toString();
+        menuProvider.user.employee!.position!.name.toString();
 
     return Expanded(
       child: Column(

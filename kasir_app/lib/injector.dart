@@ -9,6 +9,7 @@ import 'package:kasir_app/domain/repositories/branch_repository.dart';
 import 'package:kasir_app/domain/repositories/customer_repository.dart';
 import 'package:kasir_app/domain/repositories/position_repository.dart';
 import 'package:kasir_app/domain/usecases/get_branch_id.dart';
+import 'package:kasir_app/domain/usecases/get_customer_id.dart';
 import 'package:kasir_app/domain/usecases/get_list_customer.dart';
 import 'package:kasir_app/domain/usecases/get_list_position.dart';
 import 'package:kasir_app/domain/usecases/get_position_id.dart';
@@ -40,7 +41,7 @@ init() {
       .registerFactory(() => ProfileNotifier(locator(), locator(), locator()));
   locator.registerFactory(() => LoginNotifier(locator(), locator(), locator()));
   locator.registerFactory(() => MenuNotifier(locator()));
-  locator.registerFactory(() => TableCustomerNotifier(locator()));
+  locator.registerFactory(() => TableCustomerNotifier(locator(), locator()));
 
   // USES CASE
   locator.registerLazySingleton(() => GetListBranch(locator()));
@@ -50,6 +51,7 @@ init() {
   locator.registerLazySingleton(() => GetBranchById(locator()));
   locator.registerLazySingleton(() => GetPositionById(locator()));
   locator.registerLazySingleton(() => GetListCustomer(locator()));
+  locator.registerLazySingleton(() => GetCustomerById(locator()));
 
   // REPOSITORY
   locator.registerLazySingleton<BranchRepository>(

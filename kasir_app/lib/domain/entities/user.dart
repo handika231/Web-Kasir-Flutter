@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:kasir_app/domain/entities/position.dart';
 
 class User extends Equatable {
   final int? id;
@@ -27,9 +28,9 @@ class User extends Equatable {
 
 //create class Employee
 class Employee extends Equatable {
-  final String? position;
+  final Position? position;
   final String? trainingNip;
-  // final int? nip;
+  final dynamic nip;
   final String? phoneNumber;
   final String? address;
   final String? birthPlace;
@@ -47,7 +48,7 @@ class Employee extends Equatable {
   const Employee({
     this.position,
     this.trainingNip,
-    // this.nip,
+    this.nip,
     this.phoneNumber,
     this.address,
     this.birthPlace,
@@ -65,7 +66,7 @@ class Employee extends Equatable {
   List<Object?> get props => [
         position,
         trainingNip,
-        // nip,
+        nip,
         phoneNumber,
         address,
         birthPlace,

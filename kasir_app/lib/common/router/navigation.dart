@@ -21,7 +21,6 @@ class Navigation {
         builder: (context, state) => const LoginView(),
         redirect: (context, state) async {
           final prefHelper = PrefHelper();
-
           if (await prefHelper.getToken() == '') {
             return '/';
           } else {

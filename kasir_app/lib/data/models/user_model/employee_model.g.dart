@@ -6,11 +6,14 @@ part of 'employee_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-EmployeeModel _$EmployeeModelFromJson(Map<String, dynamic> json) =>
-    EmployeeModel(
-      position: json['position'] as String?,
+_$_EmployeeModel _$$_EmployeeModelFromJson(Map<String, dynamic> json) =>
+    _$_EmployeeModel(
+      position: json['position'] == null
+          ? null
+          : PositionModel.fromJson(json['position'] as Map<String, dynamic>),
       trainingNip: json['training_nip'] as String?,
-      phoneNumber: json['phone_number'] as String?,
+      nip: json['nip'],
+      phoneNumber: json['phone_number'],
       address: json['address'] as String?,
       birthPlace: json['birth_place'] as String?,
       birthDate: json['birth_date'] as String?,
@@ -24,10 +27,11 @@ EmployeeModel _$EmployeeModelFromJson(Map<String, dynamic> json) =>
       bankAccountName: json['bank_account_name'] as String?,
     );
 
-Map<String, dynamic> _$EmployeeModelToJson(EmployeeModel instance) =>
+Map<String, dynamic> _$$_EmployeeModelToJson(_$_EmployeeModel instance) =>
     <String, dynamic>{
       'position': instance.position,
       'training_nip': instance.trainingNip,
+      'nip': instance.nip,
       'phone_number': instance.phoneNumber,
       'address': instance.address,
       'birth_place': instance.birthPlace,

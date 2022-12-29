@@ -22,7 +22,8 @@ class _TableCustomerWidgetState extends State<TableCustomerWidget> {
   void initState() {
     super.initState();
     Future.microtask(
-        () => context.read<TableCustomerNotifier>().getListCustomerData());
+      () => context.read<TableCustomerNotifier>().getListCustomerData(),
+    );
   }
 
   final String valueRadio = '';
@@ -50,6 +51,7 @@ class _TableCustomerWidgetState extends State<TableCustomerWidget> {
             scrollDirection: Axis.horizontal,
             child: value.isHasData
                 ? DataTable(
+                    dataRowHeight: 50,
                     columnSpacing: 80,
                     headingTextStyle: const TextStyle(
                       fontSize: 15,
@@ -99,8 +101,10 @@ class _TableCustomerWidgetState extends State<TableCustomerWidget> {
                         .map((data) => _buildRow(context, data))
                         .toList(),
                   )
-                : const Center(
-                    child: CircularProgressIndicator(),
+                : const SizedBox(
+                    child: Center(
+                      child: CircularProgressIndicator(),
+                    ),
                   ),
           ),
         ),
@@ -114,7 +118,7 @@ class _TableCustomerWidgetState extends State<TableCustomerWidget> {
         showDialog(
           context: context,
           builder: (context) {
-            return _buildDialog(context);
+            return _buildDialog(context, data.id ?? 0);
           },
         );
       },
@@ -158,6 +162,11 @@ class _TableCustomerWidgetState extends State<TableCustomerWidget> {
         DataCell(
           Text(
             data.status ?? 'status',
+            style: TextStyle(
+              color: data.status!.toLowerCase().contains('active')
+                  ? AppStyle.greenColor
+                  : AppStyle.redColor,
+            ),
           ),
         ),
         DataCell(
@@ -191,116 +200,167 @@ class _TableCustomerWidgetState extends State<TableCustomerWidget> {
     );
   }
 
-  _buildDialog(BuildContext context) {
-    return Dialog(
-      insetAnimationCurve: Curves.easeInOut,
-      insetAnimationDuration: const Duration(
-        milliseconds: 300,
-      ),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: FractionallySizedBox(
-        heightFactor: 0.7,
-        child: Container(
-          padding: const EdgeInsets.only(
-            left: 40,
-            right: 25,
-            top: 27,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'Detail Nasabah',
-                    style: TextStyle(
-                      fontSize: 22,
-                      fontWeight: AppStyle.bold,
+  Widget _buildDialog(BuildContext context, int index) {
+    Provider.of<TableCustomerNotifier>(context, listen: false)
+        .getCustomerByIdData(index);
+    return Consumer<TableCustomerNotifier>(
+      builder: (context, ref, child) {
+        return ref.isHasData
+            ? Dialog(
+                insetAnimationCurve: Curves.easeInOut,
+                insetAnimationDuration: const Duration(
+                  milliseconds: 300,
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: FractionallySizedBox(
+                  heightFactor: 0.7,
+                  child: Container(
+                    padding: const EdgeInsets.only(
+                      left: 40,
+                      right: 25,
+                      top: 27,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text(
+                              'Detail Nasabah',
+                              style: TextStyle(
+                                fontSize: 22,
+                                fontWeight: AppStyle.bold,
+                              ),
+                            ),
+                            CircleAvatar(
+                              foregroundColor: AppStyle.white,
+                              backgroundColor: AppStyle.textSecondaryColor,
+                              child: IconButton(
+                                splashColor: AppStyle.white,
+                                splashRadius: 10,
+                                icon: const Icon(Icons.close),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                        const Divider(
+                          thickness: 3,
+                          color: AppStyle.bgColorDashboard,
+                        ),
+                        IntrinsicHeight(
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                width: 200,
+                                height: 200,
+                                child: Image.asset(
+                                  'img-customer'.toPNG,
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 24,
+                              ),
+                              Flexible(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        _buildTextDialog('Nama',
+                                            ref.data.name ?? 'Ardianto....'),
+                                        _buildTextDialog(
+                                            'CIF', ref.data.cif ?? 'CIF'),
+                                        _buildTextDialog('Pekerjaan',
+                                            ref.data.work ?? 'Pekerjaan'),
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      height: 40,
+                                    ),
+                                    Row(
+                                      children: [
+                                        _buildTextDialog(
+                                            'NIK', ref.data.nik ?? 'NIK'),
+                                        _buildTextDialog(
+                                            'No.Telepon',
+                                            ref.data.phoneNumber ??
+                                                '08xxxxxxxxxx'),
+                                        _buildTextDialog(
+                                            'Email', ref.data.email ?? 'Email'),
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      height: 40,
+                                    ),
+                                    Row(
+                                      children: [
+                                        _buildTextDialog(
+                                            'Nama Ibu Kandung',
+                                            ref.data.motherName ??
+                                                'Nama Ibu Kandung'),
+                                        _buildTextDialog(
+                                            'Tanggal Pertama Gadai',
+                                            ref.data.firstPawnDate ??
+                                                'Tanggal Pertama Gadai'),
+                                        Expanded(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              const Text(
+                                                'Status Nasabah',
+                                                style: TextStyle(
+                                                  fontSize: 18,
+                                                  fontWeight: AppStyle.bold,
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                height: 8,
+                                              ),
+                                              Text(
+                                                ref.data.status ??
+                                                    'Status Nasabah',
+                                                style: TextStyle(
+                                                  fontSize: 18,
+                                                  color: ref.data.status ==
+                                                          'active'
+                                                      ? AppStyle.greenColor
+                                                      : AppStyle.redColor,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      height: 40,
+                                    ),
+                                    _buildTextDialog(
+                                      'Alamat',
+                                      ref.data.address ?? 'Alamat',
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
                     ),
                   ),
-                  CircleAvatar(
-                    foregroundColor: AppStyle.white,
-                    backgroundColor: AppStyle.textSecondaryColor,
-                    child: IconButton(
-                      splashColor: AppStyle.white,
-                      splashRadius: 10,
-                      icon: const Icon(Icons.close),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                  ),
-                ],
-              ),
-              const Divider(
-                thickness: 3,
-                color: AppStyle.bgColorDashboard,
-              ),
-              IntrinsicHeight(
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: 200,
-                      height: 200,
-                      child: Image.asset(
-                        'img-customer'.toPNG,
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 24,
-                    ),
-                    Flexible(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              _buildTextDialog('Nama', 'Ardianto'),
-                              _buildTextDialog('CIF', '2208000012'),
-                              _buildTextDialog('Pekerjaan', 'Karyawan Swasta'),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 40,
-                          ),
-                          Row(
-                            children: [
-                              _buildTextDialog('NIK', '3402142008940002'),
-                              _buildTextDialog('No.Telepon', '0895401278260'),
-                              _buildTextDialog('Email', 'ardianto@gmail.com'),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 40,
-                          ),
-                          Row(
-                            children: [
-                              _buildTextDialog('Nama Ibu Kandung', 'Yulianti'),
-                              _buildTextDialog(
-                                  'Tanggal Pertama Gadai', '17 October 2022'),
-                              _buildTextDialog('Status Nasabah', 'Aktif'),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 40,
-                          ),
-                          _buildTextDialog(
-                            'Alamat',
-                            'Jl.Jogja-wonosari km13, Kabregan rt 01, Srimulyo, Piyungan, Bantul, Daerah Istimewa Yogyakarta',
-                          )
-                        ],
-                      ),
-                    ),
-                  ],
                 ),
               )
-            ],
-          ),
-        ),
-      ),
+            : const Center(
+                child: CircularProgressIndicator(),
+              );
+      },
     );
   }
 

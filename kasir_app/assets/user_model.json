@@ -1,12 +1,15 @@
 {
   "id": 2,
-  "name": "Martin MS",
+  "name": "Fulana",
   "username": "fo1",
   "email": "martinms.za@gmail.com",
   "role": "employee",
   "profile_picture": "",
   "employee": {
-    "position": "Front Office",
+    "position": {
+      "id": 6,
+      "name": "Front Office"
+    },
     "training_nip": "1234567890",
     "nip": null,
     "phone_number": null,

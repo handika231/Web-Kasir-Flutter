@@ -26,6 +26,7 @@ abstract class RemoteDataSource {
   Future<BranchModel> getBranchById(int id);
   Future<PositionModel> getPositionById(int id);
   Future<List<CustomerModel>> getListCustomer();
+  Future<CustomerModel> getCustomerById(int id);
 }
 
 class RemoteDataSourceImpl implements RemoteDataSource {
@@ -159,6 +160,23 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     if (response.statusCode == 200) {
       List result = json.decode(response.body)['data'];
       return result.map((value) => CustomerModel.fromJson(value)).toList();
+    } else {
+      throw const ServerException(message: 'Gagal mengambil data customer');
+    }
+  }
+
+  @override
+  Future<CustomerModel> getCustomerById(int id) async {
+    String token = await prefHelper.getToken();
+    final response = await client
+        .get(Uri.parse('${Urls.baseUrl}/api/customers/$id'), headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token',
+    });
+    if (response.statusCode == 200) {
+      return CustomerModel.fromJson(
+          json.decode(response.body)['data']['customer']);
     } else {
       throw const ServerException(message: 'Gagal mengambil data customer');
     }

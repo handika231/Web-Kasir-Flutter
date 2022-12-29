@@ -18,4 +18,14 @@ class CustomerRepositoryImpl implements CustomerRepository {
       return const Left(ServerFailure(message: 'Gagal mengambil data nasabah'));
     }
   }
+
+  @override
+  Future<Either<Failure, Customer>> getCustomerById(int id) async {
+    try {
+      final data = await remoteDataSource.getCustomerById(id);
+      return Right(data.toEntity());
+    } on ServerException {
+      return const Left(ServerFailure(message: 'Gagal mengambil data nasabah'));
+    }
+  }
 }
