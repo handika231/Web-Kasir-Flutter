@@ -34,6 +34,7 @@ class _FormProfileWidgetState extends State<FormProfileWidget> {
         menuProvider.user.employee!.phoneNumber.toString();
     provider.positionController.text =
         menuProvider.user.employee!.position!.name.toString();
+    provider.positionId = menuProvider.user.employee!.position!.id;
 
     return Expanded(
       child: Column(
@@ -145,40 +146,6 @@ class _FormProfileWidgetState extends State<FormProfileWidget> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
-                      'Password',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: AppStyle.semiBold,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    TextField(
-                      readOnly: true,
-                      enabled: false,
-                      controller: provider.passwordController,
-                      decoration: const InputDecoration(
-                        filled: true,
-                        fillColor: AppStyle.textSecondaryColor,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(8),
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              const SizedBox(
-                width: 20,
-              ),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
                       'Nomor Telepon',
                       style: TextStyle(
                         fontSize: 16,
@@ -205,6 +172,42 @@ class _FormProfileWidgetState extends State<FormProfileWidget> {
                       ),
                     ),
                   ],
+                ),
+              ),
+              const SizedBox(
+                width: 20,
+              ),
+              Expanded(
+                child: Visibility(
+                  visible: false,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const [
+                      Text(
+                        'Password',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: AppStyle.semiBold,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 12,
+                      ),
+                      TextField(
+                        readOnly: true,
+                        enabled: false,
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: AppStyle.textSecondaryColor,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(8),
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
             ],

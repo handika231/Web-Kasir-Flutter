@@ -1,5 +1,7 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:kasir_app/common/utils/snackbar_helper.dart';
 import 'package:kasir_app/data/exception.dart';
 import 'package:kasir_app/domain/entities/position.dart';
 import 'package:kasir_app/domain/usecases/get_list_position.dart';
@@ -48,15 +50,14 @@ class ProfileNotifier extends ChangeNotifier {
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
   TextEditingController positionController = TextEditingController();
+  int positionId = 0;
 
   @override
   void dispose() {
     nameController.dispose();
     emailController.dispose();
     phoneController.dispose();
-    passwordController.dispose();
     positionController.dispose();
     super.dispose();
   }
@@ -66,9 +67,7 @@ class ProfileNotifier extends ChangeNotifier {
       name: nameController.text,
       email: emailController.text,
       phone: phoneController.text,
-      password: passwordController.text,
-      position: positionController.text,
-      image: helper.imageName.toString(),
+      position: positionId,
     );
     result.fold((failure) {
       //message error
@@ -79,10 +78,11 @@ class ProfileNotifier extends ChangeNotifier {
       );
     }, (data) {
       //message success
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Update profile success'),
-        ),
+      SnackBarHelper.showSnackBar(
+        context,
+        message: 'Berhasil Update Profile',
+        title: 'Success',
+        contentType: ContentType.success,
       );
     });
   }

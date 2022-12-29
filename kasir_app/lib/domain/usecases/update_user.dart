@@ -12,17 +12,13 @@ class UpdateUser {
     required String name,
     required String email,
     required String phone,
-    required String password,
-    required String position,
-    required String image,
+    required int position,
   }) async {
     return await _userRepository.updateProfile(
       name: name,
       email: email,
       phone: phone,
-      password: password,
       position: position,
-      image: image,
     );
   }
 }

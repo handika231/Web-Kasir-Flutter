@@ -19,9 +19,7 @@ abstract class RemoteDataSource {
     required String name,
     required String email,
     required String phone,
-    required String password,
-    required String position,
-    required String image,
+    required int position,
   });
   Future<BranchModel> getBranchById(int id);
   Future<PositionModel> getPositionById(int id);
@@ -84,13 +82,12 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   }
 
   @override
-  Future<UserModel> updateProfile(
-      {required String name,
-      required String email,
-      required String phone,
-      required String password,
-      required String position,
-      required String image}) async {
+  Future<UserModel> updateProfile({
+    required String name,
+    required String email,
+    required String phone,
+    required int position,
+  }) async {
     String token = await prefHelper.getToken();
 
     final response = await client.post(Uri.parse('${Urls.baseUrl}/api/user'),
@@ -103,7 +100,6 @@ class RemoteDataSourceImpl implements RemoteDataSource {
           'name': name,
           'email': email,
           'phone_number': phone,
-          'password': password,
           'position_id': position,
           // 'profile_picture': image,
           //send file

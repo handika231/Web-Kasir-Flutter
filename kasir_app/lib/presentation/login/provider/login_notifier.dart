@@ -1,6 +1,8 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kasir_app/common/result_state.dart';
+import 'package:kasir_app/common/utils/snackbar_helper.dart';
 import 'package:kasir_app/data/auth/authentication.dart';
 import 'package:kasir_app/domain/entities/branch.dart';
 import 'package:kasir_app/domain/usecases/get_branch_id.dart';
@@ -36,8 +38,8 @@ class LoginNotifier extends ChangeNotifier {
   ];
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  String branchName = '';
   int branchId = 1;
+  bool isHasData = false;
   late Branch branch;
 
   //key
@@ -68,6 +70,7 @@ class LoginNotifier extends ChangeNotifier {
       notifyListeners();
     }, (data) {
       state = ResultState.hasData;
+      isHasData = true;
       branch = data;
       notifyListeners();
     });
@@ -83,9 +86,12 @@ class LoginNotifier extends ChangeNotifier {
           branchId,
         );
         result.fold((failure) {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(failure.message),
-          ));
+          SnackBarHelper.showSnackBar(
+            context,
+            message: 'Username atau Password salah',
+            title: 'Gagal Login',
+            contentType: ContentType.failure,
+          );
         }, (data) {
           clear();
           GoRouter.of(context).goNamed('menu');

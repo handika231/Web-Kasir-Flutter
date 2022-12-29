@@ -85,11 +85,25 @@ class _HeaderMenuWidgetState extends State<HeaderMenuWidget> {
             padding: const EdgeInsets.all(8),
             child: Row(
               children: [
-                ClipOval(
-                  child: Image.asset(
-                    'assets/img-fulana.png',
-                    width: 56,
-                  ),
+                Consumer<MenuNotifier>(
+                  builder: (context, ref, child) {
+                    return ref.isHasData
+                        ? ref.user.profilePicture!.isNotEmpty
+                            ? Image.network(
+                                ref.user.profilePicture!,
+                                width: 30,
+                                height: 30,
+                                fit: BoxFit.cover,
+                              )
+                            : const Icon(
+                                Icons.person,
+                                size: 30,
+                              )
+                        : const Icon(
+                            Icons.person,
+                            size: 30,
+                          );
+                  },
                 ),
                 const SizedBox(
                   width: 27,
@@ -101,9 +115,9 @@ class _HeaderMenuWidgetState extends State<HeaderMenuWidget> {
                             provider.user.name.toString(),
                             style: const TextStyle(fontSize: 18),
                           )
-                        : Text(
-                            provider.user.name.toString(),
-                            style: const TextStyle(fontSize: 18),
+                        : const Text(
+                            'Loading...',
+                            style: TextStyle(fontSize: 18),
                           );
                   },
                 ),
