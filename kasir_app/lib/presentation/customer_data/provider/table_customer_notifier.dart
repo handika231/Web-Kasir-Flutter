@@ -1,9 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:kasir_app/domain/entities/customer.dart';
-import 'package:kasir_app/domain/usecases/get_customer_id.dart';
-import 'package:kasir_app/domain/usecases/get_list_customer.dart';
+
+import '../../../domain/entities/customer.dart';
+import '../../../domain/usecases/get_customer_id.dart';
+import '../../../domain/usecases/get_list_customer.dart';
 
 class TableCustomerNotifier extends ChangeNotifier {
   GetListCustomer getListCustomer;

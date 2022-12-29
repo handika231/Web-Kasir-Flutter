@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:kasir_app/domain/entities/customer.dart';
+
+import '../../../domain/entities/customer.dart';
 
 part 'customer_model.g.dart';
 

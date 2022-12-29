@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:kasir_app/data/failure.dart';
-import 'package:kasir_app/domain/entities/branch.dart';
+
+import '../../data/failure.dart';
+import '../entities/branch.dart';
 
 abstract class BranchRepository {
   Future<Either<Failure, List<Branch>>> getListBranch();

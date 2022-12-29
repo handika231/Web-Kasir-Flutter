@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:kasir_app/domain/entities/position.dart';
+
+import 'position.dart';
 
 class User extends Equatable {
   final int? id;

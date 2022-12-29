@@ -2,14 +2,15 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:kasir_app/common/constant.dart';
-import 'package:kasir_app/common/utils/pref_helper.dart';
-import 'package:kasir_app/data/models/customer_model/customer_model.dart';
-import 'package:kasir_app/data/models/position_model/position_model.dart';
-import 'package:kasir_app/data/models/user_model/user_model.dart';
 
+import '../../common/constant.dart';
+import '../../common/utils/pref_helper.dart';
 import '../exception.dart';
 import '../models/branch_model.dart';
+import '../models/customer_model/customer_model.dart';
+import '../models/inventory_model/inventory_model.dart';
+import '../models/position_model/position_model.dart';
+import '../models/user_model/user_model.dart';
 
 abstract class RemoteDataSource {
   Future<List<BranchModel>> getListBranch();
@@ -25,6 +26,7 @@ abstract class RemoteDataSource {
   Future<PositionModel> getPositionById(int id);
   Future<List<CustomerModel>> getListCustomer();
   Future<CustomerModel> getCustomerById(int id);
+  Future<List<InventoryModel>> getDueInventory();
 }
 
 class RemoteDataSourceImpl implements RemoteDataSource {
@@ -175,6 +177,24 @@ class RemoteDataSourceImpl implements RemoteDataSource {
           json.decode(response.body)['data']['customer']);
     } else {
       throw const ServerException(message: 'Gagal mengambil data customer');
+    }
+  }
+
+  @override
+  Future<List<InventoryModel>> getDueInventory() async {
+    String token = await prefHelper.getToken();
+    final response = await client.get(
+        Uri.parse('${Urls.baseUrl}/api/transactions/pawn-goods/expired'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': 'Bearer $token',
+        });
+    if (response.statusCode == 200) {
+      List result = json.decode(response.body)['data'];
+      return result.map((value) => InventoryModel.fromJson(value)).toList();
+    } else {
+      throw const ServerException(message: 'Gagal mengambil data inventori');
     }
   }
 }

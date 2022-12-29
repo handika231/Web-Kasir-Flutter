@@ -1,12 +1,13 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:kasir_app/common/result_state.dart';
-import 'package:kasir_app/common/utils/snackbar_helper.dart';
-import 'package:kasir_app/data/auth/authentication.dart';
-import 'package:kasir_app/domain/entities/branch.dart';
-import 'package:kasir_app/domain/usecases/get_branch_id.dart';
-import 'package:kasir_app/domain/usecases/get_list_branch.dart';
+
+import '../../../common/result_state.dart';
+import '../../../common/utils/snackbar_helper.dart';
+import '../../../data/auth/authentication.dart';
+import '../../../domain/entities/branch.dart';
+import '../../../domain/usecases/get_branch_id.dart';
+import '../../../domain/usecases/get_list_branch.dart';
 
 class LoginNotifier extends ChangeNotifier {
   final GetListBranch getListBranch;

@@ -3,10 +3,11 @@ import 'dart:convert';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:kasir_app/common/constant.dart';
-import 'package:kasir_app/common/utils/pref_helper.dart';
-import 'package:kasir_app/data/failure.dart';
-import 'package:kasir_app/data/models/login_model/login_model.dart';
+
+import '../../common/constant.dart';
+import '../../common/utils/pref_helper.dart';
+import '../failure.dart';
+import '../models/login_model/login_model.dart';
 
 abstract class Authentication {
   Future<Either<Failure, LoginModel>> signIn(

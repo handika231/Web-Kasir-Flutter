@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:kasir_app/domain/entities/branch.dart';
+
+import '../../domain/entities/branch.dart';
 
 part 'branch_model.g.dart';
 

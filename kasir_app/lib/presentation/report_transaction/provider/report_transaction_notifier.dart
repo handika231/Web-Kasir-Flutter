@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:kasir_app/common/extension.dart';
-import 'package:kasir_app/common/result_transaction.dart';
+
+import '../../../common/extension.dart';
+import '../../../common/result_transaction.dart';
 
 class ReportTransactionNotifier extends ChangeNotifier {
   ScrollController scrollController = ScrollController();

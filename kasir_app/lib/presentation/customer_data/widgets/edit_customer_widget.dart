@@ -1,9 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:kasir_app/common/result_status.dart';
 import 'package:provider/provider.dart';
 
+import '../../../common/result_status.dart';
 import '../../../common/style.dart';
 import '../provider/edit_data_notifier.dart';
 

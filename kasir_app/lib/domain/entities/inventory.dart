@@ -1,138 +1,42 @@
 import 'package:equatable/equatable.dart';
 
 class Inventory extends Equatable {
-  final int nomorNota;
-  final String date;
-  final String statusPerpanjangan;
-  final String nameItem;
-  final String nominalGadai;
-  final String kelengkapan;
-  final String minus;
-  final String status;
+  final int? id;
+  final String? nomorNota;
+  final DateTime? date;
+  final String? dueDate;
+  final String? extensionState;
+  final String? goodName;
+  final int? pawnValue;
+  final String? completeness;
+  final String? minus;
+  final String? status;
+
   //constructor
   const Inventory({
+    required this.id,
     required this.nomorNota,
     required this.date,
-    required this.statusPerpanjangan,
-    required this.nameItem,
-    required this.nominalGadai,
-    required this.kelengkapan,
+    required this.dueDate,
+    required this.extensionState,
+    required this.goodName,
+    required this.pawnValue,
+    required this.completeness,
     required this.minus,
     required this.status,
   });
 
   @override
   List<Object?> get props => [
+        id,
         nomorNota,
         date,
-        statusPerpanjangan,
-        nameItem,
-        nominalGadai,
-        kelengkapan,
+        dueDate,
+        extensionState,
+        goodName,
+        pawnValue,
+        completeness,
         minus,
-        status
+        status,
       ];
 }
-
-List<Inventory> dataListInventory = [
-  const Inventory(
-    nomorNota: 8680,
-    date: '22 Agustus 2022',
-    statusPerpanjangan: 'P1',
-    nameItem: 'Laptop Acer Nitro',
-    nominalGadai: '3.000.000',
-    kelengkapan: 'Dus, Charger',
-    minus: 'Lecet Pemakaian',
-    status: 'Lelang',
-  ),
-  const Inventory(
-    nomorNota: 8680,
-    date: '22 Agustus 2022',
-    statusPerpanjangan: 'P1',
-    nameItem: 'Laptop Acer Nitro',
-    nominalGadai: '3.000.000',
-    kelengkapan: 'Dus, Charger',
-    minus: 'Lecet Pemakaian',
-    status: 'Lelang',
-  ),
-  const Inventory(
-    nomorNota: 8680,
-    date: '22 Agustus 2022',
-    statusPerpanjangan: 'P1',
-    nameItem: 'Laptop Acer Nitro',
-    nominalGadai: '3.000.000',
-    kelengkapan: 'Dus, Charger',
-    minus: 'Lecet Pemakaian',
-    status: 'Lelang',
-  ),
-  const Inventory(
-    nomorNota: 8680,
-    date: '22 Agustus 2022',
-    statusPerpanjangan: 'P1',
-    nameItem: 'Laptop Acer Nitro',
-    nominalGadai: '3.000.000',
-    kelengkapan: 'Dus, Charger',
-    minus: 'Lecet Pemakaian',
-    status: 'Lelang',
-  ),
-  const Inventory(
-    nomorNota: 8680,
-    date: '22 Agustus 2022',
-    statusPerpanjangan: 'P1',
-    nameItem: 'Laptop Acer Nitro',
-    nominalGadai: '3.000.000',
-    kelengkapan: 'Dus, Charger',
-    minus: 'Lecet Pemakaian',
-    status: 'Lelang',
-  ),
-  const Inventory(
-    nomorNota: 8680,
-    date: '22 Agustus 2022',
-    statusPerpanjangan: 'P1',
-    nameItem: 'Laptop Acer Nitro',
-    nominalGadai: '3.000.000',
-    kelengkapan: 'Dus, Charger',
-    minus: 'Lecet Pemakaian',
-    status: 'Lelang',
-  ),
-  const Inventory(
-    nomorNota: 8680,
-    date: '22 Agustus 2022',
-    statusPerpanjangan: 'P1',
-    nameItem: 'Laptop Acer Nitro',
-    nominalGadai: '3.000.000',
-    kelengkapan: 'Dus, Charger',
-    minus: 'Lecet Pemakaian',
-    status: 'Lelang',
-  ),
-  const Inventory(
-    nomorNota: 8680,
-    date: '22 Agustus 2022',
-    statusPerpanjangan: 'P1',
-    nameItem: 'Laptop Acer Nitro',
-    nominalGadai: '3.000.000',
-    kelengkapan: 'Dus, Charger',
-    minus: 'Lecet Pemakaian',
-    status: 'Lelang',
-  ),
-  const Inventory(
-    nomorNota: 8680,
-    date: '22 Agustus 2022',
-    statusPerpanjangan: 'P1',
-    nameItem: 'Laptop Acer Nitro',
-    nominalGadai: '3.000.000',
-    kelengkapan: 'Dus, Charger',
-    minus: 'Lecet Pemakaian',
-    status: 'Lelang',
-  ),
-  const Inventory(
-    nomorNota: 8680,
-    date: '22 Agustus 2022',
-    statusPerpanjangan: 'P1',
-    nameItem: 'Laptop Acer Nitro',
-    nominalGadai: '3.000.000',
-    kelengkapan: 'Dus, Charger',
-    minus: 'Lecet Pemakaian',
-    status: 'Lelang',
-  )
-];

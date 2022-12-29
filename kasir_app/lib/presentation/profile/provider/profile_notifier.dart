@@ -1,14 +1,14 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:kasir_app/common/utils/snackbar_helper.dart';
-import 'package:kasir_app/data/exception.dart';
-import 'package:kasir_app/domain/entities/position.dart';
-import 'package:kasir_app/domain/usecases/get_list_position.dart';
-import 'package:kasir_app/domain/usecases/update_user.dart';
 
 import '../../../common/result_state.dart';
 import '../../../common/utils/image_picker_helper.dart';
+import '../../../common/utils/snackbar_helper.dart';
+import '../../../data/exception.dart';
+import '../../../domain/entities/position.dart';
+import '../../../domain/usecases/get_list_position.dart';
+import '../../../domain/usecases/update_user.dart';
 
 class ProfileNotifier extends ChangeNotifier {
   final ImagePickerHelper helper;

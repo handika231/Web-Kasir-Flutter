@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:kasir_app/presentation/menu/provider/menu_notifier.dart';
 import 'package:provider/provider.dart';
 
 import '../../../common/style.dart';
+import '../../menu/provider/menu_notifier.dart';
 import '../provider/profile_notifier.dart';
 
 class FormProfileWidget extends StatefulWidget {

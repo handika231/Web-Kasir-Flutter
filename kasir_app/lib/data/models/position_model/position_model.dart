@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:kasir_app/domain/entities/position.dart';
+
+import '../../../domain/entities/position.dart';
 
 part 'position_model.g.dart';
 

@@ -1,7 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:kasir_app/data/failure.dart';
-import 'package:kasir_app/domain/entities/user.dart';
-import 'package:kasir_app/domain/repositories/user_repository.dart';
+
+import '../../data/failure.dart';
+import '../entities/user.dart';
+import '../repositories/user_repository.dart';
 
 class UpdateUser {
   final UserRepository _userRepository;

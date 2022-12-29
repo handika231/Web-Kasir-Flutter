@@ -1,7 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:kasir_app/data/failure.dart';
-import 'package:kasir_app/domain/entities/customer.dart';
-import 'package:kasir_app/domain/repositories/customer_repository.dart';
+
+import '../../data/failure.dart';
+import '../entities/customer.dart';
+import '../repositories/customer_repository.dart';
 
 class GetCustomerById {
   final CustomerRepository _customerRepository;

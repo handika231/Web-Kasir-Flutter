@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:kasir_app/presentation/menu/provider/menu_notifier.dart';
 import 'package:provider/provider.dart';
 
 import '../../../common/style.dart';
+import '../../menu/provider/menu_notifier.dart';
 import '../../menu/widgets/menu_scaffold.dart';
 import '../widgets/form_profile_widget.dart';
 import '../widgets/image_profile_widget.dart';

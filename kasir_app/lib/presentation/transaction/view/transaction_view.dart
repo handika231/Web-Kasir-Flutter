@@ -1,10 +1,10 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:kasir_app/presentation/transaction/provider/transaction_notifier.dart';
 import 'package:provider/provider.dart';
 
 import '../../../common/style.dart';
 import '../../menu/widgets/menu_scaffold.dart';
+import '../provider/transaction_notifier.dart';
 
 class TransactionView extends StatelessWidget {
   const TransactionView({super.key});

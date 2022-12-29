@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:kasir_app/common/extension.dart';
 
+import '../../../common/extension.dart';
 import '../../../common/style.dart';
 
 class TebusWidget extends StatelessWidget {

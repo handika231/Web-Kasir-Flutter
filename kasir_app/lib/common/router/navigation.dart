@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:kasir_app/common/extension.dart';
-import 'package:kasir_app/common/style.dart';
-import 'package:kasir_app/common/utils/pref_helper.dart';
 
 import '../../presentation/login/view/login_view.dart';
 import '../../presentation/menu/view/menu_view.dart';
+import '../extension.dart';
+import '../style.dart';
+import '../utils/pref_helper.dart';
 
 class Navigation {
   PrefHelper prefHelper = PrefHelper();

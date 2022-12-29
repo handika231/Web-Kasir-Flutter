@@ -1,10 +1,10 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:kasir_app/common/result_transaction.dart';
 import 'package:provider/provider.dart';
 
 import '../../../common/extension.dart';
+import '../../../common/result_transaction.dart';
 import '../../../common/style.dart';
 import '../../../domain/entities/report_transaction.dart';
 import '../../menu/widgets/menu_scaffold.dart';

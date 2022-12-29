@@ -33,82 +33,79 @@ class _TableCustomerWidgetState extends State<TableCustomerWidget> {
   @override
   Widget build(BuildContext context) {
     Provider.of<TableCustomerNotifier>(context, listen: false);
-    return ScrollConfiguration(
-      behavior: const ScrollBehavior().copyWith(
-        dragDevices: {
-          PointerDeviceKind.touch,
-          PointerDeviceKind.mouse,
-        },
-      ),
-      child: Consumer<TableCustomerNotifier>(
-        builder: (context, value, child) => Scrollbar(
-          thumbVisibility: true,
-          thickness: 10,
-          interactive: true,
-          controller: _scrollController,
-          child: SingleChildScrollView(
-            controller: _scrollController,
-            scrollDirection: Axis.horizontal,
-            child: value.isHasData
-                ? DataTable(
-                    dataRowHeight: 50,
-                    columnSpacing: 80,
-                    headingTextStyle: const TextStyle(
-                      fontSize: 15,
-                      color: AppStyle.textSecondaryColor,
-                    ),
-                    dataTextStyle: const TextStyle(
-                      fontSize: 15,
-                      fontWeight: AppStyle.bold,
-                      color: AppStyle.blackColor,
-                    ),
-                    border: const TableBorder(
-                      horizontalInside: BorderSide(
-                        color: AppStyle.bgColorDashboard,
-                        width: 1,
+    return Consumer<TableCustomerNotifier>(
+      builder: (context, value, child) => value.isHasData
+          ? ScrollConfiguration(
+              behavior: const ScrollBehavior().copyWith(
+                dragDevices: {
+                  PointerDeviceKind.touch,
+                  PointerDeviceKind.mouse,
+                },
+              ),
+              child: Scrollbar(
+                thumbVisibility: true,
+                thickness: 10,
+                interactive: true,
+                controller: _scrollController,
+                child: SingleChildScrollView(
+                    controller: _scrollController,
+                    scrollDirection: Axis.horizontal,
+                    child: DataTable(
+                      dataRowHeight: 80,
+                      columnSpacing: 80,
+                      headingTextStyle: const TextStyle(
+                        fontSize: 15,
+                        color: AppStyle.textSecondaryColor,
                       ),
-                    ),
-                    columns: const [
-                      DataColumn(
-                        label: Text('CIF'),
+                      dataTextStyle: const TextStyle(
+                        fontSize: 15,
+                        fontWeight: AppStyle.bold,
+                        color: AppStyle.blackColor,
                       ),
-                      DataColumn(
-                        label: Text('Nama'),
+                      border: const TableBorder(
+                        horizontalInside: BorderSide(
+                          color: AppStyle.bgColorDashboard,
+                          width: 1,
+                        ),
                       ),
-                      DataColumn(
-                        label: Text('NIK'),
-                      ),
-                      DataColumn(
-                        label: Text('Nomor Telepon'),
-                      ),
-                      DataColumn(
-                        label: Text('Alamat'),
-                      ),
-                      DataColumn(
-                        label: Text('Pekerjaan'),
-                      ),
-                      DataColumn(
-                        label: Text('Email'),
-                      ),
-                      DataColumn(
-                        label: Text('Status'),
-                      ),
-                      DataColumn(
-                        label: Text(''),
-                      ),
-                    ],
-                    rows: value.listCustomer
-                        .map((data) => _buildRow(context, data))
-                        .toList(),
-                  )
-                : const SizedBox(
-                    child: Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                  ),
-          ),
-        ),
-      ),
+                      columns: const [
+                        DataColumn(
+                          label: Text('CIF'),
+                        ),
+                        DataColumn(
+                          label: Text('Nama'),
+                        ),
+                        DataColumn(
+                          label: Text('NIK'),
+                        ),
+                        DataColumn(
+                          label: Text('Nomor Telepon'),
+                        ),
+                        DataColumn(
+                          label: Text('Alamat'),
+                        ),
+                        DataColumn(
+                          label: Text('Pekerjaan'),
+                        ),
+                        DataColumn(
+                          label: Text('Email'),
+                        ),
+                        DataColumn(
+                          label: Text('Status'),
+                        ),
+                        DataColumn(
+                          label: Text(''),
+                        ),
+                      ],
+                      rows: value.listCustomer
+                          .map((data) => _buildRow(context, data))
+                          .toList(),
+                    )),
+              ),
+            )
+          : const Center(
+              child: CircularProgressIndicator(),
+            ),
     );
   }
 

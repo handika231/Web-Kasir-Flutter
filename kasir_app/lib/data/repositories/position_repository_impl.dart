@@ -1,9 +1,10 @@
 import 'package:dartz/dartz.dart';
-import 'package:kasir_app/data/datasources/remote_data_source.dart';
-import 'package:kasir_app/data/exception.dart';
-import 'package:kasir_app/data/failure.dart';
-import 'package:kasir_app/domain/entities/position.dart';
-import 'package:kasir_app/domain/repositories/position_repository.dart';
+
+import '../../domain/entities/position.dart';
+import '../../domain/repositories/position_repository.dart';
+import '../datasources/remote_data_source.dart';
+import '../exception.dart';
+import '../failure.dart';
 
 class PositionRepositoryImpl implements PositionRepository {
   RemoteDataSource remoteDataSource;

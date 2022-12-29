@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:kasir_app/data/models/position_model/position_model.dart';
-import 'package:kasir_app/domain/entities/user.dart';
+
+import '../../../domain/entities/user.dart';
+import '../position_model/position_model.dart';
 
 part 'employee_model.freezed.dart';
 part 'employee_model.g.dart';

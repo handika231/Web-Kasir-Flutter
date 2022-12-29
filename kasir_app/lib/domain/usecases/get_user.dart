@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:kasir_app/data/failure.dart';
 
+import '../../data/failure.dart';
 import '../entities/user.dart';
 import '../repositories/user_repository.dart';
 

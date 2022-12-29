@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:kasir_app/domain/entities/user.dart';
-import 'package:kasir_app/domain/usecases/get_user.dart';
 
 import '../../../common/extension.dart';
+import '../../../domain/entities/user.dart';
+import '../../../domain/usecases/get_user.dart';
 import '../../cash_opname/view/cash_opname_view.dart';
 import '../../customer_data/view/customer_data_view.dart';
 import '../../dashboard/view/dashboard_view.dart';

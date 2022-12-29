@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:kasir_app/presentation/login/provider/login_notifier.dart';
 import 'package:provider/provider.dart';
 
 import '../../../common/extension.dart';
 import '../../../common/style.dart';
+import '../../login/provider/login_notifier.dart';
 import '../provider/menu_notifier.dart';
 
 class SideNavWidget extends StatelessWidget {

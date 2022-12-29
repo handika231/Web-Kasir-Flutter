@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
-import 'package:kasir_app/data/datasources/remote_data_source.dart';
-import 'package:kasir_app/data/failure.dart';
-import 'package:kasir_app/domain/entities/user.dart';
-import 'package:kasir_app/domain/repositories/user_repository.dart';
 
+import '../../domain/entities/user.dart';
+import '../../domain/repositories/user_repository.dart';
+import '../datasources/remote_data_source.dart';
 import '../exception.dart';
+import '../failure.dart';
 
 class UserRepositoryImpl implements UserRepository {
   RemoteDataSource remoteDataSource;

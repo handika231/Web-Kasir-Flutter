@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
-import 'package:kasir_app/data/datasources/remote_data_source.dart';
-import 'package:kasir_app/data/failure.dart';
-import 'package:kasir_app/domain/entities/branch.dart';
-import 'package:kasir_app/domain/repositories/branch_repository.dart';
 
+import '../../domain/entities/branch.dart';
+import '../../domain/repositories/branch_repository.dart';
+import '../datasources/remote_data_source.dart';
 import '../exception.dart';
+import '../failure.dart';
 
 class BranchRepositoryImpl implements BranchRepository {
   final RemoteDataSource remoteDataSource;
