@@ -269,12 +269,14 @@ class _TableCustomerWidgetState extends State<TableCustomerWidget> {
                                   children: [
                                     Row(
                                       children: [
-                                        _buildTextDialog('Nama',
-                                            ref.data.name ?? 'Ardianto....'),
+                                        _buildTextDialog(
+                                            'Nama', ref.data.name ?? '-'),
                                         _buildTextDialog(
                                             'CIF', ref.data.cif ?? 'CIF'),
-                                        _buildTextDialog('Pekerjaan',
-                                            ref.data.work ?? 'Pekerjaan'),
+                                        _buildTextDialog(
+                                          'Pekerjaan',
+                                          ref.data.work ?? '-',
+                                        ),
                                       ],
                                     ),
                                     const SizedBox(
@@ -283,13 +285,11 @@ class _TableCustomerWidgetState extends State<TableCustomerWidget> {
                                     Row(
                                       children: [
                                         _buildTextDialog(
-                                            'NIK', ref.data.nik ?? 'NIK'),
+                                            'NIK', ref.data.nik ?? '-'),
+                                        _buildTextDialog('No.Telepon',
+                                            ref.data.phoneNumber ?? '-'),
                                         _buildTextDialog(
-                                            'No.Telepon',
-                                            ref.data.phoneNumber ??
-                                                '08xxxxxxxxxx'),
-                                        _buildTextDialog(
-                                            'Email', ref.data.email ?? 'Email'),
+                                            'Email', ref.data.email ?? '-'),
                                       ],
                                     ),
                                     const SizedBox(
@@ -297,14 +297,11 @@ class _TableCustomerWidgetState extends State<TableCustomerWidget> {
                                     ),
                                     Row(
                                       children: [
-                                        _buildTextDialog(
-                                            'Nama Ibu Kandung',
-                                            ref.data.motherName ??
-                                                'Nama Ibu Kandung'),
+                                        _buildTextDialog('Nama Ibu Kandung',
+                                            ref.data.motherName ?? '-'),
                                         _buildTextDialog(
                                             'Tanggal Pertama Gadai',
-                                            ref.data.firstPawnDate ??
-                                                'Tanggal Pertama Gadai'),
+                                            ref.data.firstPawnDate ?? '-'),
                                         Expanded(
                                           child: Column(
                                             crossAxisAlignment:
@@ -341,7 +338,7 @@ class _TableCustomerWidgetState extends State<TableCustomerWidget> {
                                     ),
                                     _buildTextDialog(
                                       'Alamat',
-                                      ref.data.address ?? 'Alamat',
+                                      ref.data.address ?? '',
                                     )
                                   ],
                                 ),

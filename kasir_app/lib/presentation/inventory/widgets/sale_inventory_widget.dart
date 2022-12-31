@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:kasir_app/common/extension.dart';
 import 'package:provider/provider.dart';
 
 import '../../../common/style.dart';
@@ -89,8 +90,14 @@ class _SaleInventoryWidgetState extends State<SaleInventoryWidget> {
                             .toList()),
                   ),
                 )
-              : const Center(
-                  child: Text('Tidak ada data'),
+              : Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset('empty'.toPNG, width: 200, height: 200),
+                      const Text('Tidak ada data'),
+                    ],
+                  ),
                 )
           : const Center(
               child: CircularProgressIndicator(),

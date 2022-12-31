@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 import '../../../common/extension.dart';
 import '../../../common/style.dart';
+import '../../../common/utils/separator_helper.dart';
+import '../provider/petty_cash_notifier.dart';
 
 class PettyCashWidget extends StatelessWidget {
   const PettyCashWidget({
@@ -11,6 +15,9 @@ class PettyCashWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final now = DateFormat('yyyy-MM-dd').format(DateTime.now());
+    final pettyProvider =
+        Provider.of<PettyCashNotifier>(context, listen: false);
     return ListView(
       padding: const EdgeInsets.fromLTRB(50, 50, 50, 100),
       children: [
@@ -21,22 +28,36 @@ class PettyCashWidget extends StatelessWidget {
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              Text('Tanggal'),
-              SizedBox(
+            children: [
+              const Text('Tanggal'),
+              const SizedBox(
                 height: 12,
               ),
               SizedBox(
                 width: 300,
                 child: TextField(
+                  controller: pettyProvider.dateController,
                   readOnly: true,
+                  onTap: () {
+                    showDatePicker(
+                      context: context,
+                      initialDate: DateTime.now(),
+                      firstDate: DateTime(2000),
+                      lastDate: DateTime(2100),
+                    ).then((value) {
+                      if (value != null) {
+                        pettyProvider.dateController.text =
+                            DateFormat('yyyy-MM-dd').format(value);
+                      }
+                    });
+                  },
                   decoration: InputDecoration(
-                    hintText: '17 October 2020',
-                    prefixIcon: Icon(
+                    hintText: now,
+                    prefixIcon: const Icon(
                       Icons.calendar_today,
                       color: AppStyle.textSecondaryColor,
                     ),
-                    border: OutlineInputBorder(
+                    border: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(8),
                       ),
@@ -54,6 +75,7 @@ class PettyCashWidget extends StatelessWidget {
           children: [
             Expanded(
               child: _buildFormField(
+                controller: pettyProvider.nameController,
                 hint: 'Masukkan nama pengeluaran',
                 label: 'Nama Pengeluaran',
               ),
@@ -63,6 +85,7 @@ class PettyCashWidget extends StatelessWidget {
             ),
             Expanded(
               child: _buildFormField(
+                controller: pettyProvider.amountController,
                 hint: 'Rp. 0',
                 label: 'Nominal Pengeluaran',
                 isNumberField: true,
@@ -90,7 +113,7 @@ class PettyCashWidget extends StatelessWidget {
                   const SizedBox(
                     height: 12,
                   ),
-                  DropdownButtonFormField(
+                  DropdownButtonFormField<String>(
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(
@@ -101,23 +124,25 @@ class PettyCashWidget extends StatelessWidget {
                     hint: const Text('Pilih akun'),
                     items: const [
                       DropdownMenuItem(
-                        value: 0,
+                        value: 'Kas',
                         child: Text('Kas'),
                       ),
                       DropdownMenuItem(
-                        value: 1,
+                        value: 'Hutang',
                         child: Text('Hutang'),
                       ),
                       DropdownMenuItem(
-                        value: 2,
+                        value: 'Laba Rugi',
                         child: Text('Laba Rugi'),
                       ),
                       DropdownMenuItem(
-                        value: 3,
+                        value: 'Lain-lain',
                         child: Text('Lain-lain'),
                       ),
                     ],
-                    onChanged: (value) {},
+                    onChanged: (value) {
+                      pettyProvider.onChangeAccount(value.toString());
+                    },
                   ),
                 ],
               ),
@@ -233,7 +258,10 @@ class PettyCashWidget extends StatelessWidget {
 }
 
 Widget _buildFormField(
-    {String label = '', bool isNumberField = false, String hint = ''}) {
+    {String label = '',
+    bool isNumberField = false,
+    String hint = '',
+    required TextEditingController controller}) {
   return DefaultTextStyle(
     style: const TextStyle(
       fontSize: 15,
@@ -247,15 +275,26 @@ Widget _buildFormField(
           height: 12,
         ),
         TextField(
+          controller: controller,
           inputFormatters: isNumberField
               ? [
                   FilteringTextInputFormatter.allow(
                     RegExp(r'[0-9]'),
                   ),
+                  ThousandsSeparatorInputFormatter()
                 ]
               : null,
           decoration: InputDecoration(
             hintText: hint,
+            prefix: isNumberField
+                ? const Text(
+                    'Rp. ',
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: AppStyle.semiBold,
+                    ),
+                  )
+                : null,
             border: const OutlineInputBorder(
               borderRadius: BorderRadius.all(
                 Radius.circular(8),
