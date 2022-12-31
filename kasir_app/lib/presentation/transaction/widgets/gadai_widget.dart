@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 import '../../../common/extension.dart';
 import '../../../common/style.dart';
+import '../provider/gadai_notifier.dart';
 
 class GadaiWidget extends StatelessWidget {
   const GadaiWidget({
     Key? key,
   }) : super(key: key);
-  final String groupValue = '';
+
   @override
   Widget build(BuildContext context) {
+    final gadaiProvider = Provider.of<GadaiNotifier>(context);
+    String value = '';
     double width = MediaQuery.of(context).size.width;
     return ListView(
       children: [
@@ -122,6 +126,7 @@ class GadaiWidget extends StatelessWidget {
                   Expanded(
                     child: _buildFormField(
                       label: 'Nama',
+                      controller: gadaiProvider.nameController,
                       hint: 'Masukan nama',
                       width: width * 0.3,
                     ),
@@ -131,6 +136,7 @@ class GadaiWidget extends StatelessWidget {
                   ),
                   Expanded(
                     child: _buildFormField(
+                      controller: gadaiProvider.nikController,
                       label: 'NIK',
                       isNumberField: true,
                       hint: 'Masukan nomor kependudukan',
@@ -142,6 +148,7 @@ class GadaiWidget extends StatelessWidget {
                   ),
                   Expanded(
                     child: _buildFormField(
+                      controller: gadaiProvider.cifController,
                       label: 'CIF',
                       isNumberField: true,
                       hint: '2208000012',
@@ -157,6 +164,7 @@ class GadaiWidget extends StatelessWidget {
                 children: [
                   Expanded(
                     child: _buildFormField(
+                      controller: gadaiProvider.phoneController,
                       label: 'No Telepon',
                       hint: 'Masukan nomor telepon',
                       isNumberField: true,
@@ -175,36 +183,13 @@ class GadaiWidget extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text('Pekerjaan'),
-                          const SizedBox(
-                            height: 12,
-                          ),
                           SizedBox(
                             width: width * 0.3,
-                            child: DropdownButtonFormField(
-                              decoration: const InputDecoration(
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(8),
-                                  ),
-                                ),
-                              ),
-                              hint: const Text('Pilih pekerjaan'),
-                              items: const [
-                                DropdownMenuItem(
-                                  value: 0,
-                                  child: Text('Karyawan Swasta'),
-                                ),
-                                DropdownMenuItem(
-                                  value: 1,
-                                  child: Text('PNS'),
-                                ),
-                                DropdownMenuItem(
-                                  value: 2,
-                                  child: Text('Wiraswasta'),
-                                ),
-                              ],
-                              onChanged: (value) {},
+                            child: _buildFormField(
+                              width: width * 0.3,
+                              controller: gadaiProvider.workController,
+                              label: 'Pekerjaan',
+                              hint: 'Masukan pekerjaan',
                             ),
                           ),
                         ],
@@ -216,6 +201,7 @@ class GadaiWidget extends StatelessWidget {
                   ),
                   Expanded(
                     child: _buildFormField(
+                      controller: gadaiProvider.emailController,
                       label: 'Email',
                       hint: 'Masukkan alamat email',
                       width: width * 0.3,
@@ -267,6 +253,7 @@ class GadaiWidget extends StatelessWidget {
                     child: Column(
                       children: [
                         _buildFormField(
+                          controller: gadaiProvider.motherNameController,
                           width: width * 0.5,
                           label: 'Nama Ibu Kandung',
                           hint: 'Masukkan nama ibu kandung',
@@ -286,44 +273,15 @@ class GadaiWidget extends StatelessWidget {
                               const SizedBox(
                                 height: 12,
                               ),
-                              SizedBox(
-                                width: width * 0.5,
-                                child: Row(
-                                  children: [
-                                    Flexible(
-                                      child: RadioListTile(
-                                        dense: true,
-                                        visualDensity: VisualDensity.compact,
-                                        contentPadding: EdgeInsets.zero,
-                                        title: const Text('Member'),
-                                        value: 'member',
-                                        groupValue: groupValue,
-                                        onChanged: (value) {},
-                                      ),
-                                    ),
-                                    Flexible(
-                                      child: RadioListTile(
-                                        dense: true,
-                                        visualDensity: VisualDensity.compact,
-                                        contentPadding: EdgeInsets.zero,
-                                        title: const Text('Umum'),
-                                        value: 'Umum',
-                                        groupValue: groupValue,
-                                        onChanged: (value) {},
-                                      ),
-                                    ),
-                                    Flexible(
-                                      child: RadioListTile(
-                                        dense: true,
-                                        visualDensity: VisualDensity.compact,
-                                        contentPadding: EdgeInsets.zero,
-                                        title: const Text('Backlist'),
-                                        value: 'Backlist',
-                                        groupValue: groupValue,
-                                        onChanged: (value) {},
-                                      ),
-                                    ),
-                                  ],
+                              Consumer<GadaiNotifier>(
+                                builder: (context, value, child) => SizedBox(
+                                  width: width * 0.5,
+                                  child: Row(
+                                    children: [
+                                      radioTile(value, 'active'),
+                                      radioTile(value, 'backlist'),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ],
@@ -367,7 +325,18 @@ class GadaiWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-              )
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  gadaiProvider.createCustomerData(context);
+                },
+                child: const Text(
+                  "Create",
+                ),
+              ),
             ],
           ),
         ),
@@ -375,10 +344,29 @@ class GadaiWidget extends StatelessWidget {
     );
   }
 
+  Flexible radioTile(GadaiNotifier value, String text) {
+    return Flexible(
+      child: RadioListTile<String>(
+        activeColor: AppStyle.redColor,
+        dense: true,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+        contentPadding: EdgeInsets.zero,
+        title: Text(text),
+        value: text,
+        groupValue: value.groupValue,
+        onChanged: (val) {
+          value.onChangeValue(val.toString());
+          print(value.groupValue);
+        },
+      ),
+    );
+  }
+
   Widget _buildFormField(
       {String label = '',
       bool isNumberField = false,
       double width = 300,
+      required TextEditingController controller,
       String hint = ''}) {
     return DefaultTextStyle(
       style: const TextStyle(
@@ -395,6 +383,7 @@ class GadaiWidget extends StatelessWidget {
           SizedBox(
             width: width,
             child: TextField(
+              controller: controller,
               inputFormatters: isNumberField
                   ? [
                       FilteringTextInputFormatter.allow(

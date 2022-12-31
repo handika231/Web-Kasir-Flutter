@@ -91,7 +91,6 @@ class _LoginWidgetState extends State<LoginWidget> {
                                 ),
                                 onChanged: (val) {
                                   value.branchId = val ?? 1;
-                                  debugPrint(val.toString());
                                 },
                                 hint: const Text('Pilih Cabang'),
                               );

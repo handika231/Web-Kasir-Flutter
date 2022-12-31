@@ -19,3 +19,7 @@ class ConnectionFailure extends Failure {
 class LoginFailure extends Failure {
   const LoginFailure({required String message}) : super(message: message);
 }
+
+class CreateCustomerFailure extends Failure {
+  const CreateCustomerFailure({required String message}) : super(message: message);
+}

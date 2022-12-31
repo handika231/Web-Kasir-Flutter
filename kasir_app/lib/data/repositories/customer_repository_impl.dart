@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:kasir_app/data/models/customer_model/customer_model.dart';
 
 import '../../domain/entities/customer.dart';
 import '../../domain/repositories/customer_repository.dart';
@@ -15,7 +16,8 @@ class CustomerRepositoryImpl implements CustomerRepository {
       final data = await remoteDataSource.getListCustomer();
       return Right(data.map((e) => e.toEntity()).toList());
     } on ServerException {
-      return const Left(ServerFailure(message: 'Gagal mengambil data nasabah'));
+      return const Left(
+          ServerFailure(message: 'Gagal mengambil list data nasabah'));
     }
   }
 
@@ -26,6 +28,19 @@ class CustomerRepositoryImpl implements CustomerRepository {
       return Right(data.toEntity());
     } on ServerException {
       return const Left(ServerFailure(message: 'Gagal mengambil data nasabah'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, Customer>> createCustomer(
+      CustomerModel customer) async {
+    try {
+      final data = await remoteDataSource.createCustomer(customer);
+      return Right(data.toEntity());
+    } on ServerException catch (e) {
+      return Left(
+        ServerFailure(message: e.message),
+      );
     }
   }
 }

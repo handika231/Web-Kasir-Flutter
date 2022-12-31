@@ -1,6 +1,8 @@
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:kasir_app/domain/usecases/create_customer.dart';
+import 'package:kasir_app/presentation/transaction/provider/gadai_notifier.dart';
 
 import 'common/utils/image_picker_helper.dart';
 import 'data/auth/authentication.dart';
@@ -48,6 +50,7 @@ init() {
   locator.registerFactory(() => MenuNotifier(locator()));
   locator.registerFactory(() => TableCustomerNotifier(locator(), locator()));
   locator.registerFactory(() => InventoryNotifier(locator(), locator()));
+  locator.registerFactory(() => GadaiNotifier(locator()));
 
   // USES CASE
   locator.registerLazySingleton(() => GetListBranch(locator()));
@@ -60,6 +63,7 @@ init() {
   locator.registerLazySingleton(() => GetCustomerById(locator()));
   locator.registerLazySingleton(() => GetDueInventory(locator()));
   locator.registerLazySingleton(() => GetListSaleInventory(locator()));
+  locator.registerLazySingleton(() => CreateCustomer(locator()));
 
   // REPOSITORY
   locator.registerLazySingleton<BranchRepository>(

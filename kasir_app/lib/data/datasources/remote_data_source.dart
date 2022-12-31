@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import '../../common/constant.dart';
@@ -16,18 +15,18 @@ abstract class RemoteDataSource {
   Future<List<BranchModel>> getListBranch();
   Future<List<PositionModel>> getListPosition();
   Future<UserModel> getUser();
-  Future<UserModel> updateProfile({
-    required String name,
-    required String email,
-    required String phone,
-    required int position,
-  });
+  Future<UserModel> updateProfile(
+      {required String name,
+      required String email,
+      required String phone,
+      required int position});
   Future<BranchModel> getBranchById(int id);
   Future<PositionModel> getPositionById(int id);
   Future<List<CustomerModel>> getListCustomer();
   Future<CustomerModel> getCustomerById(int id);
   Future<List<InventoryModel>> getDueInventory();
   Future<List<InventoryModel>> getSaleInventory();
+  Future<CustomerModel> createCustomer(CustomerModel customer);
 }
 
 class RemoteDataSourceImpl implements RemoteDataSource {
@@ -104,15 +103,11 @@ class RemoteDataSourceImpl implements RemoteDataSource {
           'email': email,
           'phone_number': phone,
           'position_id': position,
-          // 'profile_picture': image,
-          //send file
           '_method': 'PATCH'
         }));
-    if (response.statusCode == 200) {
+    if (response.statusCode >= 200 && response.statusCode < 300) {
       return UserModel.fromJson(json.decode(response.body)['data']);
     } else {
-      debugPrint(response.body);
-      debugPrint(response.statusCode.toString());
       throw const ServerException(message: 'Gagal mengambil data user');
     }
   }
@@ -195,7 +190,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       List result = json.decode(response.body)['data'];
       return result.map((value) => InventoryModel.fromJson(value)).toList();
     } else {
-      throw const ServerException(message: 'Gagal mengambil data inventori');
+      throw const ServerException(message: 'Gagal mengambil data inventory');
     }
   }
 
@@ -213,7 +208,36 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       List result = json.decode(response.body)['data'];
       return result.map((value) => InventoryModel.fromJson(value)).toList();
     } else {
-      throw const ServerException(message: 'Gagal mengambil data inventori');
+      throw const ServerException(message: 'Gagal mengambil data inventory');
+    }
+  }
+
+  @override
+  Future<CustomerModel> createCustomer(CustomerModel customer) async {
+    String token = await prefHelper.getToken();
+    final url = Uri.parse('${Urls.baseUrl}/api/customers');
+    final response = await client.post(url,
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': 'Bearer $token',
+        },
+        body: json.encode({
+          'name': customer.name,
+          'cif': customer.cif,
+          'nik': customer.nik,
+          'work': customer.work,
+          'mother_name': customer.motherName,
+          'status': customer.status,
+          'email': customer.email,
+          'phone_number': customer.phoneNumber,
+          'address': customer.address,
+        }));
+    final result = json.decode(response.body);
+    if (response.statusCode >= 200 && response.statusCode < 300) {
+      return CustomerModel.fromJson(result['data']);
+    } else {
+      throw ServerException(message: result['message']);
     }
   }
 }
