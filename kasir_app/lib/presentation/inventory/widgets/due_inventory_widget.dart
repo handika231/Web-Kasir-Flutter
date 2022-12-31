@@ -37,59 +37,63 @@ class _DueInventoryWidgetState extends State<DueInventoryWidget> {
                     PointerDeviceKind.mouse,
                   },
                 ),
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: DataTable(
-                    dataRowHeight: 80,
-                    columnSpacing: 80,
-                    headingTextStyle: const TextStyle(
-                      fontSize: 15,
-                      color: AppStyle.textSecondaryColor,
-                    ),
-                    dataTextStyle: const TextStyle(
-                      fontSize: 15,
-                      fontWeight: AppStyle.bold,
-                      color: AppStyle.blackColor,
-                    ),
-                    border: const TableBorder(
-                      horizontalInside: BorderSide(
-                        color: AppStyle.bgColorDashboard,
-                        width: 1,
+                child: value.inventory.isNotEmpty
+                    ? SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: DataTable(
+                          dataRowHeight: 80,
+                          columnSpacing: 80,
+                          headingTextStyle: const TextStyle(
+                            fontSize: 15,
+                            color: AppStyle.textSecondaryColor,
+                          ),
+                          dataTextStyle: const TextStyle(
+                            fontSize: 15,
+                            fontWeight: AppStyle.bold,
+                            color: AppStyle.blackColor,
+                          ),
+                          border: const TableBorder(
+                            horizontalInside: BorderSide(
+                              color: AppStyle.bgColorDashboard,
+                              width: 1,
+                            ),
+                          ),
+                          columns: const [
+                            DataColumn(
+                              label: Text('Nomor nota'),
+                            ),
+                            DataColumn(
+                              label: Text('Tanggal'),
+                            ),
+                            DataColumn(
+                              label: Text('Status Perpanjangan'),
+                            ),
+                            DataColumn(
+                              label: Text('Nama Barang'),
+                            ),
+                            DataColumn(
+                              label: Text('Nominal Gadai'),
+                            ),
+                            DataColumn(
+                              label: Text('Kelengkapan'),
+                            ),
+                            DataColumn(
+                              label: Text('Minus'),
+                            ),
+                            DataColumn(
+                              label: Text('Status'),
+                            ),
+                          ],
+                          rows: value.inventory.map(
+                            (customer) {
+                              return _buildRow(context, customer);
+                            },
+                          ).toList(),
+                        ),
+                      )
+                    : const Center(
+                        child: Text('Data Kosong'),
                       ),
-                    ),
-                    columns: const [
-                      DataColumn(
-                        label: Text('Nomor nota'),
-                      ),
-                      DataColumn(
-                        label: Text('Tanggal'),
-                      ),
-                      DataColumn(
-                        label: Text('Status Perpanjangan'),
-                      ),
-                      DataColumn(
-                        label: Text('Nama Barang'),
-                      ),
-                      DataColumn(
-                        label: Text('Nominal Gadai'),
-                      ),
-                      DataColumn(
-                        label: Text('Kelengkapan'),
-                      ),
-                      DataColumn(
-                        label: Text('Minus'),
-                      ),
-                      DataColumn(
-                        label: Text('Status'),
-                      ),
-                    ],
-                    rows: value.inventory.map(
-                      (customer) {
-                        return _buildRow(context, customer);
-                      },
-                    ).toList(),
-                  ),
-                ),
               )
             : const Center(child: CircularProgressIndicator());
       },

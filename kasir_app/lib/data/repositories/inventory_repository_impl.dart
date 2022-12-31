@@ -20,4 +20,16 @@ class InventoryRepositoryImpl implements InventoryRepository {
       );
     }
   }
+
+  @override
+  Future<Either<Failure, List<Inventory>>> getSaleInventory() async {
+    try {
+      final data = await remoteDataSource.getSaleInventory();
+      return Right(data.map((e) => e.toEntity()).toList());
+    } on ServerException {
+      return const Left(
+        ServerFailure(message: 'Gagal mengambil data inventory'),
+      );
+    }
+  }
 }

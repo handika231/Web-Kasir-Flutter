@@ -90,7 +90,7 @@ class _HeaderMenuWidgetState extends State<HeaderMenuWidget> {
                     return ref.isHasData
                         ? ref.user.profilePicture!.isNotEmpty
                             ? Image.network(
-                                ref.user.profilePicture!,
+                                ref.user.profilePicture.toString(),
                                 width: 30,
                                 height: 30,
                                 fit: BoxFit.cover,

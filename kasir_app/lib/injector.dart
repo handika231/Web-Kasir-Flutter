@@ -21,6 +21,7 @@ import 'domain/usecases/get_due_inventory.dart';
 import 'domain/usecases/get_list_branch.dart';
 import 'domain/usecases/get_list_customer.dart';
 import 'domain/usecases/get_list_position.dart';
+import 'domain/usecases/get_list_sale.dart';
 import 'domain/usecases/get_position_id.dart';
 import 'domain/usecases/get_user.dart';
 import 'domain/usecases/update_user.dart';
@@ -46,7 +47,7 @@ init() {
   locator.registerFactory(() => LoginNotifier(locator(), locator(), locator()));
   locator.registerFactory(() => MenuNotifier(locator()));
   locator.registerFactory(() => TableCustomerNotifier(locator(), locator()));
-  locator.registerFactory(() => InventoryNotifier(locator()));
+  locator.registerFactory(() => InventoryNotifier(locator(), locator()));
 
   // USES CASE
   locator.registerLazySingleton(() => GetListBranch(locator()));
@@ -58,6 +59,7 @@ init() {
   locator.registerLazySingleton(() => GetListCustomer(locator()));
   locator.registerLazySingleton(() => GetCustomerById(locator()));
   locator.registerLazySingleton(() => GetDueInventory(locator()));
+  locator.registerLazySingleton(() => GetListSaleInventory(locator()));
 
   // REPOSITORY
   locator.registerLazySingleton<BranchRepository>(

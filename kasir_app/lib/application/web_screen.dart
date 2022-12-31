@@ -47,6 +47,10 @@ class WebScreen extends StatelessWidget {
         ),
       ],
       child: MaterialApp.router(
+        theme: ThemeData(
+            primarySwatch: Colors.blue,
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+            extensions: const []),
         routerConfig: Navigation.router,
         localizationsDelegates: const [
           AppLocalizations.delegate,
