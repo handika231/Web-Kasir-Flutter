@@ -1,7 +1,11 @@
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:kasir_app/data/repositories/transaction_repository_impl.dart';
+import 'package:kasir_app/domain/repositories/transaction_repository.dart';
 import 'package:kasir_app/domain/usecases/create_customer.dart';
+import 'package:kasir_app/domain/usecases/get_list_pettycash.dart';
+import 'package:kasir_app/presentation/report_transaction/provider/pettycash_notifier.dart';
 import 'package:kasir_app/presentation/transaction/provider/gadai_notifier.dart';
 
 import 'common/utils/image_picker_helper.dart';
@@ -51,6 +55,7 @@ init() {
   locator.registerFactory(() => TableCustomerNotifier(locator(), locator()));
   locator.registerFactory(() => InventoryNotifier(locator(), locator()));
   locator.registerFactory(() => GadaiNotifier(locator()));
+  locator.registerFactory(() => PettyCashNotifier(locator()));
 
   // USES CASE
   locator.registerLazySingleton(() => GetListBranch(locator()));
@@ -64,6 +69,7 @@ init() {
   locator.registerLazySingleton(() => GetDueInventory(locator()));
   locator.registerLazySingleton(() => GetListSaleInventory(locator()));
   locator.registerLazySingleton(() => CreateCustomer(locator()));
+  locator.registerLazySingleton(() => GetListPettyCash(locator()));
 
   // REPOSITORY
   locator.registerLazySingleton<BranchRepository>(
@@ -76,6 +82,8 @@ init() {
       () => UserRepositoryImpl(locator()));
   locator.registerLazySingleton<CustomerRepository>(
       () => CustomerRepositoryImpl(locator()));
+  locator.registerLazySingleton<TransactionRepository>(
+      () => TransactionRepositoryImpl(locator()));
 
   // DATA SOURCE
   locator.registerLazySingleton<RemoteDataSource>(

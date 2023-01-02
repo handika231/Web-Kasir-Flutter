@@ -1,0 +1,10 @@
+{
+  "id": 1,
+  "date": "2022-12-09",
+  "title": "Pembelian ABC",
+  "amount": 50000,
+  "account": "Kas",
+  "account_code": "4-40001",
+  "created_at": "2022-12-28T15:02:08.000000Z",
+  "updated_at": "2022-12-28T15:02:08.000000Z"
+}

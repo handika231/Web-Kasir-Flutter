@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:kasir_app/data/models/petty_cash_model/petty_cash_model.dart';
 
 import '../../common/constant.dart';
 import '../../common/utils/pref_helper.dart';
@@ -27,6 +28,7 @@ abstract class RemoteDataSource {
   Future<List<InventoryModel>> getDueInventory();
   Future<List<InventoryModel>> getSaleInventory();
   Future<CustomerModel> createCustomer(CustomerModel customer);
+  Future<List<PettyCashModel>> getListPettyCash();
 }
 
 class RemoteDataSourceImpl implements RemoteDataSource {
@@ -238,6 +240,24 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       return CustomerModel.fromJson(result['data']);
     } else {
       throw ServerException(message: result['message']);
+    }
+  }
+
+  @override
+  Future<List<PettyCashModel>> getListPettyCash() async {
+    String token = await prefHelper.getToken();
+    final response = await client.get(
+        Uri.parse('${Urls.baseUrl}/api/transactions/petty-cashes'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': 'Bearer $token',
+        });
+    if (response.statusCode == 200) {
+      List result = json.decode(response.body)['data'];
+      return result.map((value) => PettyCashModel.fromJson(value)).toList();
+    } else {
+      throw const ServerException(message: 'Gagal mengambil data petty cash');
     }
   }
 }

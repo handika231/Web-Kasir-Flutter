@@ -21,5 +21,6 @@ class LoginFailure extends Failure {
 }
 
 class CreateCustomerFailure extends Failure {
-  const CreateCustomerFailure({required String message}) : super(message: message);
+  const CreateCustomerFailure({required String message})
+      : super(message: message);
 }

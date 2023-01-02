@@ -1,6 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:kasir_app/presentation/report_transaction/widgets/petty_cash_widget.dart'
+    as reportTransaction;
 import 'package:provider/provider.dart';
 
 import '../../../common/extension.dart';
@@ -62,7 +64,10 @@ class ReportTransactionView extends StatelessWidget {
                                 ),
                                 position: PopupMenuPosition.under,
                                 child: Container(
-                                  padding: const EdgeInsets.all(12),
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 18,
+                                    vertical: 12,
+                                  ),
                                   decoration: BoxDecoration(
                                     color: AppStyle.redColor,
                                     borderRadius: BorderRadius.circular(8),
@@ -228,9 +233,7 @@ class ReportTransactionView extends StatelessWidget {
                             const Center(
                               child: Text('Titip'),
                             ),
-                            const Center(
-                              child: Text('Petty Cash'),
-                            ),
+                            const reportTransaction.PettyCashWidget()
                           ],
                         );
                       },

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:kasir_app/presentation/report_transaction/provider/pettycash_notifier.dart';
 import 'package:kasir_app/presentation/transaction/provider/gadai_notifier.dart';
 import 'package:kasir_app/presentation/transaction/provider/petty_cash_notifier.dart';
 import 'package:provider/provider.dart';
@@ -51,7 +52,10 @@ class WebScreen extends StatelessWidget {
           create: (_) => di.locator<InventoryNotifier>(),
         ),
         ChangeNotifierProvider(
-          create: (_) => PettyCashNotifier(),
+          create: (_) => ReportTransactionPettyCashNotifier(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => di.locator<PettyCashNotifier>(),
         ),
       ],
       child: MaterialApp.router(

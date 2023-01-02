@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class PettyCashNotifier extends ChangeNotifier {
+class ReportTransactionPettyCashNotifier extends ChangeNotifier {
   TextEditingController dateController = TextEditingController();
   TextEditingController nameController = TextEditingController();
   TextEditingController amountController = TextEditingController();

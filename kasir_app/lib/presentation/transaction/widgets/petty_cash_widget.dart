@@ -17,7 +17,7 @@ class PettyCashWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final now = DateFormat('yyyy-MM-dd').format(DateTime.now());
     final pettyProvider =
-        Provider.of<PettyCashNotifier>(context, listen: false);
+        Provider.of<ReportTransactionPettyCashNotifier>(context, listen: false);
     return ListView(
       padding: const EdgeInsets.fromLTRB(50, 50, 50, 100),
       children: [
