@@ -86,7 +86,7 @@ class PettyCashWidget extends StatelessWidget {
             Expanded(
               child: _buildFormField(
                 controller: pettyProvider.amountController,
-                hint: 'Rp. 0',
+                hint: '0',
                 label: 'Nominal Pengeluaran',
                 isNumberField: true,
               ),
@@ -142,6 +142,7 @@ class PettyCashWidget extends StatelessWidget {
                     ],
                     onChanged: (value) {
                       pettyProvider.onChangeAccount(value.toString());
+                      print(pettyProvider.selectAccount);
                     },
                   ),
                 ],

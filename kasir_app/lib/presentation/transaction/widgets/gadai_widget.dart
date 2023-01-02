@@ -326,16 +326,76 @@ class GadaiWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 12,
+            ],
+          ),
+        ),
+        const SizedBox(
+          height: 25,
+        ),
+
+        ///DATA BARANG
+        Container(
+          decoration: BoxDecoration(
+            color: AppStyle.white,
+            borderRadius: BorderRadius.circular(16),
+          ),
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'Data Barang',
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: AppStyle.bold,
+                    ),
+                  ),
+                  TextButton.icon(
+                    style: TextButton.styleFrom(
+                      foregroundColor: AppStyle.textSecondaryColor,
+                    ),
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return const Dialog();
+                        },
+                      );
+                    },
+                    icon: const Icon(Icons.history),
+                    label: const Text('History'),
+                  )
+                ],
               ),
-              ElevatedButton(
-                onPressed: () {
-                  gadaiProvider.createCustomerData(context);
-                },
-                child: const Text(
-                  "Create",
-                ),
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                children: [
+                  _buildFormField(
+                    controller: TextEditingController(),
+                    label: 'Nomor Nota Baru',
+                    hint: 'Masukkan nomor nota baru',
+                    isNumberField: true,
+                    width: width * 0.3,
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Row(
+                children: [
+                  _buildFormField(
+                    controller: TextEditingController(),
+                    label: '',
+                    hint: 'Masukkan nomor nota baru',
+                    isNumberField: true,
+                    width: width * 0.3,
+                  ),
+                ],
               ),
             ],
           ),
@@ -344,7 +404,7 @@ class GadaiWidget extends StatelessWidget {
     );
   }
 
-  Flexible radioTile(GadaiNotifier value, String text) {
+  Widget radioTile(GadaiNotifier value, String text) {
     return Flexible(
       child: RadioListTile<String>(
         activeColor: AppStyle.redColor,

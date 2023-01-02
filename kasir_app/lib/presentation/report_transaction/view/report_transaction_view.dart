@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../common/extension.dart';
-import '../../../common/result_transaction.dart';
 import '../../../common/style.dart';
 import '../../../domain/entities/report_transaction.dart';
 import '../../menu/widgets/menu_scaffold.dart';
@@ -53,9 +52,9 @@ class ReportTransactionView extends StatelessWidget {
                           const Spacer(flex: 2),
                           Consumer<ReportTransactionNotifier>(
                             builder: (context, ref, child) {
-                              return PopupMenuButton<ResultTransaction>(
-                                onSelected: (ResultTransaction value) {
-                                  ref.onSelected(value);
+                              return PopupMenuButton<int>(
+                                onSelected: (int value) {
+                                  ref.onChangeTransaction(value);
                                 },
                                 offset: const Offset(0, 10),
                                 shape: RoundedRectangleBorder(
@@ -71,7 +70,7 @@ class ReportTransactionView extends StatelessWidget {
                                   child: Row(
                                     children: [
                                       Text(
-                                        provider.name,
+                                        ref.selectedTransactionText,
                                         style: const TextStyle(
                                           fontSize: 15,
                                           fontWeight: AppStyle.bold,
@@ -132,82 +131,110 @@ class ReportTransactionView extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Container(
-                      margin: const EdgeInsets.only(
-                        top: 12,
-                      ),
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 15,
-                        horizontal: 30,
-                      ),
-                      decoration: BoxDecoration(
-                        color: AppStyle.white,
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      child: DataTable(
-                        headingTextStyle: const TextStyle(
-                          color: AppStyle.textSecondaryColor,
-                        ),
-                        columns: const [
-                          DataColumn(
-                            label: Text('Nomor Nota'),
-                          ),
-                          DataColumn(
-                            label: Text('Status'),
-                          ),
-                          DataColumn(
-                            label: Text('Kasir'),
-                          ),
-                          DataColumn(
-                            label: Text('Barang'),
-                          ),
-                          DataColumn(
-                            label: Text('IMEI'),
-                          ),
-                          DataColumn(
-                            label: Text('Nominal'),
-                          ),
-                          DataColumn(
-                            label: Text(''),
-                          ),
-                        ],
-                        rows: dataReportTransaction.map((data) {
-                          return DataRow(
-                            cells: [
-                              DataCell(
-                                Text(data.number),
+                    Consumer<ReportTransactionNotifier>(
+                      builder: (context, ref, child) {
+                        return IndexedStack(
+                          index: provider.selectedTransaction,
+                          children: [
+                            Container(
+                              width: double.infinity,
+                              margin: const EdgeInsets.only(
+                                top: 12,
                               ),
-                              DataCell(
-                                Text(data.status),
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 15,
+                                horizontal: 30,
                               ),
-                              DataCell(
-                                Text(data.cashier),
+                              decoration: BoxDecoration(
+                                color: AppStyle.white,
+                                borderRadius: BorderRadius.circular(16),
                               ),
-                              DataCell(
-                                Text(data.item),
-                              ),
-                              DataCell(
-                                Text(data.imei.toString()),
-                              ),
-                              DataCell(
-                                Text('${data.nominal}'.convertMoney),
-                              ),
-                              DataCell(
-                                ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: AppStyle.redColor,
-                                  ),
-                                  onPressed: data.onTap,
-                                  child: const Text(
-                                    "Cancel",
-                                  ),
+                              child: DataTable(
+                                headingTextStyle: const TextStyle(
+                                  color: AppStyle.textSecondaryColor,
                                 ),
+                                columns: const [
+                                  DataColumn(
+                                    label: Text('Nomor Nota'),
+                                  ),
+                                  DataColumn(
+                                    label: Text('Status'),
+                                  ),
+                                  DataColumn(
+                                    label: Text('Kasir'),
+                                  ),
+                                  DataColumn(
+                                    label: Text('Barang'),
+                                  ),
+                                  DataColumn(
+                                    label: Text('IMEI'),
+                                  ),
+                                  DataColumn(
+                                    label: Text('Nominal'),
+                                  ),
+                                  DataColumn(
+                                    label: Text(''),
+                                  ),
+                                ],
+                                rows: dataReportTransaction.map((data) {
+                                  return DataRow(
+                                    cells: [
+                                      DataCell(
+                                        Text(data.number),
+                                      ),
+                                      DataCell(
+                                        Text(data.status),
+                                      ),
+                                      DataCell(
+                                        Text(data.cashier),
+                                      ),
+                                      DataCell(
+                                        Text(data.item),
+                                      ),
+                                      DataCell(
+                                        Text(data.imei.toString()),
+                                      ),
+                                      DataCell(
+                                        Text('${data.nominal}'.convertMoney),
+                                      ),
+                                      DataCell(
+                                        ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor: AppStyle.redColor,
+                                          ),
+                                          onPressed: data.onTap,
+                                          child: const Text(
+                                            "Cancel",
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  );
+                                }).toList(),
                               ),
-                            ],
-                          );
-                        }).toList(),
-                      ),
-                    ),
+                            ),
+                            const Center(
+                              child: Text('Gadai'),
+                            ),
+                            const Center(
+                              child: Text('Tebus'),
+                            ),
+                            const Center(
+                              child: Text('Perpanjangan'),
+                            ),
+                            const Center(
+                              child: Text('Lelang'),
+                            ),
+                            const Center(
+                              child: Text('Titip'),
+                            ),
+                            const Center(
+                              child: Text('Petty Cash'),
+                            ),
+                          ],
+                        );
+                      },
+                    )
                   ],
                 ),
               ),
