@@ -89,11 +89,13 @@ class _HeaderMenuWidgetState extends State<HeaderMenuWidget> {
                   builder: (context, ref, child) {
                     return ref.isHasData
                         ? ref.user.profilePicture!.isNotEmpty
-                            ? Image.network(
-                                ref.user.profilePicture.toString(),
-                                width: 30,
-                                height: 30,
-                                fit: BoxFit.cover,
+                            ? ClipOval(
+                                child: Image.network(
+                                  ref.user.profilePicture.toString(),
+                                  width: 60,
+                                  height: 60,
+                                  fit: BoxFit.cover,
+                                ),
                               )
                             : const Icon(
                                 Icons.person,

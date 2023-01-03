@@ -547,6 +547,323 @@ class LelangWidget extends StatelessWidget {
                     ),
                   )
                 ],
+              ),
+              const SizedBox(
+                height: 100,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Kalkulasi',
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: AppStyle.bold,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 32,
+                  ),
+                  DefaultTextStyle(
+                    style: const TextStyle(
+                      fontSize: 15,
+                      fontWeight: AppStyle.semiBold,
+                    ),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text('Tempo'),
+                              const SizedBox(
+                                height: 12,
+                              ),
+                              SizedBox(
+                                child: DropdownButton<String>(
+                                    isExpanded: true,
+                                    hint: const Text('Tempo'),
+                                    items: const [
+                                      DropdownMenuItem(
+                                        value: '7 Hari',
+                                        child: Text('7 Hari'),
+                                      ),
+                                      DropdownMenuItem(
+                                        value: '14 Hari',
+                                        child: Text('14 Hari'),
+                                      ),
+                                      DropdownMenuItem(
+                                        value: '21 Hari',
+                                        child: Text('21 Hari'),
+                                      ),
+                                      DropdownMenuItem(
+                                        value: '30 Hari',
+                                        child: Text('30 Hari'),
+                                      ),
+                                      DropdownMenuItem(
+                                        value: '42 Hari',
+                                        child: Text('42 Hari'),
+                                      ),
+                                      DropdownMenuItem(
+                                        value: '60 Hari',
+                                        child: Text('60 Hari'),
+                                      ),
+                                    ],
+                                    onChanged: (value) {
+                                      print(value);
+                                    }),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 12,
+                        ),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text('Tanggal Mulai'),
+                              const SizedBox(
+                                height: 12,
+                              ),
+                              SizedBox(
+                                child: TextField(
+                                  decoration: const InputDecoration(
+                                    prefixIcon: Icon(Icons.calendar_today),
+                                    hintText: 'Tanggal mulai',
+                                  ),
+                                  readOnly: true,
+                                  onTap: () {
+                                    showDatePicker(
+                                      context: context,
+                                      initialDate: DateTime.now(),
+                                      firstDate: DateTime(2015, 8),
+                                      lastDate: DateTime(2101),
+                                    ).then((value) {
+                                      print(value);
+                                    });
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 12,
+                        ),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text('Jatuh tempo'),
+                              const SizedBox(
+                                height: 12,
+                              ),
+                              SizedBox(
+                                child: TextField(
+                                  decoration: const InputDecoration(
+                                    prefixIcon: Icon(Icons.calendar_today),
+                                    hintText: 'Tanggal jatuh tempo',
+                                  ),
+                                  readOnly: true,
+                                  onTap: () {
+                                    showDatePicker(
+                                      context: context,
+                                      initialDate: DateTime.now(),
+                                      firstDate: DateTime(2015, 8),
+                                      lastDate: DateTime(2101),
+                                    ).then((value) {
+                                      print(value);
+                                    });
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 12,
+                        ),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text('Lelang'),
+                              const SizedBox(
+                                height: 12,
+                              ),
+                              SizedBox(
+                                child: TextField(
+                                  decoration: const InputDecoration(
+                                    prefixIcon: Icon(Icons.calendar_today),
+                                    hintText: 'Tanggal lelang',
+                                  ),
+                                  readOnly: true,
+                                  onTap: () {
+                                    showDatePicker(
+                                      context: context,
+                                      initialDate: DateTime.now(),
+                                      firstDate: DateTime(2015, 8),
+                                      lastDate: DateTime(2101),
+                                    ).then((value) {
+                                      print(value);
+                                    });
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 21,
+                  ),
+                  DefaultTextStyle(
+                    style: const TextStyle(
+                      fontSize: 15,
+                      fontWeight: AppStyle.semiBold,
+                    ),
+                    child: Row(
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text('Notif Japo H+20'),
+                            const SizedBox(
+                              height: 12,
+                            ),
+                            SizedBox(
+                              width: 250,
+                              child: TextField(
+                                decoration: const InputDecoration(
+                                  prefixIcon: Icon(Icons.calendar_today),
+                                  hintText: 'Tanggal japo',
+                                ),
+                                readOnly: true,
+                                onTap: () {
+                                  showDatePicker(
+                                    context: context,
+                                    initialDate: DateTime.now(),
+                                    firstDate: DateTime(2015, 8),
+                                    lastDate: DateTime(2101),
+                                  ).then((value) {
+                                    print(value);
+                                  });
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          width: 50,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text('Metode Pembayaran'),
+                            const SizedBox(
+                              height: 30,
+                            ),
+                            Row(
+                              children: [
+                                Row(
+                                  children: [
+                                    Radio<String>(
+                                        value: 'Cash',
+                                        groupValue: '',
+                                        onChanged: (value) {}),
+                                    const SizedBox(
+                                      width: 4,
+                                    ),
+                                    const Text('Cash'),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  width: 16,
+                                ),
+                                Row(
+                                  children: [
+                                    Radio<String>(
+                                        value: 'Transfer',
+                                        groupValue: '',
+                                        onChanged: (value) {}),
+                                    const SizedBox(
+                                      width: 4,
+                                    ),
+                                    const Text('Transfer'),
+                                  ],
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  _itemField('Nilai Gadai'),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  _itemField('Jasa Gadai'),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  _itemField('Keterlambatan'),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  _itemField('Total Tebus'),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  _itemField('Terjual'),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  _itemField('Selisih'),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  _itemField('Fee lelang'),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  _itemField('Sisa'),
+                  const SizedBox(
+                    height: 50,
+                  ),
+                  _itemField('Jumlah Yang Di Bayarkan'),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  _itemField('Kembalian'),
+                  const SizedBox(
+                    height: 100,
+                  ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppStyle.btnColor,
+                      fixedSize: Size(width, 50),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    onPressed: () {},
+                    child: const Text(
+                      "LELANG",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: AppStyle.semiBold,
+                      ),
+                    ),
+                  ),
+                ],
               )
             ],
           ),
@@ -594,6 +911,34 @@ class LelangWidget extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  _itemField(String title) {
+    return Row(
+      children: [
+        Expanded(
+          child: Text(
+            title,
+            style: const TextStyle(
+              fontSize: 15,
+              fontWeight: AppStyle.medium,
+            ),
+          ),
+        ),
+        Expanded(
+          child: TextField(
+            inputFormatters: [
+              FilteringTextInputFormatter.allow(
+                RegExp(r'[0-9]'),
+              ),
+            ],
+            decoration: const InputDecoration(
+              prefixText: 'Rp. ',
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
